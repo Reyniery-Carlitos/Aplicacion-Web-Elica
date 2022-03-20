@@ -1,0 +1,234 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	box-sizing: border-box;
+}
+
+i{
+	font-weight: bold;
+	color: white;
+}
+
+nav{
+	background-color: #00D51A;
+}
+
+body{
+	background-color: #FCF2FF;
+}
+
+.nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 1rem;
+	font-weight: bolder;
+}
+
+.nav section a{
+	text-decoration: none;
+	color: black;
+}
+
+.Menu-Hamburguesa{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.main{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+.Lista-Opciones{
+	display: none;
+}
+
+.Lista-Opciones__Items{
+	font-family: 'Poppins';
+	list-style: none;
+	padding: 10px;
+	font-size: 1rem;
+	font-weight: bold;
+	/*border-left: black solid medium;*/
+
+}
+
+.Lista-Opciones__Items:hover{
+	background-color: #FEE1F1;
+	transition: all 1s ease;
+}
+
+.Lista-Opciones__Link{
+	color: black;	
+}
+
+.Lista-Opciones ul li a{
+	text-decoration: none;
+	color: black;
+}
+
+.Lista-Opciones__Lista-Principal{
+	line-height: 30px;
+}
+	
+.Lista-Opciones__Items-Principal{
+	padding: 5px;
+	margin-bottom: 0;
+}
+
+.Lista-Opciones-Show{
+	/*transition: all 2s ease;*/
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	height: calc(100vh - 72px);
+	width: 15%;
+	background-color: #FFF;
+	padding: 10px;
+	box-shadow: 0px 2px 8px #999;
+}
+
+.Contenedor-Formulario{
+	display: none;
+}
+
+.Contenedor-Formulario-Show{
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding-top: 10px;
+	background-color: white;
+	width: 35%;
+	height: calc(100vh - 72px);
+	margin-left: auto;
+	box-shadow: 0px 2px 8px #999;
+}
+
+.Contenedor-Imagen-Formulario{
+	width: 100px;
+	height: 100px;
+	background-color: blue;
+	border-radius: 50%;
+	margin-bottom: 10px;
+}
+
+#Editar{
+	font-size: 1rem;
+	color: green;
+	text-decoration: none;
+	font-weight: bolder;
+}
+
+.Formulario-Contenedor-Texto{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+.Btn-Save{
+	border: none;
+	padding: 5px;
+	margin: auto;
+}
+
+input{
+	border: none;
+	outline: none;
+	line-height: 30px;
+	height: 30px;
+	width: 30vw;
+	border-bottom: 1px solid #CECECE;
+}
+
+.Contenedor-Formulario div div a{
+	text-decoration: none;
+}
+
+.Contenedor-Formulario a{
+	text-decoration: none;
+}
+
+.Contenido-Principal{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	width: 80vw;
+	background-color: red;
+	flex-wrap: wrap;
+}
+
+@media (max-width: 1000px){
+	.main{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+	}
+	.Lista-Opciones-Show{
+		width: 100vw;
+		height: auto;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		flex-wrap: wrap;
+		background-color: #FFF;
+		padding: 10px;
+		box-shadow: 0px 0px 8px #999;
+	}
+
+	.Lista-Opciones__Lista-Items{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.Lista-Opciones__Items{
+		border-left: none;
+	}
+
+	.Lista-Opciones__Items:hover{
+		background-color: #FEE1F1;
+		transition: all 1s ease;
+	}
+
+	.Contenedor-Formulario-Show{
+		margin-top: 0;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		padding-top: 10px;
+		background-color: white;
+		width: 100%;
+		height: auto;
+		margin-right: 0;
+		box-shadow: 0px 2px 8px #999;
+	}
+
+	input{
+		border: none;
+		outline: none;
+		line-height: 30px;
+		height: 30px;
+		width: 80vw;
+		border-bottom: 1px solid gray;
+	}	
+}
