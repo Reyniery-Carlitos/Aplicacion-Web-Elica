@@ -11,7 +11,7 @@ i{
 }
 
 nav{
-	background-color: #00D51A;
+	background-color: #35CF00;
 }
 
 body{
@@ -200,6 +200,7 @@ input{
 	justify-content: center;
 	align-items: center;
 	margin: 10px 5px;
+	margin-bottom: 0;
 	padding: 10px;
 	box-shadow: 0px 2px 8px #999;
 	background-color: #fff;
@@ -260,6 +261,29 @@ input{
 .Card-Texto-Estado span{
 	font-size: 2rem;
 	color: orange;
+}
+
+.Contenedor-Cards{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.Cards-Botones{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.Boton-Cards{
+	display: flex;
+}
+
+.Card-Texto-Boton{
+	color: white;
+	font-weight: bolder;
 }
 
 @media (max-width: 1000px){
