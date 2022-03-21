@@ -49,7 +49,9 @@ body{
 }
 
 .Lista-Opciones{
-	display: none;
+	width: 15%;
+	visibility: hidden;
+	opacity: 0;
 }
 
 .Lista-Opciones__Items{
@@ -59,7 +61,6 @@ body{
 	font-size: 1rem;
 	font-weight: bold;
 	/*border-left: black solid medium;*/
-
 }
 
 .Lista-Opciones__Items:hover{
@@ -74,6 +75,7 @@ body{
 .Lista-Opciones ul li a{
 	text-decoration: none;
 	color: black;
+	order: 1;
 }
 
 .Lista-Opciones__Lista-Principal{
@@ -86,7 +88,7 @@ body{
 }
 
 .Lista-Opciones-Show{
-	/*transition: all 2s ease;*/
+	transition: 1s ease;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -97,31 +99,46 @@ body{
 	background-color: #FFF;
 	padding: 10px;
 	box-shadow: 0px 2px 8px #999;
+	visibility: visible;
+	opacity: 1;
+	flex-grow: 1;
+	order: 1;
 }
 
 .Contenedor-Formulario{
-	display: none;
+	/*width: 25%;*/
+	visibility: hidden;
+	opacity: 0;
+	order: 3;
 }
 
 .Contenedor-Formulario-Show{
 	background-color: black;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	padding-top: 10px;
 	background-color: white;
-	width: 35%;
+	width: 20%;
 	height: calc(100vh - 72px);
 	margin-left: auto;
 	box-shadow: 0px 2px 8px #999;
+	transition: 1s ease;
+	opacity: 1;
+	visibility: visible;
+	flex-grow: 1;
+	order: 3;
+}
+
+#Imagen-Formulario{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
 }
 
 .Contenedor-Imagen-Formulario{
-	width: 100px;
-	height: 100px;
 	background-color: blue;
-	border-radius: 50%;
 	margin-bottom: 10px;
 }
 
@@ -152,7 +169,7 @@ input{
 	outline: none;
 	line-height: 30px;
 	height: 30px;
-	width: 30vw;
+	width: 15vw;
 	border-bottom: 1px solid #CECECE;
 }
 
@@ -168,9 +185,81 @@ input{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	width: 80vw;
-	background-color: red;
+	align-items: stretch;
+	width: 65%;
 	flex-wrap: wrap;
+	flex-grow: 2;
+	transition: 1s ease;
+	order: 2;
+}
+
+.Card{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 5px;
+	padding: 10px;
+	box-shadow: 0px 2px 8px #999;
+	background-color: #fff;
+}
+
+
+#Imagen-Usuario{
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+}
+
+.Card-Calificacion{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.Card-Texto{
+	font-size: 1rem;
+	color: black;
+	padding: 2px 0px 2px 0px;
+	margin: 0;
+}
+
+.Card-Imagen{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-right: 10px;
+	align-items: center;
+}
+
+.Card-Contenido{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.Card-Texto-Calificacion{
+	font-weight: bolder;
+	font-size: 5rem;
+}
+
+.Card-Texto-Nombre{
+	font-weight: bolder;
+}
+
+.Card-Texto-Titulo-Calificacion{
+	font-weight: bolder;
+}
+
+.Card-Texto-Estado{
+	font-weight: bolder;
+}
+
+.Card-Texto-Estado span{
+	font-size: 2rem;
+	color: orange;
 }
 
 @media (max-width: 1000px){
@@ -180,7 +269,14 @@ input{
 		justify-content: flex-start;
 		align-items: flex-start;
 	}
+
+	.Lista-Opciones{
+		order: 1;
+		height: 0;
+	}
+
 	.Lista-Opciones-Show{
+		order: 1;
 		width: 100vw;
 		height: auto;
 		display: flex;
@@ -209,6 +305,11 @@ input{
 		transition: all 1s ease;
 	}
 
+	.Contenedor-Formulario{
+		order: 2;
+		height: 0;
+	}
+
 	.Contenedor-Formulario-Show{
 		margin-top: 0;
 		display: flex;
@@ -221,6 +322,7 @@ input{
 		height: auto;
 		margin-right: 0;
 		box-shadow: 0px 2px 8px #999;
+		order: 2;
 	}
 
 	input{
@@ -228,7 +330,13 @@ input{
 		outline: none;
 		line-height: 30px;
 		height: 30px;
-		width: 80vw;
+		width: 80%;
 		border-bottom: 1px solid gray;
 	}	
+
+	.Contenido-Principal{
+		align-content: flex-start;
+		margin: auto;
+		order: 3;
+	}
 }
