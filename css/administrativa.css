@@ -8,6 +8,7 @@
 i{
 	font-weight: bold;
 	color: white;
+
 }
 
 nav{
@@ -64,18 +65,18 @@ body{
 }
 
 .Lista-Opciones__Items:hover{
-	background-color: #FEE1F1;
 	transition: all 1s ease;
 }
 
-.Lista-Opciones__Link{
-	color: black;	
-}
-
 .Lista-Opciones ul li a{
+	padding: 5px;
 	text-decoration: none;
 	color: black;
 	order: 1;
+}
+
+.Lista-Opciones ul li a:hover{
+	background-color: #f4f6f6;
 }
 
 .Lista-Opciones__Lista-Principal{
@@ -87,14 +88,32 @@ body{
 	margin-bottom: 0;
 }
 
+.Lista-Opciones__SubItems{
+	display: none;
+}
+
+.Lista-Opciones ul li:hover > ul li{
+	transition: all 1s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	margin-left: 10px;
+	font-family: 'Poppins';
+	list-style: none;
+	padding: 10px;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
 .Lista-Opciones-Show{
 	transition: 1s ease;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
-	align-items: center;
+	align-items: flex-start;
 	flex-wrap: wrap;
-	height: calc(100vh - 72px);
+	height: 100%;
 	width: 15%;
 	background-color: #FFF;
 	padding: 10px;
@@ -103,10 +122,11 @@ body{
 	opacity: 1;
 	flex-grow: 1;
 	order: 1;
+	overflow: hidden;
 }
 
 .Contenedor-Formulario{
-	/*width: 25%;*/
+	/*width: 15%;*/
 	visibility: hidden;
 	opacity: 0;
 	order: 3;
@@ -121,7 +141,7 @@ body{
 	padding-top: 10px;
 	background-color: white;
 	width: 20%;
-	height: calc(100vh - 72px);
+	height: 100%;
 	margin-left: auto;
 	box-shadow: 0px 2px 8px #999;
 	transition: 1s ease;
@@ -129,6 +149,7 @@ body{
 	visibility: visible;
 	flex-grow: 1;
 	order: 3;
+	overflow: hidden;
 }
 
 #Imagen-Formulario{
@@ -142,7 +163,7 @@ body{
 	margin-bottom: 10px;
 }
 
-#Editar{
+.Editar{
 	font-size: 1rem;
 	color: green;
 	text-decoration: none;
@@ -189,7 +210,6 @@ input{
 	width: 65%;
 	flex-wrap: wrap;
 	flex-grow: 2;
-	transition: 1s ease;
 	order: 2;
 }
 
@@ -204,6 +224,7 @@ input{
 	padding: 10px;
 	box-shadow: 0px 2px 8px #999;
 	background-color: #fff;
+	overflow: hidden;
 }
 
 
@@ -218,6 +239,7 @@ input{
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .Card-Texto{
@@ -233,12 +255,14 @@ input{
 	justify-content: space-between;
 	margin-right: 10px;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .Card-Contenido{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .Card-Texto-Calificacion{
@@ -250,6 +274,10 @@ input{
 	font-weight: bolder;
 }
 
+.Card-Texto-Contenido{
+	line-height: 25px;
+}
+
 .Card-Texto-Titulo-Calificacion{
 	font-weight: bolder;
 }
@@ -259,7 +287,7 @@ input{
 }
 
 .Card-Texto-Estado span{
-	font-size: 2rem;
+	font-size: 1.5rem;
 	color: orange;
 }
 
@@ -268,6 +296,7 @@ input{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .Cards-Botones{
@@ -275,6 +304,7 @@ input{
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
+	width: 500px;
 }
 
 .Boton-Cards{
@@ -284,6 +314,125 @@ input{
 .Card-Texto-Boton{
 	color: white;
 	font-weight: bolder;
+}
+
+.Card-Empresas{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	width: 35%;
+	height: auto;
+	margin-top: 10px;
+	border-radius: 10px;
+	box-shadow: 0px 2px 8px #999;
+	background-color: white;
+	height: auto;
+}
+
+.Card-Imagen-Banner{
+	width: 100%;
+	height: 70%;
+	border-radius: 10px;
+}
+
+#Imagen-Banner-Empresa{
+	width: 100%;
+	height: 100%;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+}
+
+.Card-Contenido-Empresas{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 10px;
+	/*padding: 5px;*/
+}
+
+.Card-Contenido-Texto{
+	width: 85%;
+}
+
+.Card-Contenido-Texto > h2{
+	font-size: 0.8rem;
+	font-weight: bolder;
+}
+
+.Card-Contenido-Texto h2 i{
+	color: black;
+}
+
+.Card-Imagen-Empresa{
+	width: 15%;
+}
+
+#Imagen-Miniatura-Empresa{
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.Contenedor-Cantidad{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+.Contenedor-Formulario-Agregar-Empresa{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 50%;    
+	height: 80%;
+	background-color: white;
+	margin-top: 10px;
+}
+
+.Contenedor-Imagenes-Formulario-Empresas{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.Imagen-Portada-Empresas{
+	width: 100%;
+	height: 30%;
+}
+
+.Imagen-Perfil-Empresas{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 1px solid gray;
+}
+
+.Contenedor-Inputs-Empresas{
+	width: 90%;
+}
+
+.Contenedor-Inputs-Empresas input{
+	width: 100%;
+}
+
+.Contenedor-Inputs-Empresas textarea{
+	width: 100%;
+}
+
+#Empresa-Para-Editar{
+	cursor: pointer;
 }
 
 @media (max-width: 1000px){
@@ -316,17 +465,24 @@ input{
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		justify-content: center;
 		flex-wrap: wrap;
 		width: 100%;
 	}
 
-	.Lista-Opciones__Items{
-		border-left: none;
+	.Lista-Opciones__Items:hover{
+		transition: all 1s ease;
 	}
 
-	.Lista-Opciones__Items:hover{
-		background-color: #FEE1F1;
+	.Lista-Opciones__Items a:hover{
+		background-color: #f4f6f6;
+	}
+
+	.Lista-Opciones ul li:hover > ul{
 		transition: all 1s ease;
+		display: flex;
+		margin-top: 10px;
+		list-style: none;
 	}
 
 	.Contenedor-Formulario{
@@ -362,5 +518,49 @@ input{
 		align-content: flex-start;
 		margin: auto;
 		order: 3;
+		width: 95%;
+	}
+
+	.Card-Empresas{
+		width: 100%;
+		flex-wrap: wrap;
+	}
+
+	.Card-Contenido-Empresas{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+
+	.Card-Contenido-Texto{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 100%;
+	}
+	
+	.Card-Imagen-Empresa{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		width: 80%;
+	}
+
+	.Contenedor-Formulario-Agregar-Empresa{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;    
+		height: 80%;
+		background-color: white;
+		margin-top: 10px;
 	}
 }
