@@ -206,11 +206,19 @@ input{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	align-items: stretch;
+	align-items: center;
 	width: 65%;
 	flex-wrap: wrap;
-	flex-grow: 2;
+	/*flex-grow: 2;*/
 	order: 2;
+}
+
+.Contenendor-Cards{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;
 }
 
 .Card{
@@ -316,15 +324,35 @@ input{
 	font-weight: bolder;
 }
 
+.Contenedor-Empresas{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	width: 30%;
+	margin-left: 5px;
+}
+
+.Card-Contenido-Empresas{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	/*padding: 5px;*/
+}
+
 .Card-Empresas{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: flex-start;
 	flex-wrap: wrap;
-	width: 35%;
-	height: auto;
+	width: 30%;
 	margin-top: 10px;
+	margin-left: 10px;
+	height: auto;
 	border-radius: 10px;
 	box-shadow: 0px 2px 8px #999;
 	background-color: white;
@@ -344,19 +372,9 @@ input{
 	border-top-right-radius: 10px;
 }
 
-.Card-Contenido-Empresas{
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
-	padding: 10px;
-	/*padding: 5px;*/
-}
-
 .Card-Contenido-Texto{
-	width: 85%;
+	width: 80%;
+	padding-left: 10px;
 }
 
 .Card-Contenido-Texto > h2{
@@ -370,6 +388,7 @@ input{
 
 .Card-Imagen-Empresa{
 	width: 15%;
+	padding-right: 10px;
 }
 
 #Imagen-Miniatura-Empresa{
@@ -521,7 +540,34 @@ input{
 		width: 95%;
 	}
 
+	.Contenedor-Empresas{
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		justify-content: flex-start;
+		align-items: center;
+		width: 90%;
+		
+	}
+
+	.Contenedor-Formulario-Agregar-Empresa{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		width: 100%;    
+		height: 80%;
+		background-color: white;
+		margin-top: 10px;
+	}
+}
+
+@media (max-width:  750px){
 	.Card-Empresas{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
 		width: 100%;
 		flex-wrap: wrap;
 	}
@@ -533,6 +579,12 @@ input{
 		align-items: center;
 		flex-wrap: wrap;
 		width: 100%;
+	}
+
+	.Card-Imagen-Banner{
+		width: 100%;
+		height: 40%;
+		border-radius: 10px;
 	}
 
 	.Card-Contenido-Texto{
@@ -551,16 +603,6 @@ input{
 		align-items: center;
 		flex-wrap: wrap;
 		width: 80%;
-	}
-
-	.Contenedor-Formulario-Agregar-Empresa{
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		width: 100%;    
-		height: 80%;
-		background-color: white;
-		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 }
