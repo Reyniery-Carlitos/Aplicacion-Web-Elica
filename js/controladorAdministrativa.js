@@ -95,7 +95,7 @@ let empresas = [
 		productosEmpresa: [
 			"prod1"
 		],
-		imagenPortada: "assets/img/banner.jpg",
+		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
 	},
 	{
@@ -111,7 +111,7 @@ let empresas = [
 		productosEmpresa: [
 			"prod1", "prod2"
 		],
-		imagenPortada: "assets/img/banner.jpg",
+		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
 	}
 ];
@@ -141,7 +141,7 @@ let repartidores = [
 		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
-		status: "aceptado",
+		status: "Rechazado",
 		disponibilidad: "disponible",
 		ordenesEntregadas: [
 			"prod1",
@@ -159,7 +159,7 @@ let repartidores = [
 		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
-		status: "aceptado",
+		status: "Aceptado",
 		disponibilidad: "no disponible",
 		ordenesEntregadas: [
 			"prod2"
@@ -176,7 +176,59 @@ let repartidores = [
 		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
-		status: "pendiente",
+		status: "Pendiente",
+		disponibilidad: "en proceso",
+		ordenesEntregadas: [
+			"prod1"
+		],
+		imagen: "assets/img/1.webp"
+	},
+	{
+		id: "rep1",
+		nombre: "Oscar",
+		apellido: "Rodriguez",
+		telefono: 99009900,
+		email: "oscar@gmail.com",
+		ciudad: "Tegucigalpa",
+		residencia: "Col. Carrizal",
+		password: "123456",
+		valoracion: 4,
+		status: "Rechazado",
+		disponibilidad: "disponible",
+		ordenesEntregadas: [
+			"prod1",
+			"prod2"
+		],
+		imagen: "assets/img/1.webp"
+	},
+	{
+		id: "rep2",
+		nombre: "Jaime",
+		apellido: "Mendieta",
+		telefono: 99009332,
+		email: "jaime@gmail.com",
+		ciudad: "Tegucigalpa",
+		residencia: "Col. 3 de mayo",
+		password: "1234562",
+		valoracion: 2,
+		status: "Aceptado",
+		disponibilidad: "no disponible",
+		ordenesEntregadas: [
+			"prod2"
+		],
+		imagen: "assets/img/1.webp"
+	},
+	{
+		id: "rep3",
+		nombre: "Jairo",
+		apellido: "Sanchez",
+		telefono: 88332211,
+		email: "jairo@gmail.com",
+		ciudad: "Tegucigalpa",
+		residencia: "Col. Quezada",
+		password: "dfssa123456",
+		valoracion: 3,
+		status: "Pendiente",
 		disponibilidad: "en proceso",
 		ordenesEntregadas: [
 			"prod1"
@@ -190,16 +242,74 @@ let ordenes = [
 		id: "ord1",
 		pedido: "Pastel de fresas",
 		descripcion: "lorem ipsum",
-		status: "No asignado",
-		disponibilidad: "No entregado",
+		disponibilidad: "Entregado",
 		cliente: "Juan Perez",
-		repartidor: "Sin asignar",
+		repartidor: "Asignado",
 		cantidad: 5,
 		precio: 20,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
+	},
+	{
+		id: "ord2",
+		pedido: "Pastel de queso",
+		descripcion: "lorem ipsum",
+		disponibilidad: "No entregado",
+		cliente: "Juan Perez",
+		repartidor: "No asignado",
+		cantidad: 5,
+		precio: 20,
+		direccion: "Col. Quezada",
+		imagen: 'assets/img/1.webp' 
+	},
+	{
+		id: "ord3",
+		pedido: "Pizza de 100 pesitos",
+		descripcion: "lorem ipsum dolor sit",
+		disponibilidad: "En proceso",
+		cliente: "Juan Perez",
+		repartidor: "No asignado",
+		cantidad: 5,
+		precio: 20,
+		direccion: "Col. Quezada",
+		imagen: 'assets/img/1.webp' 
+	} 
+];
+
+const status = [
+	{
+		stats: 'Aceptado',
+		statsColor: '#35CF00'
+	},
+	{
+		stats: 'Rechazado',
+		statsColor: 'red'
+	},
+	{
+		stats: 'Pendiente',
+		statsColor: 'orange'
+	},
+	{
+		stats: 'Asignado',
+		statsColor: '#35CF00' 
+	}, 
+	{
+		stats: 'No asignado',
+		statsColor: 'red' 
+	},
+	{
+		stats: 'Entregado',
+		statsColor: '#35CF00' 
+	},
+	{
+		stats: 'No entregado',
+		statsColor: 'red' 
+	},
+	{
+		stats: 'En proceso',
+		statsColor: 'orange' 
 	}
-]
+];
 
 function activarMenu(){
 	// document.getElementById("Contenedor-Principal-Formulario").classList.remove('Contenedor-Formulario-Show');
@@ -215,30 +325,55 @@ function generarPerfil(){
 function mostrarRepartidores(){
 	document.getElementById("Contenido-Principal-Cards").innerHTML = '';
 	repartidores.forEach(repartidor => {
-		document.getElementById("Contenido-Principal-Cards").innerHTML += `
-		<div class="Contendor-Cards">
-			<div class="Card">
-				<div class="Card-Imagen" >
-					<img src="assets/img/1.webp" id="Imagen-Usuario">
-					<h2 class="Card-Texto Card-Texto-Estado"> <span> ● </span> ${repartidor.status} </h2>
-				</div>
-				<div class="Card-Contenido">
-					<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.nombre} </h2>
-					<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Email"> ${repartidor.email} </h2>
-					<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.residencia} </h2>
-					<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Telefono"> ${repartidor.telefono} </h2>
-					<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
-				</div>
-				<div class="Card-Calificacion">
-					<h2 class="Card-Texto Card-Texto-Titulo-Calificacion"> Calificacion </h2>
-					<h2 class="Card-Texto Card-Texto-Calificacion"> ${repartidor.valoracion} </h2>
-				</div>
-			</div>
-			<div class="Cards-Botones">
-				<button class="btn btn-danger rounded-0 Boton-Cards"> <h2 class="Card-Texto Card-Texto-Boton"> RECHAZAR </h2> </button>
-				<button class="btn btn-success rounded-0 Boton-Cards"> <h2 class="Card-Texto Card-Texto-Boton"> ACEPTAR </h2> </button>
-			</div>
-		</div>`;
+		const statusRepartidor = status.find(item => repartidor.status == item.stats);
+		if(repartidor.status === 'Pendiente') {
+			document.getElementById("Contenido-Principal-Cards").innerHTML += `
+				<div class="Contenedor-Cards">
+					<div class="Card">
+						<div class="Card-Contenido-1" >
+							<img src="assets/img/1.webp" id="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Calificacion </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${repartidor.valoracion} </h2>
+						</div>
+					</div>
+					<div class="Cards-Botones">
+						<button class="btn btn-danger rounded-0 Boton-Cards"> <h2 class="Card-Texto Card-Texto-Boton"> RECHAZAR </h2> </button>
+						<button class="btn btn-success rounded-0 Boton-Cards"> <h2 class="Card-Texto Card-Texto-Boton"> ACEPTAR </h2> </button>
+					</div>
+				</div>`;	
+		} else{
+			document.getElementById("Contenido-Principal-Cards").innerHTML += `
+				<div class="Contenedor-Cards">
+					<div class="Card">
+						<div class="Card-Contenido-1" >
+							<img src="assets/img/1.webp" id="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Calificacion </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${repartidor.valoracion} </h2>
+						</div>
+					</div>
+					
+				</div>`;
+		}
 	})
 }
 
@@ -257,19 +392,15 @@ function mostrarEmpresas(){
 		}
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
-			<div class="Card-Empresas">
-				<div class="Card-Imagen-Banner" >
-					<img src="${empresa.imagenPortada}" id="Imagen-Banner-Empresa" alt="Imagen Banner Empresa">
+			<div class="card Card-Empresas m-1" style="width: 20rem;">
+				<img class="card-img-top Card-Banner-Empresa img-fluid" src="${empresa.imagenPortada}" alt="Imagen Banner">
+				<div class="card-body Card-Contenido-Texto-Empresa p-0 ml-1 mt-2 mb-1">
+					<h2 class="Card-Texto Card-Texto-Nombre text-success"> ${empresa.nombre} </h2>
+					<h2 class="Card-Texto Card-Texto-Residencia"> ${empresa.descripcion} </h2>
+					<h2 class="Card-Texto Card-Texto-Telefono"> ${estrellas} </h2>
 				</div>
-				<div class="Card-Contenido-Empresas">
-					<div class="Card-Contenido-Texto">
-						<h2 class="Card-Texto Card-Texto-Nombre text-success"> ${empresa.nombre} </h2>
-						<h2 class="Card-Texto Card-Texto-Residencia"> ${empresa.descripcion} </h2>
-						<h2 class="Card-Texto Card-Texto-Telefono"> ${estrellas} </h2>
-					</div>
-					<div class="Card-Imagen-Empresa">
-						<img src="${empresa.imagenPerfil}" id="Imagen-Miniatura-Empresa">		
-					</div>
+				<div class="card-body-2 Card-Contenido-Imagen-Empresa p-0 mt-2 mb-1 mr-2 ml-2">
+					<img src="${empresa.imagenPerfil}" id="Imagen-Miniatura-Empresa">		
 				</div>
 			</div>
 		`;
@@ -278,50 +409,87 @@ function mostrarEmpresas(){
 
 function mostrarOrdenes(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	
 	ordenes.forEach(orden => {
-		if (orden.status === 'No asignado') {
-			document.getElementById('Contenido-Principal-Cards').innerHTML = `
-				<div class="Contendor-Cards">
+		const statusOrden = status.find(item => orden.repartidor == item.stats);
+		const statusPedido = status.find(item => orden.disponibilidad == item.stats);
+		console.log(orden.repartidor);
+
+		if (orden.repartidor === 'Asignado') {
+			document.getElementById('Contenido-Principal-Cards').innerHTML += `
+				<div class="Contenedor-Cards">
 					<div class="Card">
-						<div class="Card-Imagen Card-Imagen-Asignar-Productos" >
+						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
 							<img src="${orden.imagen}" id="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span> ● </span> ${orden.status} </h2>
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.repartidor} </h2>
 						</div>
-						<div class="Card-Contenido">
+						<div class="Card-Contenido-2">
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${orden.repartidor} </h2>
-							<div class="Contenedor-Cantidad">
+							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
 							</div>
 						</div>
-						<div class="Card-Calificacion">
-							<h2 class="Card-Texto Card-Texto-Titulo-Calificacion"> Precio </h2>
-							<h2 class="Card-Texto Card-Texto-Calificacion"> ${orden.precio}L </h2>
-							<h2 class="Card-Texto Card-Texto-Estado"> <span> ● </span> ${orden.disponibilidad} </h2>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${orden.precio}L </h2>
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${orden.disponibilidad} </h2>
 						</div>
 					</div>
 					<div class="Cards-Botones">
-						<button class="btn btn-success rounded-0 Boton-Cards" onclick="asignarRepartidor()" id="Btn-Asignar-Repartidor"> <h2 class="Card-Texto Card-Texto-Boton"> ASIGNAR A </h2> </button>
+						
 					</div>
 				</div>`;
+		}else{
+			document.getElementById('Contenido-Principal-Cards').innerHTML += `
+				<div class="Contenedor-Cards">
+					<div class="Card">
+						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+							<img src="${orden.imagen}" id="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.repartidor} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${orden.repartidor} </h2>
+							<div class="Card-Contenedor-Cantidad">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
+							</div>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${orden.precio}L </h2>
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${orden.disponibilidad} </h2>
+						</div>
+					</div>
+					<div class="Cards-Botones">
+						<button class="btn btn-success rounded-0 Boton-Cards" onclick="asignarRepartidor()" id="Btn-Asignar-Repartidor"> <h2 class="Card-Texto Card-Texto-Boton font-weight-bold"> ASIGNAR A </h2> </button>
+					</div>
+				</div>`;	
 		}
 	})
 }
 
-function formularioEditarEmpresa(){
+function formularioEditarEmpresa(idEmpresa){
+	const empresaFiltrada = empresas.find(empresa => empresa.id == idEmpresa);
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	console.log(idEmpresa);
+	console.log(empresaFiltrada);
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
-		<div class="Contenedor-Formulario-Agregar-Empresa" id="Contenedor-Principal-Formulario-Agregar-Empresa">
-			<img src="assets/img/banner.jpg" class="Imagen-Portada-Empresas" id="Imagen-Portada-Formulario-Empresas">
-			<img src="assets/img/1.webp" class="Imagen-Perfil-Empresas" id="Imagen-Perfil-Formulario-Empresas">
+		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Empresa">
+			<img src="${empresaFiltrada.imagenPortada}" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Empresa">
+			<img src="${empresaFiltrada.imagenPerfil}" class="Imagen-Perfil-Editar-Agregar" id="Imagen-Perfil-Formulario-Editar-Empresa">
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar Foto Perfil </h2> </a>
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar Foto Portada</h2> </a>
 						
-			<div class="Contenedor-Inputs-Empresas">
+			<div class="Contenedor-Inputs-Editar-Agregar">
 			  	<div class="Formulario-Contenedor-Texto">
 					<label for=""> Nombre </label>
 					<a href="#" onclick="editarNombreEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
@@ -359,42 +527,43 @@ function formularioEditarEmpresa(){
 		</div>`;
 }
 
-const empresaAEditar = () => {
-	formularioEditarEmpresa();
-};
-
 function editarEmpresa(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
-	document.getElementById('Contenido-Principal-Cards').innerHTML += `
-		<div class="Contenedor-Empresas">
-			<div class="Card-Empresas" id="Empresa-Para-Editar" onclick="empresaAEditar()">
-				<div class="Card-Imagen-Banner" >
-					<img src="assets/img/banner.jpg" id="Imagen-Banner-Empresa" alt="Imagen Banner Empresa">
-				</div>
-				<div class="Card-Contenido-Empresas">
-					<div class="Card-Contenido-Texto">
-						<h2 class="Card-Texto Card-Texto-Nombre text-success"> Nombre Empresa </h2>
-						<h2 class="Card-Texto Card-Texto-Residencia"> Descripcion </h2>
-						<h2 class="Card-Texto Card-Texto-Telefono"> <i class="fa-solid fa-star"> </i> <i class="fa-regular fa-star"></i> </h2>
-					</div>
-					<div class="Card-Imagen-Empresa">
-						<img src="assets/img/1.webp" id="Imagen-Miniatura-Empresa">		
-					</div>
-				</div>
+	empresas.forEach(empresa => {
+		let estrellas = '';
+		for(let i = 0; i < (empresa.valoracion); i++){
+			estrellas += `<i class="fa-solid fa-star"></i>`;
+		}
+
+		for(let j = 0; j < (5 - empresa.valoracion); j++){
+			estrellas += `<i class="fa-regular fa-star"></i>`;
+		}
+
+		document.getElementById('Contenido-Principal-Cards').innerHTML += `
+		<div class="card Card-Empresas m-1" onclick="formularioEditarEmpresa('${empresa.id}')" id="Empresa-Para-Editar" style="width: 20rem;">
+			<img class="card-img-top Card-Banner-Empresa img-fluid" src="${empresa.imagenPortada}" alt="Imagen Banner">
+			<div class="card-body Card-Contenido-Texto-Empresa p-0 ml-1 mt-2 mb-1">
+				<h2 class="Card-Texto Card-Texto-Nombre text-success"> ${empresa.nombre} </h2>
+				<h2 class="Card-Texto Card-Texto-Residencia"> ${empresa.descripcion} </h2>
+				<h2 class="Card-Texto Card-Texto-Telefono"> ${estrellas} </h2>
+			</div>
+			<div class="card-body-2 Card-Contenido-Imagen-Empresa p-0 mt-2 mb-1 mr-2 ml-2">
+				<img src="${empresa.imagenPerfil}" id="Imagen-Miniatura-Empresa">		
 			</div>
 		</div>`;
+	})
 }
 
 function formularioAgregarEmpresa(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
-		<div class="Contenedor-Formulario-Agregar-Empresa" id="Contenedor-Principal-Formulario-Agregar-Empresa">
-			<img src="" class="Imagen-Portada-Empresas" id="Imagen-Portada-Formulario-Empresas">
-			<img src="" class="Imagen-Perfil-Empresas" id="Imagen-Perfil-Formulario-Empresas">
+		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Agregar-Editar">
+			<img src="" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Add-Empresa">
+			<img src="" class="Imagen-Perfil-Editar-Agregar" id="Imagen-Perfil-Formulario-Add-Empresa">
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar Foto Perfil </h2> </a>
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar Foto Portada </h2> </a>
 						
-			<div class="Contenedor-Inputs-Empresas">
+			<div class="Contenedor-Inputs-Editar-Agregar">
 			  	<div class="Formulario-Contenedor-Texto">
 					<label for=""> Nombre </label>
 				</div>
@@ -431,11 +600,11 @@ function formularioAgregarProducto(){
 	// Recorrer el JSON y validar si es agregar o editar producto
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
-		<div class="Contenedor-Formulario-Agregar-Empresa" id="Contenedor-Principal-Formulario-Agregar-Empresa">
-			<img src="" class="Imagen-Portada-Empresas" id="Imagen-Portada-Formulario-Empresas">
+		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Add-Producto">
+			<img src="" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Add-Producto">
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar foto de portada </h2> </a>
 						
-			<div class="Contenedor-Inputs-Empresas">
+			<div class="Contenedor-Inputs-Editar-Agregar">
 			  	<div class="Formulario-Contenedor-Texto">
 					<label for="Input-Editar-Nombre-Empresa"> Nombre Empresa </label>
 				</div>
@@ -482,11 +651,11 @@ function formularioEditarProducto(){
 	// Recorrer el JSON y validar si es agregar o editar producto
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
-		<div class="Contenedor-Formulario-Agregar-Empresa" id="Contenedor-Principal-Formulario-Agregar-Empresa">
-			<img src="" class="Imagen-Portada-Empresas" id="Imagen-Portada-Formulario-Empresas">
+		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Producto">
+			<img src="" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Producto">
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar foto de portada </h2> </a>
 						
-			<div class="Contenedor-Inputs-Empresas">
+			<div class="Contenedor-Inputs-Editar-Agregar">
 			  	<div class="Formulario-Contenedor-Texto">
 					<label for="Input-Editar-Nombre-Empresa-Producto"> Nombre Empresa </label>
 					<a href="#" onclick="editarNombreEmpresaProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
@@ -535,25 +704,27 @@ function asignarRepartidor(){
 	repartidores.forEach(repartidor => {
 		if (repartidor.disponibilidad === "disponible") {		
 			document.getElementById('Contenido-Principal-Cards').innerHTML = `
-				<div class="Card">
-					<div class="Card-Imagen" >
-						<img src="${repartidor.imagen}" id="Imagen-Usuario">
-						<h2 class="Card-Texto Card-Texto-Estado"> <span> ● </span> ${repartidor.disponibilidad} </h2>
+				<div class="Contenedor-Cards">
+					<div class="Card">
+						<div class="Card-Contenido-1" >
+							<img src="${repartidor.imagen}" id="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span id="Status-Repartidor"> ● </span> ${repartidor.disponibilidad} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Email"> ${repartidor.email} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Telefono"> ${repartidor.telefono} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length} </h2>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Calificacion </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${repartidor.valoracion} </h2>
+						</div>
 					</div>
-					<div class="Card-Contenido">
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.nombre} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Email"> ${repartidor.email} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.residencia} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Telefono"> ${repartidor.telefono} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length} </h2>
+					<div class="Cards-Botones">
+						<button class="btn btn-primary rounded-0 Boton-Cards" id="Btn-Guardar-Cambios-Empresa"> <h2 class="Card-Texto Card-Texto-Boton"> ASIGNAR </h2> </button>
 					</div>
-					<div class="Card-Calificacion">
-						<h2 class="Card-Texto Card-Texto-Titulo-Calificacion"> Calificacion </h2>
-						<h2 class="Card-Texto Card-Texto-Calificacion"> ${repartidor.valoracion} </h2>
-					</div>
-				</div>
-				<div class="Cards-Botones">
-					<button class="btn btn-primary rounded-0 Boton-Cards" id="Btn-Guardar-Cambios-Empresa"> <h2 class="Card-Texto Card-Texto-Boton"> ASIGNAR </h2> </button>
 				</div>`;
 		}		
 	})

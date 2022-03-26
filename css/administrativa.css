@@ -1,3 +1,4 @@
+/* --------------------------- Estilos globales --------------------------- */
 *{
 	margin: 0;
 	padding: 0;
@@ -5,20 +6,24 @@
 	box-sizing: border-box;
 }
 
+/* --------------------------- Estilo Iconos --------------------------- */
 i{
 	font-weight: bold;
 	color: white;
 
 }
 
+/* --------------------------- Estilos etiqueta nav --------------------------- */
 nav{
 	background-color: #35CF00;
 }
 
+/* --------------------------- Estilos Body --------------------------- */
 body{
 	background-color: #FCF2FF;
 }
 
+/* --------------------------- Estilos menu navegacion --------------------------- */
 .nav{
 	display: flex;
 	flex-direction: row;
@@ -41,6 +46,7 @@ body{
 	align-items: center;
 }
 
+/* --------------------------- Estilos main --------------------------- */
 .main{
 	display: flex;
 	flex-direction: row;
@@ -49,8 +55,9 @@ body{
 	flex-wrap: wrap;
 }
 
+/* --------------------------- Estilos Barra lateral --------------------------- */
 .Lista-Opciones{
-	width: 15%;
+	display: none;
 	visibility: hidden;
 	opacity: 0;
 }
@@ -72,17 +79,25 @@ body{
 	padding: 5px;
 	text-decoration: none;
 	color: black;
-	order: 1;
 }
 
 .Lista-Opciones ul li a:hover{
 	background-color: #f4f6f6;
 }
 
-.Lista-Opciones__Lista-Principal{
-	line-height: 30px;
+.Lista-Opciones__Lista-Items{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
-	
+
+.Lista-Opciones__Lista-SubItems{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+}
+
 .Lista-Opciones__Items-Principal{
 	padding: 5px;
 	margin-bottom: 0;
@@ -95,8 +110,9 @@ body{
 .Lista-Opciones ul li:hover > ul li{
 	transition: all 1s ease;
 	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 	margin-left: 10px;
 	font-family: 'Poppins';
@@ -109,27 +125,27 @@ body{
 .Lista-Opciones-Show{
 	transition: 1s ease;
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 	height: 100%;
-	width: 15%;
+	width: 100%;
 	background-color: #FFF;
-	padding: 10px;
+	padding: 5px;
 	box-shadow: 0px 2px 8px #999;
 	visibility: visible;
 	opacity: 1;
 	flex-grow: 1;
-	order: 1;
-	overflow: hidden;
 }
 
+/* --------------------------- Estilos Formulario perfil de usuario --------------------------- */
 .Contenedor-Formulario{
+	display: none;
 	/*width: 15%;*/
 	visibility: hidden;
 	opacity: 0;
-	order: 3;
+	margin-top: 5px;
 }
 
 .Contenedor-Formulario-Show{
@@ -140,15 +156,12 @@ body{
 	align-items: center;
 	padding-top: 10px;
 	background-color: white;
-	width: 20%;
 	height: 100%;
-	margin-left: auto;
 	box-shadow: 0px 2px 8px #999;
 	transition: 1s ease;
 	opacity: 1;
 	visibility: visible;
 	flex-grow: 1;
-	order: 3;
 	overflow: hidden;
 }
 
@@ -159,8 +172,8 @@ body{
 }
 
 .Contenedor-Imagen-Formulario{
-	background-color: blue;
 	margin-bottom: 10px;
+	border-radius: 50%;
 }
 
 .Editar{
@@ -190,7 +203,7 @@ input{
 	outline: none;
 	line-height: 30px;
 	height: 30px;
-	width: 15vw;
+	width: 100%;
 	border-bottom: 1px solid #CECECE;
 }
 
@@ -202,23 +215,26 @@ input{
 	text-decoration: none;
 }
 
+/* --------------------------- Estilos del contenido principal --------------------------- */
 .Contenido-Principal{
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	width: 65%;
+	width: 100%;
 	flex-wrap: wrap;
-	/*flex-grow: 2;*/
-	order: 2;
 }
 
-.Contenendor-Cards{
+/* --------------------------- Estilos de las cards --------------------------- */
+.Contenedor-Cards{
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	align-items: flex-start;
+	justify-content: flex-start;
+	align-items: baseline;
 	flex-wrap: wrap;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	margin-left: 5px;
 }
 
 .Card{
@@ -227,14 +243,11 @@ input{
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
-	margin: 10px 5px;
 	margin-bottom: 0;
 	padding: 10px;
 	box-shadow: 0px 2px 8px #999;
 	background-color: #fff;
-	overflow: hidden;
 }
-
 
 #Imagen-Usuario{
 	width: 70px;
@@ -242,7 +255,23 @@ input{
 	border-radius: 50%;
 }
 
-.Card-Calificacion{
+.Card-Contenido-1{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-right: 10px;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.Card-Contenido-2{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.Card-Contenido-3{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -257,23 +286,7 @@ input{
 	margin: 0;
 }
 
-.Card-Imagen{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	margin-right: 10px;
-	align-items: center;
-	flex-wrap: wrap;
-}
-
-.Card-Contenido{
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	flex-wrap: wrap;
-}
-
-.Card-Texto-Calificacion{
+.Card-Texto-Contenido-3{
 	font-weight: bolder;
 	font-size: 5rem;
 }
@@ -282,11 +295,11 @@ input{
 	font-weight: bolder;
 }
 
-.Card-Texto-Contenido{
+.Card-Texto-Contenido-2{
 	line-height: 25px;
 }
 
-.Card-Texto-Titulo-Calificacion{
+.Card-Texto-Titulo-Contenido-3{
 	font-weight: bolder;
 }
 
@@ -296,27 +309,14 @@ input{
 
 .Card-Texto-Estado span{
 	font-size: 1.5rem;
-	color: orange;
-}
-
-.Contenedor-Cards{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
 }
 
 .Cards-Botones{
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
 	justify-content: center;
-	width: 500px;
-}
-
-.Boton-Cards{
-	display: flex;
+	flex-wrap: wrap;
+	margin: auto;
 }
 
 .Card-Texto-Boton{
@@ -324,6 +324,17 @@ input{
 	font-weight: bolder;
 }
 
+.Card-Contenedor-Cantidad{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+/* --------------------------- Estilos de las card de empresas --------------------------- */
+/* Falta evaluar si es necesaria */
 .Contenedor-Empresas{
 	display: flex;
 	flex-direction: row;
@@ -345,50 +356,49 @@ input{
 
 .Card-Empresas{
 	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-items: flex-start;
+	flex-direction: row;
 	flex-wrap: wrap;
-	width: 30%;
-	margin-top: 10px;
-	margin-left: 10px;
-	height: auto;
 	border-radius: 10px;
 	box-shadow: 0px 2px 8px #999;
 	background-color: white;
+}
+
+.Card-Banner-Empresa{
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 	height: auto;
 }
 
-.Card-Imagen-Banner{
-	width: 100%;
-	height: 70%;
-	border-radius: 10px;
+.Card-Contenido-Texto-Empresa{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	flex-wrap: wrap;	
+	overflow: hidden;
 }
 
-#Imagen-Banner-Empresa{
-	width: 100%;
-	height: 100%;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-}
-
-.Card-Contenido-Texto{
-	width: 80%;
-	padding-left: 10px;
-}
-
-.Card-Contenido-Texto > h2{
+.Card-Contenido-Texto-Empresa h2{
 	font-size: 0.8rem;
+	color: black;
 	font-weight: bolder;
 }
 
-.Card-Contenido-Texto h2 i{
+.Card-Contenido-Texto-Empresa h2 i{
 	color: black;
 }
 
-.Card-Imagen-Empresa{
-	width: 15%;
-	padding-right: 10px;
+.Card-Contenido-Imagen-Empresa{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 2.5rem;
+}
+
+#Empresa-Para-Editar{
+	cursor: pointer;
 }
 
 #Imagen-Miniatura-Empresa{
@@ -397,16 +407,8 @@ input{
 	border-radius: 50%;
 }
 
-.Contenedor-Cantidad{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	width: 100%;
-}
-
-.Contenedor-Formulario-Agregar-Empresa{
+/* --------------------------- Estilos de los formularios de editar y agregar --------------------------- */
+.Contenedor-Formulario-Editar-Agregar{
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -418,40 +420,36 @@ input{
 	margin-top: 10px;
 }
 
-.Contenedor-Imagenes-Formulario-Empresas{
+/*.Contenedor-Imagenes-Formulario{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-}
+}*/
 
-.Imagen-Portada-Empresas{
+.Imagen-Portada-Editar-Agregar{
 	width: 100%;
 	height: 30%;
 }
 
-.Imagen-Perfil-Empresas{
+.Imagen-Perfil-Editar-Agregar{
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
 	border: 1px solid gray;
 }
 
-.Contenedor-Inputs-Empresas{
+.Contenedor-Inputs-Editar-Agregar{
 	width: 90%;
 }
 
-.Contenedor-Inputs-Empresas input{
+.Contenedor-Inputs-Editar-Agregar input{
 	width: 100%;
 }
 
-.Contenedor-Inputs-Empresas textarea{
+.Contenedor-Inputs-Editar-Agregar textarea{
 	width: 100%;
-}
-
-#Empresa-Para-Editar{
-	cursor: pointer;
 }
 
 @media (max-width: 1000px){
@@ -463,12 +461,10 @@ input{
 	}
 
 	.Lista-Opciones{
-		order: 1;
 		height: 0;
 	}
 
 	.Lista-Opciones-Show{
-		order: 1;
 		width: 100vw;
 		height: auto;
 		display: flex;
@@ -505,7 +501,6 @@ input{
 	}
 
 	.Contenedor-Formulario{
-		order: 2;
 		height: 0;
 	}
 
@@ -521,7 +516,6 @@ input{
 		height: auto;
 		margin-right: 0;
 		box-shadow: 0px 2px 8px #999;
-		order: 2;
 	}
 
 	input{
@@ -536,7 +530,6 @@ input{
 	.Contenido-Principal{
 		align-content: flex-start;
 		margin: auto;
-		order: 3;
 		width: 95%;
 	}
 
@@ -550,7 +543,7 @@ input{
 		
 	}
 
-	.Contenedor-Formulario-Agregar-Empresa{
+	.Contenedor-Formulario-Editar-Agregar{
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
@@ -559,50 +552,5 @@ input{
 		height: 80%;
 		background-color: white;
 		margin-top: 10px;
-	}
-}
-
-@media (max-width:  750px){
-	.Card-Empresas{
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
-		align-items: center;
-		width: 100%;
-		flex-wrap: wrap;
-	}
-
-	.Card-Contenido-Empresas{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		width: 100%;
-	}
-
-	.Card-Imagen-Banner{
-		width: 100%;
-		height: 40%;
-		border-radius: 10px;
-	}
-
-	.Card-Contenido-Texto{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		width: 100%;
-	}
-	
-	.Card-Imagen-Empresa{
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		flex-wrap: wrap;
-		width: 80%;
-		margin-bottom: 10px;
 	}
 }
