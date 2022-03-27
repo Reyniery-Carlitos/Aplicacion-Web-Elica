@@ -258,7 +258,7 @@ input{
 .Card-Contenido-1{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	margin-right: 10px;
 	align-items: center;
 	flex-wrap: wrap;
@@ -288,7 +288,7 @@ input{
 
 .Card-Texto-Contenido-3{
 	font-weight: bolder;
-	font-size: 5rem;
+	font-size: 3.5rem;
 }
 
 .Card-Texto-Nombre{
@@ -300,7 +300,8 @@ input{
 }
 
 .Card-Texto-Titulo-Contenido-3{
-	font-weight: bolder;
+	font-weight: bold;
+	color: darkred;
 }
 
 .Card-Texto-Estado{

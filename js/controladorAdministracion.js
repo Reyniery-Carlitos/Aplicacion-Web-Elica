@@ -1,8 +1,8 @@
 let clientes = [
 	{
 		id: "cl1", 
-		nombre: "Juan",
-		apellido: "Perez",
+		nombre: "Jeff",
+		apellido: "Bezos",
 		residencia: "Col. Palmira",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
@@ -18,8 +18,8 @@ let clientes = [
 	},
 	{
 		id: "cl2", 
-		nombre: "Mario",
-		apellido: "Mendoza",
+		nombre: "Cristiano",
+		apellido: "Ronaldo",
 		residencia: "Col. Kennedy",
 		ciudad: "Tegucigalpa",
 		email: "mario@gmail.com",
@@ -36,8 +36,8 @@ let clientes = [
 	},
 	{
 		id: "cl1", 
-		nombre: "Juan",
-		apellido: "Perez",
+		nombre: "Lionel",
+		apellido: "Messi",
 		residencia: "Col. Palmira",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
@@ -119,11 +119,11 @@ let empresas = [
 let administradores = [
 	{
 		id: "adm1", 
-		nombre: "Lucas",
-		apellido: "Lopez",
-		residencia: "Col. Ulloa",
+		nombre: "Steve",
+		apellido: "Jobs",
+		residencia: "Prados universitarios",
 		ciudad: "Tegucigalpa",
-		email: "lLopez@gmail.com",
+		email: "jobs@apple.co",
 		telefono: 99889900,
 		password: "asd456s",
 		imagen: "assets/img/1.webp"
@@ -133,8 +133,8 @@ let administradores = [
 let repartidores = [
 	{
 		id: "rep1",
-		nombre: "Oscar",
-		apellido: "Rodriguez",
+		nombre: "Nikola",
+		apellido: "Tesla",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -151,8 +151,8 @@ let repartidores = [
 	},
 	{
 		id: "rep2",
-		nombre: "Jaime",
-		apellido: "Mendieta",
+		nombre: "Usain",
+		apellido: "Bolt",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -168,8 +168,8 @@ let repartidores = [
 	},
 	{
 		id: "rep3",
-		nombre: "Jairo",
-		apellido: "Sanchez",
+		nombre: "Ada",
+		apellido: "Lovalace",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -184,9 +184,9 @@ let repartidores = [
 		imagen: "assets/img/1.webp"
 	},
 	{
-		id: "rep1",
-		nombre: "Oscar",
-		apellido: "Rodriguez",
+		id: "rep4",
+		nombre: "Carlo Yair",
+		apellido: "Costly",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -202,9 +202,9 @@ let repartidores = [
 		imagen: "assets/img/1.webp"
 	},
 	{
-		id: "rep2",
-		nombre: "Jaime",
-		apellido: "Mendieta",
+		id: "rep5",
+		nombre: "Isaac",
+		apellido: "Newton",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -219,9 +219,9 @@ let repartidores = [
 		imagen: "assets/img/1.webp"
 	},
 	{
-		id: "rep3",
-		nombre: "Jairo",
-		apellido: "Sanchez",
+		id: "rep6",
+		nombre: "Pierre Emeric",
+		apellido: "Aubameyang",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
@@ -242,9 +242,11 @@ let ordenes = [
 		id: "ord1",
 		pedido: "Pastel de fresas",
 		descripcion: "lorem ipsum",
-		disponibilidad: "Entregado",
-		cliente: "Juan Perez",
-		repartidor: "Asignado",
+		disponibilidad: "Entregada",
+		status: "Asignada",
+		statusRepartidor: "Tomada", 
+		cliente: "Lionel Messi",
+		repartidor: "rep4",
 		cantidad: 5,
 		precio: 20,
 		direccion: "Col. Quezada",
@@ -254,9 +256,11 @@ let ordenes = [
 		id: "ord2",
 		pedido: "Pastel de queso",
 		descripcion: "lorem ipsum",
-		disponibilidad: "No entregado",
-		cliente: "Juan Perez",
-		repartidor: "No asignado",
+		disponibilidad: "No entregada",
+		status: "No asignada",
+		statusRepartidor: "No tomada",
+		cliente: "Cristiano Ronaldo",
+		repartidor: "rep2",
 		cantidad: 5,
 		precio: 20,
 		direccion: "Col. Quezada",
@@ -266,59 +270,143 @@ let ordenes = [
 		id: "ord3",
 		pedido: "Pizza de 100 pesitos",
 		descripcion: "lorem ipsum dolor sit",
-		disponibilidad: "En proceso",
-		cliente: "Juan Perez",
-		repartidor: "No asignado",
+		disponibilidad: "En el origen",
+		status: "Asignada",
+		statusRepartidor: "Tomada",
+		cliente: "Lionel Messi",
+		repartidor: "rep1",
 		cantidad: 5,
 		precio: 20,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
-	} 
+	},
+	{
+		id: "ord4",
+		pedido: "Torta cubana",
+		descripcion: "lorem ipsum dolor sit",
+		disponibilidad: "En camino",
+		status: "Asignada",
+		statusRepartidor: "Tomada",
+		cliente: "Jeff Bezos",
+		repartidor: "rep5",
+		cantidad: 5,
+		precio: 20,
+		direccion: "Col. Quezada",
+		imagen: 'assets/img/1.webp' 
+	}  
 ];
 
 const status = [
 	{
+		// Repartidor
 		stats: 'Aceptado',
 		statsColor: '#35CF00'
 	},
 	{
+		// Repartidor
 		stats: 'Rechazado',
 		statsColor: 'red'
 	},
 	{
+		// Repartidor
 		stats: 'Pendiente',
 		statsColor: 'orange'
 	},
 	{
-		stats: 'Asignado',
+		// Ordenes -> Administrador
+		stats: 'Asignada',
 		statsColor: '#35CF00' 
 	}, 
 	{
-		stats: 'No asignado',
+		// Ordenes -> Administrador
+		stats: 'No asignada',
 		statsColor: 'red' 
 	},
 	{
-		stats: 'Entregado',
+		// Ordenes -> Administrador
+		stats: 'Tomada',
 		statsColor: '#35CF00' 
 	},
 	{
-		stats: 'No entregado',
+		// Ordenes -> Administrador
+		stats: 'No tomada',
 		statsColor: 'red' 
 	},
 	{
-		stats: 'En proceso',
-		statsColor: 'orange' 
+		// Ordenes
+		stats: 'Entregada',
+		statsColor: '#35CF00' 
+	},
+	{
+		// Ordenes
+		stats: 'No entregada',
+		statsColor: 'red' 
+	},
+	{
+		// Ordenes
+		stats: "En el origen",
+		statsColor: "skyblue"
+	},
+	{
+		// Ordenes
+		stats: "En camino",
+		statsColor: "orange"
 	}
 ];
-
-function activarMenu(){
-	// document.getElementById("Contenedor-Principal-Formulario").classList.remove('Contenedor-Formulario-Show');
-	document.getElementById("Menu-Opciones-Principal").classList.toggle('Lista-Opciones-Show');
-}
 
 function generarPerfil(){
 	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
 	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
+}
+
+function rellenarFormularioUsuario(){
+	administradores.forEach(administrador => {
+		document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
+		document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
+			<div class="Contenedor-Imagen-Formulario">
+				<img src="assets/img/1.webp" id="Imagen-Formulario">
+			</div>
+			<a href="#"> <h2 class="Editar"> Cambiar Foto </h2> </a>
+					
+			<div class="mb-3">
+		  		<div class="Formulario-Contenedor-Texto">
+					<label for=""> Nombre </label>
+					<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${administrador.nombre}">
+						
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Email </label>
+					<a href="#" onclick="editarEmail()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="email" name="" id="Input-Editar-Email"  placeholder="${administrador.email}">
+						
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Telefono </label>
+					<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="text" id="Input-Editar-Telefono" name="" placeholder="${administrador.telefono}">
+						
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Password </label>
+					<a href="#" onclick="editarPassword()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="Password" id="Input-Editar-Password" name="" placeholder="${administrador.password}">
+						
+				<div class="Formulario-Contenedor-Texto">
+					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil"> Save </button> 	
+				</div>
+			</div>
+		`;
+	});
+}
+
+rellenarFormularioUsuario();
+
+function activarMenu(){
+	// document.getElementById("Contenedor-Principal-Formulario").classList.remove('Contenedor-Formulario-Show');
+	document.getElementById("Menu-Opciones-Principal").classList.toggle('Lista-Opciones-Show');
+	rellenarFormularioUsuario();
 }
 
 // Funcion para mostrar las cards de los repartidores
@@ -335,7 +423,7 @@ function mostrarRepartidores(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido}</h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
@@ -360,7 +448,7 @@ function mostrarRepartidores(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
@@ -371,7 +459,6 @@ function mostrarRepartidores(){
 							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${repartidor.valoracion} </h2>
 						</div>
 					</div>
-					
 				</div>`;
 		}
 	})
@@ -411,24 +498,24 @@ function mostrarOrdenes(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	
 	ordenes.forEach(orden => {
-		const statusOrden = status.find(item => orden.repartidor == item.stats);
-		const statusPedido = status.find(item => orden.disponibilidad == item.stats);
-		console.log(orden.repartidor);
+		const statusOrden = status.find(item => orden.status === item.stats);
+		const statusPedido = status.find(item => orden.disponibilidad === item.stats);
+		const nombreRepartidor = repartidores.find(item => orden.repartidor === item.id);
 
-		if (orden.repartidor === 'Asignado') {
+		if (orden.status === 'Asignada') {
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
 							<img src="${orden.imagen}" id="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.repartidor} </h2>
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${orden.repartidor} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -450,14 +537,14 @@ function mostrarOrdenes(){
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
 							<img src="${orden.imagen}" id="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.repartidor} </h2>
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${orden.repartidor} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -480,8 +567,6 @@ function mostrarOrdenes(){
 function formularioEditarEmpresa(idEmpresa){
 	const empresaFiltrada = empresas.find(empresa => empresa.id == idEmpresa);
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
-	console.log(idEmpresa);
-	console.log(empresaFiltrada);
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
 		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Empresa">
 			<img src="${empresaFiltrada.imagenPortada}" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Empresa">
