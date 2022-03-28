@@ -35,7 +35,7 @@ let clientes = [
 		imagen: "assets/img/1.webp" 	
 	},
 	{
-		id: "cl1", 
+		id: "cl3", 
 		nombre: "Lionel",
 		apellido: "Messi",
 		residencia: "Col. Palmira",
@@ -56,25 +56,37 @@ let clientes = [
 let productos = [
 	{
 		id: "prod1",
-		nombreProducto: "Pastel de fresa",
-		idEmpresaPerteneciente: "emp2",
+		nombre: "Pastel de fresa",
+		empresa: "emp2",
 		categoria: "Postres",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 15, 
 		descuento: 10,
 		valoracion: 5,
 		imagenPortada: "assets/img/banner.jpg",
-		imagenPerfil: "assets/img/1.webp"
+		imagenPerfil: "assets/img/1.webp",
 	},
 	{
 		id: "prod2",
-		nombreProducto: "Pollo frito",
-		idEmpresaPerteneciente: "emp1",
+		nombre: "Pollo frito",
+		empresa: "emp1",
 		categoria: "Comida",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 150, 
 		descuento: 10,
 		valoracion: 3,
+		imagenPortada: "assets/img/banner.jpg",
+		imagenPerfil: "assets/img/1.webp",
+	},
+	{
+		id: "prod3",
+		nombre: "Pastel de queso",
+		empresa: "emp2",
+		categoria: "Postres",
+		descripcion: "lorem ipsum dolor sit amem",
+		precio: 130, 
+		descuento: 15,
+		valoracion: 4,
 		imagenPortada: "assets/img/banner.jpg",
 		imagenPerfil: "assets/img/1.webp",
 	}
@@ -244,12 +256,12 @@ let repartidores = [
 let ordenes = [
 	{
 		id: "ord1",
-		pedido: "Pastel de fresas",
+		pedido: "prod1",
 		descripcion: "lorem ipsum",
 		disponibilidad: "Entregada",
 		status: "Asignada",
 		statusRepartidor: "Tomada", 
-		cliente: "Lionel Messi",
+		cliente: "cl1",
 		repartidor: "rep4",
 		cantidad: 2,
 		precio: 120,
@@ -258,12 +270,12 @@ let ordenes = [
 	},
 	{
 		id: "ord2",
-		pedido: "Pastel de queso",
+		pedido: "prod3",
 		descripcion: "lorem ipsum",
 		disponibilidad: "No entregada",
 		status: "No asignada",
 		statusRepartidor: "No tomada",
-		cliente: "Cristiano Ronaldo",
+		cliente: "cl2",
 		repartidor: "rep2",
 		cantidad: 5,
 		precio: 35,
@@ -272,12 +284,12 @@ let ordenes = [
 	},
 	{
 		id: "ord3",
-		pedido: "Pizza de 100 pesitos",
+		pedido: "prod2",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En el origen",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Jeff Bezos",
+		cliente: "cl3",
 		repartidor: "rep1",
 		cantidad: 1,
 		precio: 100,
@@ -286,12 +298,12 @@ let ordenes = [
 	},
 	{
 		id: "ord4",
-		pedido: "Torta cubana",
+		pedido: "prod3",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En camino",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Jeff Bezos",
+		cliente: "cl3",
 		repartidor: "rep5",
 		cantidad: 6,
 		precio: 60,
@@ -300,12 +312,12 @@ let ordenes = [
 	},
 	{
 		id: "ord5",
-		pedido: "Tacos",
+		pedido: "prod2",
 		descripcion: "lorem ipsum",
 		disponibilidad: "No entregada",
 		status: "No asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Cristiano Ronaldo",
+		cliente: "cl2",
 		repartidor: "rep3",
 		cantidad: 5,
 		precio: 30,
@@ -431,6 +443,66 @@ function activarMenu(){
 	rellenarFormularioUsuario();
 }
 
+function verDetallesPedido(idOrden){
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	const ordenSeleccionada = ordenes.find(orden => idOrden === orden.id);
+	const productoSeleccionado = productos.find(producto => ordenSeleccionada.pedido === producto.id);
+	const empresaSeleccionada = empresas.find(empresa => productoSeleccionado.empresa === empresa.id);
+	const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenSeleccionada.cliente);
+
+	console.log(productoSeleccionado);
+
+	document.getElementById('Contenido-Principal-Cards').innerHTML += `
+		<div class="Contenedor-Detalles-Orden">
+			<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Nombre Producto </h2>
+			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.nombre} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
+			<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
+			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.categoria} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
+			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
+				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.cantidad} </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descuento </h2>
+				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.descuento}% </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Subtotal </h2>
+				<h2 class="Texto-Detalles-Orden"> Falta Calcular$ </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
+				<h2 class="Texto-Detalles-Orden"> Falta Calcular$ </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Comision Elica </h2>
+				<h2 class="Texto-Detalles-Orden"> Falta calcular% </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Ganancias repartidor </h2>
+				<h2 class="Texto-Detalles-Orden"> Falta Calcular0$ </h2>
+			</div>
+					
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cliente </h2>
+			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
+			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
+			<div class="Contenedor-Detalles-Orden-Btn">
+				<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil"> Tomar Orden </button> 	
+			</div>
+		</div>		
+	`;
+}
+
 function mostrarOrdenes(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	
@@ -438,20 +510,22 @@ function mostrarOrdenes(){
 		const statusOrden = status.find(item => orden.statusRepartidor === item.stats);
 		const statusPedido = status.find(item => orden.disponibilidad === item.stats);
 		const nombreRepartidor = repartidores.find(item => orden.repartidor === item.id);
+		const clienteSeleccionado = clientes.find(cliente => orden.cliente === cliente.id);
+		const productoSeleccionado = productos.find(producto => producto.id === orden.pedido);
 
 		if (orden.statusRepartidor !== 'Tomada') {
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
-				<div class="Contenedor-Cards">
+				<div class="Contenedor-Cards Contenedor-Cards-Productos" onclick="verDetallesPedido('${orden.id}')">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${orden.imagen}" id="Imagen-Usuario">
+							<img src="${orden.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.statusRepartidor} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
@@ -473,14 +547,14 @@ function mostrarOrdenes(){
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${orden.imagen}" id="Imagen-Usuario">
+							<img src="${orden.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.statusRepartidor} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
@@ -509,20 +583,21 @@ function mostrarMisOrdenes(){
 		const misOrdenesRealizadas = ordenes.find(item => item.id === orden); // Retorna un JSON
 		const statusOrden = status.find(item1 => misOrdenesRealizadas.statusRepartidor === item1.stats); 
 		const statusPedido = status.find(item2 => misOrdenesRealizadas.disponibilidad === item2.stats);
-		// const nombreRepartidor = repartidores.find(item3 => orden.repartidor === item.id);
+		const clienteSeleccionado = clientes.find(cliente => cliente.id === misOrdenesRealizadas.cliente);
+		const productoSeleccionado = productos.find(producto => producto.id === misOrdenesRealizadas.pedido);
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
 			<div class="Contenedor-Cards">
 				<div class="Card">
 					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-						<img src="${misOrdenesRealizadas.imagen}" id="Imagen-Usuario">
+						<img src="${misOrdenesRealizadas.imagen}" class="Imagen-Usuario">
 						<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${misOrdenesRealizadas.statusRepartidor} </h2>
 					</div>
 					<div class="Card-Contenido-2">
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${misOrdenesRealizadas.pedido} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${misOrdenesRealizadas.descripcion} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${misOrdenesRealizadas.direccion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${misOrdenesRealizadas.cliente} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido}</h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${ordenesRepartidor.nombre} ${ordenesRepartidor.apellido} </h2>
 						<div class="Card-Contenedor-Cantidad">
 							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${misOrdenesRealizadas.cantidad} </h2>
@@ -550,19 +625,21 @@ function ordenesDisponibles(){
 		const statusOrden = status.find(item => ordenNoTomada.statusRepartidor === item.stats);
 		const statusPedido = status.find(item => ordenNoTomada.disponibilidad === item.stats);
 		const nombreRepartidor = repartidores.find(item => ordenNoTomada.repartidor === item.id);
+		const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenNoTomada.cliente);
+		const productoSeleccionado = productos.find(producto => producto.id === ordenNoTomada.pedido);
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
-			<div class="Contenedor-Cards">
+			<div class="Contenedor-Cards Contenedor-Cards-Productos" onclick="verDetallesPedido('${ordenNoTomada.id}')">
 				<div class="Card">
 					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-						<img src="${ordenNoTomada.imagen}" id="Imagen-Usuario">
+						<img src="${ordenNoTomada.imagen}" class="Imagen-Usuario">
 						<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${ordenNoTomada.statusRepartidor} </h2>
 					</div>
 					<div class="Card-Contenido-2">
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${ordenNoTomada.pedido} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${ordenNoTomada.descripcion} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${ordenNoTomada.direccion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${ordenNoTomada.cliente} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 						<div class="Card-Contenedor-Cantidad">
 							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${ordenNoTomada.cantidad} </h2>
@@ -591,19 +668,21 @@ function ordenesTomadasSinAsignar(){
 			const statusOrden = status.find(item => ordenTomada.statusRepartidor === item.stats);
 			const statusPedido = status.find(item => ordenTomada.disponibilidad === item.stats);
 			const nombreRepartidor = repartidores.find(item => ordenTomada.repartidor === item.id);
+			const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenTomada.cliente);
+			const productoSeleccionado = productos.find(producto => producto.id === ordenTomada.pedido);
 
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${ordenTomada.imagen}" id="Imagen-Usuario">
+							<img src="${ordenTomada.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${ordenTomada.statusRepartidor} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${ordenTomada.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${ordenTomada.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${ordenTomada.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${ordenTomada.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${ordenTomada.cantidad} </h2>
@@ -711,4 +790,4 @@ function guardarNuevosCambiosProductos(){
 	document.getElementById("Input-Editar-Precio-Producto").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Descuento-Producto").setAttribute("readonly", true);
 }
-mostrarOrdenes();
+// mostrarOrdenes();

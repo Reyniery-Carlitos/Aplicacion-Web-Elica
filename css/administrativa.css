@@ -401,9 +401,54 @@ input{
 	cursor: pointer;
 }
 
+/* --------------------------- Estilos contenedor detalles orden --------------------------- */
+.Contenedor-Detalles-Orden{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-start;
+	flex-wrap: wrap;
+	flex-basis: 40%;
+	padding: 5px;
+	background-color: white;
+	box-shadow: 0px 0px 10px #ccc;
+	margin-top: 5px;
+}
+
+.Imagen-Detalles-Orden{
+	display: flex;
+	align-self: center;
+	max-width: 100%;
+}
+
+.Contenido-Detalles-Orden{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	flex-grow: 1;
+	border-top: 0.5px solid #ccc;
+}
+
+.Contenedor-Detalles-Orden-Btn{
+	display: flex;
+	flex-direction: row;
+	align-self: center;
+}
+
+.Texto-Detalles-Orden{
+	line-height: 30px;
+	font-size: 1rem;
+}
+
+.Texto-Detalles-Orden-Titulo{
+	font-weight: bolder;
+}
+
 /* --------------------------- Estilos de las card de empresas --------------------------- */
 /* Falta evaluar si es necesaria */
 .Contenedor-Empresas{
+	margin-top: 5px;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -608,7 +653,6 @@ input{
 		justify-content: flex-start;
 		align-items: center;
 		width: 90%;
-		
 	}
 
 	.Contenedor-Formulario-Editar-Agregar{
@@ -620,5 +664,20 @@ input{
 		height: 80%;
 		background-color: white;
 		margin-top: 10px;
+	}
+}
+
+
+@media (max-width: 750px){
+	.Contenedor-Detalles-Orden{
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		flex-basis: 90%;
+		padding: 5px;
+		background-color: white;
+		box-shadow: 0px 0px 10px #ccc;
 	}
 }

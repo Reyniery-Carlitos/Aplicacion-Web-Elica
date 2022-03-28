@@ -35,7 +35,7 @@ let clientes = [
 		imagen: "assets/img/1.webp" 	
 	},
 	{
-		id: "cl1", 
+		id: "cl3", 
 		nombre: "Lionel",
 		apellido: "Messi",
 		residencia: "Col. Palmira",
@@ -63,7 +63,8 @@ let productos = [
 		precio: 15, 
 		descuento: 10,
 		valoracion: 5,
-		imagenPerfil: "assets/img/1.webp"
+		imagenPortada: "assets/img/banner.jpg",
+		imagenPerfil: "assets/img/1.webp",
 	},
 	{
 		id: "prod2",
@@ -74,6 +75,19 @@ let productos = [
 		precio: 150, 
 		descuento: 10,
 		valoracion: 3,
+		imagenPortada: "assets/img/banner.jpg",
+		imagenPerfil: "assets/img/1.webp",
+	},
+	{
+		id: "prod3",
+		nombre: "Pastel de queso",
+		empresa: "emp2",
+		categoria: "Postres",
+		descripcion: "lorem ipsum dolor sit amem",
+		precio: 130, 
+		descuento: 15,
+		valoracion: 4,
+		imagenPortada: "assets/img/banner.jpg",
 		imagenPerfil: "assets/img/1.webp",
 	}
 ];
@@ -140,10 +154,11 @@ let repartidores = [
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "Disponible",
+		disponibilidad: "disponible",
 		ordenesEntregadas: [
-			"prod1",
-			"prod2"
+			"ord2",
+			"ord4",
+			"ord4"
 		],
 		imagen: "assets/img/1.webp"
 	},
@@ -158,9 +173,10 @@ let repartidores = [
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "No disponible",
+		disponibilidad: "no disponible",
 		ordenesEntregadas: [
-			"prod2"
+			"ord3",
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"
 	},
@@ -175,9 +191,10 @@ let repartidores = [
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "En proceso",
+		disponibilidad: "en proceso",
 		ordenesEntregadas: [
-			"prod1"
+			"ord4",
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"
 	},
@@ -192,10 +209,10 @@ let repartidores = [
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "Disponible",
+		disponibilidad: "disponible",
 		ordenesEntregadas: [
-			"prod1",
-			"prod2"
+			"ord3",
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"
 	},
@@ -210,9 +227,9 @@ let repartidores = [
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "No disponible",
+		disponibilidad: "no disponible",
 		ordenesEntregadas: [
-			"prod2"
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"
 	},
@@ -227,9 +244,10 @@ let repartidores = [
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "En proceso",
+		disponibilidad: "en proceso",
 		ordenesEntregadas: [
-			"prod1"
+			"ord2",
+			"ord4"
 		],
 		imagen: "assets/img/1.webp"
 	}	
@@ -238,57 +256,71 @@ let repartidores = [
 let ordenes = [
 	{
 		id: "ord1",
-		pedido: "Pastel de fresas",
+		pedido: "prod1",
 		descripcion: "lorem ipsum",
 		disponibilidad: "Entregada",
 		status: "Asignada",
 		statusRepartidor: "Tomada", 
-		cliente: "Lionel Messi",
+		cliente: "cl1",
 		repartidor: "rep4",
-		cantidad: 5,
-		precio: 20,
+		cantidad: 2,
+		precio: 120,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord2",
-		pedido: "Pastel de queso",
+		pedido: "prod3",
 		descripcion: "lorem ipsum",
 		disponibilidad: "No entregada",
 		status: "No asignada",
 		statusRepartidor: "No tomada",
-		cliente: "Cristiano Ronaldo",
+		cliente: "cl2",
 		repartidor: "rep2",
 		cantidad: 5,
-		precio: 20,
+		precio: 35,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord3",
-		pedido: "Pizza de 100 pesitos",
+		pedido: "prod2",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En el origen",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Lionel Messi",
+		cliente: "cl3",
 		repartidor: "rep1",
-		cantidad: 5,
-		precio: 20,
+		cantidad: 1,
+		precio: 100,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord4",
-		pedido: "Torta cubana",
+		pedido: "prod3",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En camino",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Jeff Bezos",
+		cliente: "cl3",
 		repartidor: "rep5",
+		cantidad: 6,
+		precio: 60,
+		direccion: "Col. Quezada",
+		imagen: 'assets/img/1.webp' 
+	},
+	{
+		id: "ord5",
+		pedido: "prod2",
+		descripcion: "lorem ipsum",
+		disponibilidad: "No entregada",
+		status: "No asignada",
+		statusRepartidor: "Tomada",
+		cliente: "cl2",
+		repartidor: "rep3",
 		cantidad: 5,
-		precio: 20,
+		precio: 30,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	}  
@@ -308,21 +340,6 @@ const status = [
 	{
 		// Repartidor
 		stats: 'Pendiente',
-		statsColor: 'orange'
-	},
-	{
-		// Repartidor -> Disponibilidad
-		stats: 'Disponible',
-		statsColor: '#35CF00'
-	},
-	{
-		// Repartidor -> Disponibilidad
-		stats: 'No disponible',
-		statsColor: 'red'
-	},
-	{
-		// Repartidor -> Disponibilidad
-		stats: 'En proceso',
 		statsColor: 'orange'
 	},
 	{
@@ -514,6 +531,8 @@ function mostrarOrdenes(){
 		const statusOrden = status.find(item => orden.status === item.stats);
 		const statusPedido = status.find(item => orden.disponibilidad === item.stats);
 		const nombreRepartidor = repartidores.find(item => orden.repartidor === item.id);
+		const clienteSeleccionado = clientes.find(cliente => orden.cliente === cliente.id);
+		const productoSeleccionado = productos.find(producto => producto.id === orden.pedido);
 
 		if (orden.status === 'Asignada') {
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
@@ -524,10 +543,10 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
@@ -553,10 +572,10 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
