@@ -902,3 +902,5 @@ function guardarNuevosCambiosProductos(){
 	document.getElementById("Input-Editar-Precio-Producto").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Descuento-Producto").setAttribute("readonly", true);
 }
+
+mostrarRepartidores();
