@@ -645,12 +645,19 @@ function editarEmpresa(){
 				<h2 class="Card-Texto Card-Texto-Nombre text-success"> ${empresa.nombre} </h2>
 				<h2 class="Card-Texto Card-Texto-Residencia"> ${empresa.descripcion} </h2>
 				<h2 class="Card-Texto Card-Texto-Telefono"> ${estrellas} </h2>
+				<div class="Contenedor-Btn-Trash">
+					<i class="fa-solid fa-trash text-danger fa-2x" onclick="haceAlgo()"></i>
+				</div>
 			</div>
 			<div class="card-body-2 Card-Contenido-Imagen-Empresa p-0 mt-2 mb-1 mr-2 ml-2">
 				<img src="${empresa.imagenPerfil}" id="Imagen-Miniatura-Empresa">		
 			</div>
 		</div>`;
 	})
+}
+
+function haceAlgo(){
+	console.log("Imprimir texto");
 }
 
 function formularioAgregarEmpresa(){
@@ -857,8 +864,8 @@ function editarProductos(){
 		const empresaPertenece = empresas.find(empresa => empresa.id === producto.empresa);
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
-			<div class="Contenedor-Cards Contenedor-Cards-Productos" onclick="formularioEditarProducto('${producto.id}')">
-				<div class="Card">
+			<div class="Contenedor-Cards Contenedor-Cards-Productos">
+				<div class="Card" onclick="formularioEditarProducto('${producto.id}')">
 					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
 						<img src="${producto.imagenPerfil}" class="Imagen-Usuario">
 						<h2 class="Card-Texto Card-Texto-Estado"> ${producto.categoria} </h2>
@@ -881,8 +888,11 @@ function editarProductos(){
 					<div class="Card-Contenido-3">
 						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${producto.precio}L </h2>
+						<div class="Contenedor-Btn-Trash">
+							<i class="fa-solid fa-trash text-danger fa-2x" onclick="haceAlgo()"></i>
+						</div>
 					</div>
-				</div>
+				</div>	
 			</div>
 		`;
 	})
