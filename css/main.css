@@ -9,6 +9,10 @@
 
 body{
 	background-color: #fff2ff;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	min-height: 100vh;
 }
 
 /* --------------------------- Estilo Iconos --------------------------- */
@@ -244,6 +248,16 @@ header div a{
 	background-color: white;
 }
 
+footer{
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	flex-wrap: wrap;
+	align-self: flex-end;
+	margin-top: auto;
+	width: 100%;
+}
+
 .Container-Contenido-Footer{
 	display: flex;
 	flex-direction: row;
@@ -319,6 +333,7 @@ header div a{
 	flex-direction: row;
 	justify-content: flex-start;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 .Formulario-Registro form input{
@@ -326,8 +341,20 @@ header div a{
 	border: none;
 	line-height: 40px;
 	margin: 10px;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid blue;
 	font-weight: bold;
+}
+
+.Formulario-Registro form .Validar-Correcto{
+	border-bottom: 1px solid #00ff00;
+}
+
+.Formulario-Registro form .Validar-Incorrecto{
+	border-bottom: 1px solid red;
+}
+
+.Icono-Validar{
+	display: none;
 }
 
 .Formulario-Registro form button{

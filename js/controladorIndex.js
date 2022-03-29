@@ -1,22 +1,71 @@
 function formularioRegistro(){
 	document.getElementById("Contenido-Principal-Landing").innerHTML = '';
-	document.getElementById("Contenido-Principal-Landing").innerHTML = `
-		<section class="Formulario-Registro">
-			<form action="">
+	document.getElementById("Contenido-Principal-Landing").innerHTML += `
+		<section class="Formulario-Registro" id="Contenedor-Formulario" onclick="validaciones()">
+			<form action="" method="" id="Formulario">
 				<h1> Registrate en Elica </h1>
 				<div class="Contenedor-Individual">
-					<i class="fa-solid fa-user fa-2x"></i><input type="text" name="" placeholder="Nombre">	
+					<i class="fa-solid fa-user fa-2x"></i>
+					<input class="Validar" id="Input-Individual-Username" type="text" name="username" placeholder="Nombre">	
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Username"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Username"></i>
 				</div>
 
 				<div class="Contenedor-Individual"> 
-					<i class="fa-solid fa-envelope fa-2x"></i><input type="email" name="" placeholder="Email">
+					<i class="fa-solid fa-envelope fa-2x"></i>
+					<input class="" id="Input-Individual-Email" type="email" name="email" placeholder="Email">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Email"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Email"></i>
 				</div>
 					
 				<div class="Contenedor-Individual"> 
-					<i class="fa-solid fa-lock fa-2x"></i><input type="password" name="" placeholder="Contraseña">
+					<i class="fa-solid fa-lock fa-2x"></i>
+					<input class="" type="password" id="Input-Individual-Password" name="password" placeholder="Contraseña">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Password"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
 				</div>
-				<button> Registrarme </button>
+				<button type="submit" onclick="btnSubmitValidaciones()"> Registrarme </button>
 				<h2> Ya tienes una cuenta? <span> <a href="#" onclick="formularioIniciaSesion()"> Inicia Sesion </a> </span> </h2>
+			</form>
+		</section>
+	`;
+}
+
+function formularioRegistroRepartidores(){
+	document.getElementById("Contenido-Principal-Landing").innerHTML = '';
+	document.getElementById("Contenido-Principal-Landing").innerHTML += `
+		<section class="Formulario-Registro" id="Contenedor-Formulario" onclick="validacionesRepartidores()">
+			<form action="" method="POST" id="Formulario">
+				<h1> Registrate en Elica </h1>
+				<div class="Contenedor-Individual">
+					<i class="fa-solid fa-user fa-2x"></i>
+					<input class="Validar" id="Input-Individual-Username" type="text" name="username" placeholder="Nombre">	
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Username"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Username"></i>
+				</div>
+
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-envelope fa-2x"></i>
+					<input class="" id="Input-Individual-Email" type="email" name="email" placeholder="Email">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Email"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Email"></i>
+				</div>
+
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-phone fa-2x"></i>
+					<input class="" id="Input-Individual-Telefono" type="tel" pattern="[0-9]{4}-[0-9]{4}" name="telefono" placeholder="Telefono">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Telefono"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Telefono"></i>
+				</div>
+					
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-lock fa-2x"></i>
+					<input class="" type="password" id="Input-Individual-Password" name="password" placeholder="Contraseña">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Password"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
+				</div>
+				<button type="submit" onclick="btnSubmitValidaciones()"> Registrarme </button>
+				<h2> Ya tienes una cuenta? <span> <a href="#" onclick="btnSubmitValidacionesRepartidores()"> Inicia Sesion </a> </span> </h2>
 			</form>
 		</section>
 	`;
@@ -35,7 +84,7 @@ function formularioIniciaSesion(){
 				<div class="Contenedor-Individual"> 
 					<i class="fa-solid fa-lock fa-2x"></i><input type="password" name="" placeholder="Contraseña">
 				</div>
-				<button> Registrarme </button>
+				<button> Iniciar Sesion </button>
 				<h2> No te has registrado? <span> <a href="#" onclick="formularioRegistro()"> Registrate ahora </a> </span> </h2>
 			</form>
 		</section>
@@ -73,7 +122,9 @@ function mostrarLanding(){
 			<p class="Contenedor-Como-Trabajamos__Texto"> Consigue un horario que se adecue a ti con una remuneración competitiva </p>
 			<h2 class="Contenedor-Como-Trabajamos__Subtitulo"> Se un repartidor de Elica<span class="text-danger">! </span> </h2>
 			<img src="assets/img/repartidor.png" alt="">
-			<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header"> Unete ahora </h2> </button>
+			<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header" onclick="formularioRegistroRepartidores()"> Unete ahora </h2> </button>
 		</section>
 	`;
 }
+
+mostrarLanding();
