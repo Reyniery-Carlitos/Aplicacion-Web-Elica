@@ -1,9 +1,7 @@
 let clientes = [
 	{
 		id: "cl1", 
-		nombre: "Jeff",
-		apellido: "Bezos",
-		residencia: "Col. Palmira",
+		username: "Jeff Bezos",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
@@ -18,9 +16,7 @@ let clientes = [
 	},
 	{
 		id: "cl2", 
-		nombre: "Cristiano",
-		apellido: "Ronaldo",
-		residencia: "Col. Kennedy",
+		username: "Cristiano Ronaldo",
 		ciudad: "Tegucigalpa",
 		email: "mario@gmail.com",
 		telefono: 99889933,
@@ -36,9 +32,7 @@ let clientes = [
 	},
 	{
 		id: "cl3", 
-		nombre: "Lionel",
-		apellido: "Messi",
-		residencia: "Col. Palmira",
+		username: "Lionel Messi",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
@@ -131,9 +125,7 @@ let empresas = [
 let administradores = [
 	{
 		id: "adm1", 
-		nombre: "Steve",
-		apellido: "Jobs",
-		residencia: "Prados universitarios",
+		username: "Steve Jobs",
 		ciudad: "Tegucigalpa",
 		email: "jobs@apple.co",
 		telefono: 99889900,
@@ -145,12 +137,10 @@ let administradores = [
 let repartidores = [
 	{
 		id: "rep1",
-		nombre: "Nikola",
-		apellido: "Tesla",
+		username: "Nikola Tesla",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
@@ -164,12 +154,10 @@ let repartidores = [
 	},
 	{
 		id: "rep2",
-		nombre: "Usain",
-		apellido: "Bolt",
+		username: "Usain Bolt",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
@@ -182,12 +170,10 @@ let repartidores = [
 	},
 	{
 		id: "rep3",
-		nombre: "Ada",
-		apellido: "Lovalace",
+		username: "Ada Lovalace",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
@@ -200,12 +186,10 @@ let repartidores = [
 	},
 	{
 		id: "rep4",
-		nombre: "Carlo Yair",
-		apellido: "Costly",
+		username: "Carlo Yair Costly",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
@@ -218,12 +202,10 @@ let repartidores = [
 	},
 	{
 		id: "rep5",
-		nombre: "Isaac",
-		apellido: "Newton",
+		username: "Isaac Newton",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
@@ -235,12 +217,10 @@ let repartidores = [
 	},
 	{
 		id: "rep6",
-		nombre: "Pierre Emeric",
-		apellido: "Aubameyang",
+		username: "Pierre Emeric Aubameyang",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
@@ -407,7 +387,7 @@ function rellenarFormularioUsuario(){
 						<label for=""> Nombre </label>
 						<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
 					</div>
-					<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${infoRepartidor.nombre} ${infoRepartidor.apellido}">
+					<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${infoRepartidor.username}">
 							
 					<div class="Formulario-Contenedor-Texto">
 						<label for=""> Email </label>
@@ -493,7 +473,7 @@ function verDetallesPedido(idOrden){
 			</div>
 					
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cliente </h2>
-			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
+			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.username} </h2>
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
 			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
 			<div class="Contenedor-Detalles-Orden-Btn">
@@ -525,8 +505,8 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -554,8 +534,8 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -597,8 +577,8 @@ function mostrarMisOrdenes(){
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${misOrdenesRealizadas.descripcion} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${misOrdenesRealizadas.direccion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido}</h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${ordenesRepartidor.nombre} ${ordenesRepartidor.apellido} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username}</h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${ordenesRepartidor.username} </h2>
 						<div class="Card-Contenedor-Cantidad">
 							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${misOrdenesRealizadas.cantidad} </h2>
 							<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -639,8 +619,8 @@ function ordenesDisponibles(){
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${ordenNoTomada.descripcion} </h2>
 						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${ordenNoTomada.direccion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 						<div class="Card-Contenedor-Cantidad">
 							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${ordenNoTomada.cantidad} </h2>
 							<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -682,8 +662,8 @@ function ordenesTomadasSinAsignar(){
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${ordenTomada.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${ordenTomada.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${ordenTomada.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>

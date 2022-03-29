@@ -1,9 +1,7 @@
 let clientes = [
 	{
 		id: "cl1", 
-		nombre: "Jeff",
-		apellido: "Bezos",
-		residencia: "Col. Palmira",
+		username: "Jeff Bezos",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
@@ -18,9 +16,7 @@ let clientes = [
 	},
 	{
 		id: "cl2", 
-		nombre: "Cristiano",
-		apellido: "Ronaldo",
-		residencia: "Col. Kennedy",
+		username: "Cristiano Ronaldo",
 		ciudad: "Tegucigalpa",
 		email: "mario@gmail.com",
 		telefono: 99889933,
@@ -36,9 +32,7 @@ let clientes = [
 	},
 	{
 		id: "cl3", 
-		nombre: "Lionel",
-		apellido: "Messi",
-		residencia: "Col. Palmira",
+		username: "Lionel Messi",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
@@ -131,9 +125,7 @@ let empresas = [
 let administradores = [
 	{
 		id: "adm1", 
-		nombre: "Steve",
-		apellido: "Jobs",
-		residencia: "Prados universitarios",
+		username: "Steve Jobs",
 		ciudad: "Tegucigalpa",
 		email: "jobs@apple.co",
 		telefono: 99889900,
@@ -145,12 +137,10 @@ let administradores = [
 let repartidores = [
 	{
 		id: "rep1",
-		nombre: "Nikola",
-		apellido: "Tesla",
+		username: "Nikola Tesla",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
@@ -164,12 +154,10 @@ let repartidores = [
 	},
 	{
 		id: "rep2",
-		nombre: "Usain",
-		apellido: "Bolt",
+		username: "Usain Bolt",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
@@ -182,12 +170,10 @@ let repartidores = [
 	},
 	{
 		id: "rep3",
-		nombre: "Ada",
-		apellido: "Lovalace",
+		username: "Ada Lovalace",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
@@ -200,12 +186,10 @@ let repartidores = [
 	},
 	{
 		id: "rep4",
-		nombre: "Carlo Yair",
-		apellido: "Costly",
+		username: "Carlo Yair Costly",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
@@ -218,12 +202,10 @@ let repartidores = [
 	},
 	{
 		id: "rep5",
-		nombre: "Isaac",
-		apellido: "Newton",
+		username: "Isaac Newton",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
@@ -235,12 +217,10 @@ let repartidores = [
 	},
 	{
 		id: "rep6",
-		nombre: "Pierre Emeric",
-		apellido: "Aubameyang",
+		username: "Pierre Emeric Aubameyang",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
@@ -403,7 +383,7 @@ function rellenarFormularioUsuario(){
 					<label for=""> Nombre </label>
 					<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${administrador.nombre}">
+				<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${administrador.username}">
 						
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Email </label>
@@ -453,9 +433,9 @@ function mostrarRepartidores(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido}</h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
 						</div>
@@ -478,9 +458,9 @@ function mostrarRepartidores(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
 						</div>
@@ -546,8 +526,8 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -575,8 +555,8 @@ function mostrarOrdenes(){
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.nombre} ${clienteSeleccionado.apellido} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -931,9 +911,9 @@ function asignarRepartidor(){
 							<h2 class="Card-Texto Card-Texto-Estado"> <span id="Status-Repartidor" style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.disponibilidad} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length} </h2>
 						</div>
