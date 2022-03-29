@@ -1,0 +1,358 @@
+/* --------------------------- Estilos globales --------------------------- */
+*{
+	margin: 0;
+	padding: 0;
+	font-family: 'Poppins', sans-serif;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body{
+	background-color: #fff2ff;
+}
+
+/* --------------------------- Estilo Iconos --------------------------- */
+i{
+	font-weight: bold;
+	color: white;
+}
+
+/* --------------------------- Estilos etiqueta nav --------------------------- */
+header{
+	background-color: red;
+	box-shadow: 0px 0px 8px #ccc;
+}
+
+/* --------------------------- Estilos menu navegacion --------------------------- */
+.nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding-left: 15px;
+	padding-right: 15px;
+	font-size: 1.3rem;
+	font-weight: bolder;
+}
+
+header div a{
+	text-decoration: none;
+	color: black;
+}
+
+.Logo{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.Logo img{
+	max-width: 60px;
+	max-height: 60px;
+	margin-right: 5px;
+}
+
+.Logo h1{
+	color: white;
+	font-weight: bold;
+	margin: 0;
+}
+
+.Menu-Hamburguesa{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.Menu-Navegacion{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	padding: 5px;
+}
+
+.Contenedor-Principal-Botones-Header{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.Contenedor-Botones-Header{
+	margin-right: 5px;
+}
+
+.Botones-Header{
+	outline: none;
+	border: none;
+	padding: 5px;
+	background-color: red;
+}
+
+.Texto-Header{
+	font-size: 1.3rem;
+	line-height: 30px;
+	font-weight: bolder;
+	margin: 0;
+	color: white;
+}
+
+.Btn-Sign-Up{
+	background-color: #b70000;
+}
+
+/* --------------------------- Estilos Barra lateral --------------------------- */
+.Lista-Opciones{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-basis: 100%;
+	background-color: #fff;
+	padding: 5px;
+	box-shadow: 0px 2px 8px #999;
+
+}
+
+.Lista-Opciones__Items{
+	font-family: 'Poppins';
+	list-style: none;
+	padding: 10px;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.Lista-Opciones ul li a{
+	padding: 5px;
+	text-decoration: none;
+	color: black;
+}
+
+.Lista-Opciones ul li a:hover{
+	background-color: #f4f6f6;
+}
+
+.Lista-Opciones__Lista-Items{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.Contenido-Principal{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 5px;
+	margin-top: 5px;
+}
+
+.Contenedor-Ordena-Ahora{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 5px;
+	background-color: white;
+	flex-wrap: wrap;
+}
+
+.Contenedor-Ordena-Ahora__Contenidos{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	flex-basis: 50%;
+}
+
+.Contenedor-Ordena-Ahora__Contenido1{
+	padding: 5px;
+	background-color: #d8000a;
+	color: white;
+	flex-grow: 1;
+}
+
+.Contenedor-Ordena-Ahora__Contenido1 img{
+	width: 30%;
+}
+
+.Contenedor-Ordena-Ahora__Contenido1-Titulo{
+	font-size: 3rem;
+	text-transform: uppercase;
+	font-weight: bolder;
+	margin: 0;
+}
+
+.Contenedor-Ordena-Ahora__Contenido1-Texto{
+	font-size: 1.5rem;
+	text-align: justify;
+	margin: 0;
+}
+
+.Contenedor-Ordena-Ahora__Contenido2{
+	background-image: url(../assets/img/Rectangulos.png);
+}
+
+.Contenedor-Como-Trabajamos{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 5px;
+	width: 100%;
+	padding: 10px;
+	box-shadow: 0px 0px 10px #ccc;
+}
+
+.Contenedor-Como-Trabajamos__Titulo{
+	font-size: 3rem;
+	text-transform: uppercase;
+	margin: 5px;
+	font-weight: bolder;
+}
+
+.Contenedor-Como-Trabajamos__Subtitulo{
+	font-size: 2.5rem;
+	text-transform: uppercase;
+	margin: 0;
+	font-weight: bolder;
+	margin: 5px;
+}
+
+.Contenedor-Como-Trabajamos__Texto{
+	font-size: 1rem;
+	font-weight: bold;
+	margin: 5px;
+}
+
+.Contenedor-Trabaja-Con-Nosotros{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 5px;
+	width: 100%;
+	padding: 10px;
+	background-color: white;
+}
+
+.Container-Contenido-Footer{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	align-items: center;
+	flex-wrap: wrap;
+	background-color: red;
+	margin-bottom: 0;
+	padding: 10px;
+}
+
+.Container-Copyright{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	background-color: red;
+}
+
+.Container-Copyright p{
+	margin-bottom: 0;
+	font-weight: bolder;
+	color: white;
+}
+
+.Footer-Contacto{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.Footer-Menu h2 a{
+	text-decoration: none;
+	color: white;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.Footer-Contacto h2 a{
+	text-decoration: none;
+	color: white;
+	font-size: 1rem;
+	font-weight: bold;
+}
+
+.Footer-Contacto__Titulo{
+	color: white;
+	font-size: 1rem;
+	font-weight: bolder;
+	text-transform: uppercase;
+}
+
+.Formulario-Registro form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-basis: 40%;
+	padding: 10px;
+	background-color: white;
+	box-shadow: 0px 0px 10px #ccc;
+	margin-bottom: 10px;
+}
+
+.Formulario-Registro form i{
+	color: black;
+}
+
+.Contenedor-Individual{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.Formulario-Registro form input{
+	outline: none;
+	border: none;
+	line-height: 40px;
+	margin: 10px;
+	border-bottom: 1px solid #ccc;
+	font-weight: bold;
+}
+
+.Formulario-Registro form button{
+	border: none;
+	outline: none;
+	line-height: 30px;
+	background-color: #00ff00;
+	padding: 10px;
+	border-radius: 30px;
+	color: white;
+	font-weight: bolder;
+}
+
+.Formulario-Registro form h1{
+	font-size: 2rem;
+	font-weight: bolder;
+	margin-top: 10px;
+}
+
+.Formulario-Registro form h2{
+	font-size: 1rem;
+	font-weight: bolder;
+	margin-top: 10px;
+}
+
+.Formulario-Registro form h2 a{
+	text-decoration: none;
+}

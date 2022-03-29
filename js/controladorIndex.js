@@ -1,0 +1,79 @@
+function formularioRegistro(){
+	document.getElementById("Contenido-Principal-Landing").innerHTML = '';
+	document.getElementById("Contenido-Principal-Landing").innerHTML = `
+		<section class="Formulario-Registro">
+			<form action="">
+				<h1> Registrate en Elica </h1>
+				<div class="Contenedor-Individual">
+					<i class="fa-solid fa-user fa-2x"></i><input type="text" name="" placeholder="Nombre">	
+				</div>
+
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-envelope fa-2x"></i><input type="email" name="" placeholder="Email">
+				</div>
+					
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-lock fa-2x"></i><input type="password" name="" placeholder="Contraseña">
+				</div>
+				<button> Registrarme </button>
+				<h2> Ya tienes una cuenta? <span> <a href="#" onclick="formularioIniciaSesion()"> Inicia Sesion </a> </span> </h2>
+			</form>
+		</section>
+	`;
+}
+
+function formularioIniciaSesion(){
+	document.getElementById('Contenido-Principal-Landing').innerHTML = '';
+	document.getElementById('Contenido-Principal-Landing').innerHTML += `
+		<section class="Formulario-Registro">
+			<form action="">
+				<h1> Inicia Sesion en Elica </h1>
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-envelope fa-2x"></i><input type="email" name="" placeholder="Email">
+				</div>
+					
+				<div class="Contenedor-Individual"> 
+					<i class="fa-solid fa-lock fa-2x"></i><input type="password" name="" placeholder="Contraseña">
+				</div>
+				<button> Registrarme </button>
+				<h2> No te has registrado? <span> <a href="#" onclick="formularioRegistro()"> Registrate ahora </a> </span> </h2>
+			</form>
+		</section>
+	`;
+}
+
+function mostrarLanding(){
+	document.getElementById('Contenido-Principal-Landing').innerHTML = '';
+	document.getElementById('Contenido-Principal-Landing').innerHTML += `
+		<section class="Contenedor-Ordena-Ahora" id="Id-Contenedor-Ordena-Ahora">
+			<article class="Contenedor-Ordena-Ahora__Contenidos Contenedor-Ordena-Ahora__Contenido1">
+				<img src="assets/img/LogoElica.png">
+				<h1 class="Contenedor-Ordena-Ahora__Contenido1-Titulo"> Ordena con nosotros! </h1>
+				<p class="Contenedor-Ordena-Ahora__Contenido1-Texto"> Somos una aplicación móvil que te permite realizar pedidos en línea desde la comodidad de tu hogar, ordena todo tipo de suministros desde nuestra aplicación. </p>
+				<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header" onclick="formularioRegistro()"> Registrate </h2> </button>
+			</article>
+			<article class="Contenedor-Ordena-Ahora__Contenidos Contenedor-Ordena-Ahora__Contenido2">
+				<img src="assets/img/persona-telefono.png" alt="">
+			</article>
+		</section>
+
+		<section class="Contenedor-Como-Trabajamos" id="Id-Contenedor-Como-Trabajamos">
+			<h1 class="Contenedor-Como-Trabajamos__Titulo"> Como trabajamos<span class="text-danger">? </span></h1>
+			<h2 class="Contenedor-Como-Trabajamos__Subtitulo"> <span class="text-danger"> 1. </span> Haz un pedido </h2>
+			<p class="Contenedor-Como-Trabajamos__Texto"> Registrate con nosotros y añade todo lo que necesites a tu carrito de compras  </p>
+			<h2 class="Contenedor-Como-Trabajamos__Subtitulo"> <span class="text-danger"> 2. </span> Llegaremos a ti </h2>
+			<p class="Contenedor-Como-Trabajamos__Texto"> Elige con nuestra aplicación el destino final de tu orden </p>
+			<h2 class="Contenedor-Como-Trabajamos__Subtitulo"> <span class="text-danger"> 3. </span>  Paga de forma segura </h2>
+			<p class="Contenedor-Como-Trabajamos__Texto"> Paga tu orden de una manera fácil y sencilla con cualquier tipo de tarjeta  </p>
+			<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header" onclick="formularioRegistro()"> Registrate </h2> </button>
+		</section>
+
+		<section class="Contenedor-Trabaja-Con-Nosotros" id="Id-Contenedor-Trabaja-Con-Nosotros">
+			<h1 class="Contenedor-Como-Trabajamos__Titulo"> Trabaja con nosotros<span class="text-danger">! </span></h1>
+			<p class="Contenedor-Como-Trabajamos__Texto"> Consigue un horario que se adecue a ti con una remuneración competitiva </p>
+			<h2 class="Contenedor-Como-Trabajamos__Subtitulo"> Se un repartidor de Elica<span class="text-danger">! </span> </h2>
+			<img src="assets/img/repartidor.png" alt="">
+			<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header"> Unete ahora </h2> </button>
+		</section>
+	`;
+}
