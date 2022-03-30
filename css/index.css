@@ -218,22 +218,21 @@ header div a{
 .Contenedor-Como-Trabajamos__Titulo{
 	font-size: 3rem;
 	text-transform: uppercase;
-	margin: 5px;
+	margin: 10px;
 	font-weight: bolder;
 }
 
 .Contenedor-Como-Trabajamos__Subtitulo{
 	font-size: 2.5rem;
 	text-transform: uppercase;
-	margin: 0;
 	font-weight: bolder;
-	margin: 5px;
+	margin: 10px;
 }
 
 .Contenedor-Como-Trabajamos__Texto{
 	font-size: 1rem;
 	font-weight: bold;
-	margin: 5px;
+	margin: 10px;
 }
 
 .Contenedor-Trabaja-Con-Nosotros{

@@ -8,11 +8,11 @@
     <link rel="icon" href="assets/img/LogoElica.ico">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
-    <link rel="stylesheet" href="css/webAdministrativa.css">
+    <link rel="stylesheet" href="css/clientes.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-    <title> Administracion </title>
+    <title> Clientes </title>
 </head>
 <body>
 	<header class="nav navbar navbar-expand-lg navbar-light">
@@ -34,11 +34,11 @@
 		<div class="main">
 			<nav class="Lista-Opciones" id="Menu-Opciones-Principal">
 				<ul class="Lista-Opciones__Lista-Items m-0">
-					<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarRepartidores()"> Repartidores </a> </li>
-					<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarOrdenes()">Ordenes </a> </li>
+					<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarCategorias()"> Categorias </a> </li>
+					<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarProductos()"> Productos </a> </li>
 					<li class="Lista-Opciones__Items"> 
-						<a href="#" class="Lista-Opciones__Link"> Empresas </a> 
-						<ul class="Lista-Opciones__Lista-SubItems">
+						<a href="#" class="Lista-Opciones__Link" onclick="mostrarEmpresas()"> Empresas </a> 
+						<!-- <ul class="Lista-Opciones__Lista-SubItems">
 							<li class="Lista-Opciones__SubItems"> 
 								<a href="#" class="Lista-Opciones__Link" onclick="mostrarEmpresas()"> Ver Empresas </a> 
 							</li>
@@ -48,12 +48,12 @@
 							<li class="Lista-Opciones__SubItems"> 
 								<a href="#" class="Lista-Opciones__Link" onclick="editarEmpresa()"> Editar Empresa </a> 
 							</li>
-						</ul>	
+						</ul> -->	
 					</li>
 					<li class="Lista-Opciones__Items"> 
-						<a href="#" class="Lista-Opciones__Link"> Productos </a>
+						<a href="#" class="Lista-Opciones__Link" onclick="carrito()"> Carrito </a>
 
-						<ul class="Lista-Opciones__Lista-SubItems">
+						<!-- <ul class="Lista-Opciones__Lista-SubItems">
 							<li class="Lista-Opciones__SubItems"> 
 								<a href="#" class="Lista-Opciones__Link" onclick="mostrarProductos()"> Ver Productos </a> 
 							</li>
@@ -63,7 +63,7 @@
 							<li class="Lista-Opciones__SubItems"> 
 								<a href="#" class="Lista-Opciones__Link" onclick="editarProductos()"> Editar Producto </a> 
 							</li>
-						</ul>	
+						</ul> -->	
 					</li>
 				</ul>
 			</nav>
@@ -82,6 +82,6 @@
 	<script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/controladorWebAdministrativa.js"></script>
+    <script src="js/controladorWebClientes.js"></script>
 </body>
-</html>
+</html>	

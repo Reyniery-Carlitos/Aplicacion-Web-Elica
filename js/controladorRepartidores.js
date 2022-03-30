@@ -7,10 +7,7 @@ let clientes = [
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod1"
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"	
 	},
@@ -22,11 +19,8 @@ let clientes = [
 		telefono: 99889933,
 		password: "asd4562",
 		carrito: [
-			"prod1",
-			"prod2"
-		],
-		productosComprados: [
-			"prod1"
+			"ord2",
+			"ord5"
 		],
 		imagen: "assets/img/1.webp" 	
 	},
@@ -38,10 +32,9 @@ let clientes = [
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod2"
+			"ord2",
+			"ord3",
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"	
 	}
@@ -52,7 +45,7 @@ let productos = [
 		id: "prod1",
 		nombre: "Pastel de fresa",
 		empresa: "emp2",
-		categoria: "Postres",
+		categoria: "cat5",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 15, 
 		descuento: 10,
@@ -64,7 +57,7 @@ let productos = [
 		id: "prod2",
 		nombre: "Pollo frito",
 		empresa: "emp1",
-		categoria: "Comida",
+		categoria: "cat1",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 150, 
 		descuento: 10,
@@ -76,7 +69,7 @@ let productos = [
 		id: "prod3",
 		nombre: "Pastel de queso",
 		empresa: "emp2",
-		categoria: "Postres",
+		categoria: "cat5",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 130, 
 		descuento: 15,
@@ -99,7 +92,7 @@ let empresas = [
 		], 
 		valoracion: 4,
 		productosEmpresa: [
-			"prod1"
+			"prod2"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -115,7 +108,7 @@ let empresas = [
 		], 
 		valoracion: 5,
 		productosEmpresa: [
-			"prod1", "prod2"
+			"prod1", "prod3"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -306,6 +299,34 @@ let ordenes = [
 	}  
 ];
 
+const categorias = [
+	{
+		id: "cat1",
+		nombre: "Comidas",
+		imagen: "assets/img/comida.png"
+	},
+	{
+		id: "cat2",
+		nombre: "Frutas y Verduras",
+		imagen: "assets/img/frutas.png"
+	},
+	{
+		id: "cat3",
+		nombre: "Supermercado",
+		imagen: "assets/img/supermercado.png"
+	},
+	{
+		id: "cat4",
+		nombre: "Tiendas y Regalos",
+		imagen: "assets/img/regalos.png"
+	},
+	{
+		id: "cat5",
+		nombre: "Postres",
+		imagen: "assets/img/postre.png"
+	},
+]
+
 const status = [
 	{
 		// Repartidor
@@ -429,6 +450,7 @@ function verDetallesPedido(idOrden){
 	const productoSeleccionado = productos.find(producto => ordenSeleccionada.pedido === producto.id);
 	const empresaSeleccionada = empresas.find(empresa => productoSeleccionado.empresa === empresa.id);
 	const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenSeleccionada.cliente);
+	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoSeleccionado.categoria);
 
 	console.log(productoSeleccionado);
 
@@ -440,7 +462,7 @@ function verDetallesPedido(idOrden){
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
 			<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
-			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.categoria} </h2>
+			<h2 class="Texto-Detalles-Orden"> ${categoriaSeleccionada.nombre} </h2>
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
 			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
 			<div class="Contenido-Detalles-Orden">

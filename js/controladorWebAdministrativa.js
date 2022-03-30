@@ -7,10 +7,7 @@ let clientes = [
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod1"
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"	
 	},
@@ -22,11 +19,8 @@ let clientes = [
 		telefono: 99889933,
 		password: "asd4562",
 		carrito: [
-			"prod1",
-			"prod2"
-		],
-		productosComprados: [
-			"prod1"
+			"ord2",
+			"ord5"
 		],
 		imagen: "assets/img/1.webp" 	
 	},
@@ -38,10 +32,9 @@ let clientes = [
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod2"
+			"ord2",
+			"ord3",
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"	
 	}
@@ -52,7 +45,7 @@ let productos = [
 		id: "prod1",
 		nombre: "Pastel de fresa",
 		empresa: "emp2",
-		categoria: "Postres",
+		categoria: "cat5",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 15, 
 		descuento: 10,
@@ -64,7 +57,7 @@ let productos = [
 		id: "prod2",
 		nombre: "Pollo frito",
 		empresa: "emp1",
-		categoria: "Comida",
+		categoria: "cat1",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 150, 
 		descuento: 10,
@@ -76,7 +69,7 @@ let productos = [
 		id: "prod3",
 		nombre: "Pastel de queso",
 		empresa: "emp2",
-		categoria: "Postres",
+		categoria: "cat5",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 130, 
 		descuento: 15,
@@ -99,7 +92,7 @@ let empresas = [
 		], 
 		valoracion: 4,
 		productosEmpresa: [
-			"prod1"
+			"prod2"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -115,7 +108,7 @@ let empresas = [
 		], 
 		valoracion: 5,
 		productosEmpresa: [
-			"prod1", "prod2"
+			"prod1", "prod3"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -305,6 +298,34 @@ let ordenes = [
 		imagen: 'assets/img/1.webp' 
 	}  
 ];
+
+const categorias = [
+	{
+		id: "cat1",
+		nombre: "Comidas",
+		imagen: "assets/img/comida.png"
+	},
+	{
+		id: "cat2",
+		nombre: "Frutas y Verduras",
+		imagen: "assets/img/frutas.png"
+	},
+	{
+		id: "cat3",
+		nombre: "Supermercado",
+		imagen: "assets/img/supermercado.png"
+	},
+	{
+		id: "cat4",
+		nombre: "Tiendas y Regalos",
+		imagen: "assets/img/regalos.png"
+	},
+	{
+		id: "cat5",
+		nombre: "Postres",
+		imagen: "assets/img/postre.png"
+	},
+]
 
 const status = [
 	{
@@ -752,6 +773,7 @@ function formularioEditarProducto(idProducto){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	const productoFiltrado = productos.find(producto => producto.id == idProducto);
 	const empresaPertenece = empresas.find(empresaFiltrada => empresaFiltrada.id === productoFiltrado.empresa);
+	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoFiltrado.categoria)
 
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
 		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Producto">
@@ -775,7 +797,7 @@ function formularioEditarProducto(idProducto){
 					<label for="Input-Editar-Categoria-Producto"> Categoria Producto </label>
 					<a href="#" onclick="editarCategoriaProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Categoria-Producto" placeholder="${productoFiltrado.categoria}">
+				<input readonly type="text" name="" id="Input-Editar-Categoria-Producto" placeholder="${categoriaSeleccionada.nombre}">
 
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Descripcion Producto </label>
