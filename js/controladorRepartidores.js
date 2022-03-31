@@ -137,7 +137,7 @@ let repartidores = [
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "disponible",
+		disponibilidad: "Disponible",
 		ordenesEntregadas: [
 			"ord2",
 			"ord4",
@@ -154,7 +154,7 @@ let repartidores = [
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "no disponible",
+		disponibilidad: "No disponible",
 		ordenesEntregadas: [
 			"ord3",
 			"ord2"
@@ -170,7 +170,7 @@ let repartidores = [
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "en proceso",
+		disponibilidad: "En proceso",
 		ordenesEntregadas: [
 			"ord4",
 			"ord1"
@@ -186,7 +186,7 @@ let repartidores = [
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "disponible",
+		disponibilidad: "Disponible",
 		ordenesEntregadas: [
 			"ord3",
 			"ord1"
@@ -202,7 +202,7 @@ let repartidores = [
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "no disponible",
+		disponibilidad: "No disponible",
 		ordenesEntregadas: [
 			"ord2"
 		],
@@ -217,7 +217,7 @@ let repartidores = [
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "en proceso",
+		disponibilidad: "En proceso",
 		ordenesEntregadas: [
 			"ord2",
 			"ord4"
@@ -341,6 +341,21 @@ const status = [
 	{
 		// Repartidor
 		stats: 'Pendiente',
+		statsColor: 'orange'
+	},
+	{
+		// Repartidor
+		stats: 'Disponible',
+		statsColor: '#35CF00'
+	},
+	{
+		// Repartidor
+		stats: 'No disponible',
+		statsColor: 'red'
+	},
+	{
+		// Repartidor
+		stats: 'En proceso',
 		statsColor: 'orange'
 	},
 	{

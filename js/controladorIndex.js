@@ -1,3 +1,31 @@
+const categorias = [
+	{
+		id: "cat1",
+		nombre: "Comidas",
+		imagen: "assets/img/comida.png"
+	},
+	{
+		id: "cat2",
+		nombre: "Frutas y Verduras",
+		imagen: "assets/img/frutas.png"
+	},
+	{
+		id: "cat3",
+		nombre: "Supermercado",
+		imagen: "assets/img/supermercado.png"
+	},
+	{
+		id: "cat4",
+		nombre: "Tiendas y Regalos",
+		imagen: "assets/img/regalos.png"
+	},
+	{
+		id: "cat5",
+		nombre: "Postres",
+		imagen: "assets/img/postre.png"
+	},
+];
+
 function formularioRegistro(){
 	document.getElementById("Contenido-Principal-Landing").innerHTML = '';
 	document.getElementById("Contenido-Principal-Landing").innerHTML += `
@@ -25,7 +53,7 @@ function formularioRegistro(){
 					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
 				</div>
 				<button type="submit" onclick="btnSubmitValidaciones()"> Registrarme </button>
-				<h2> Ya tienes una cuenta? <span> <a href="#" onclick="formularioIniciaSesion()"> Inicia Sesion </a> </span> </h2>
+				<h2> Ya tienes una cuenta? <span class="Span-Error-Login-Show"> <a href="#" onclick="formularioIniciaSesion()"> Inicia Sesion </a> </span> </h2>
 			</form>
 		</section>
 	`;
@@ -65,7 +93,7 @@ function formularioRegistroRepartidores(){
 					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
 				</div>
 				<button type="submit" onclick="btnSubmitValidaciones()"> Registrarme </button>
-				<h2> Ya tienes una cuenta? <span> <a href="#" onclick="btnSubmitValidacionesRepartidores()"> Inicia Sesion </a> </span> </h2>
+				<h2> Ya tienes una cuenta? <span class="Span-Error-Login-Show"> <a href="#" onclick="btnSubmitValidacionesRepartidores()"> Inicia Sesion </a> </span> </h2>
 			</form>
 		</section>
 	`;
@@ -75,17 +103,28 @@ function formularioIniciaSesion(){
 	document.getElementById('Contenido-Principal-Landing').innerHTML = '';
 	document.getElementById('Contenido-Principal-Landing').innerHTML += `
 		<section class="Formulario-Registro">
-			<form action="">
+			<form action="" id="Formulario">
 				<h1> Inicia Sesion en Elica </h1>
 				<div class="Contenedor-Individual"> 
-					<i class="fa-solid fa-envelope fa-2x"></i><input type="email" name="" placeholder="Email">
+					<i class="fa-solid fa-envelope fa-2x"></i>
+					<input type="email" name="email" placeholder="Email" id="Input-Individual-Email">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Email"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Email"></i>
 				</div>
 					
 				<div class="Contenedor-Individual"> 
-					<i class="fa-solid fa-lock fa-2x"></i><input type="password" name="" placeholder="Contraseña">
+					<i class="fa-solid fa-lock fa-2x"></i>
+					<input type="password" name="password" placeholder="Contraseña"  id="Input-Individual-Password">
+					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Password"></i>
+					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
 				</div>
-				<button> Iniciar Sesion </button>
-				<h2> No te has registrado? <span> <a href="#" onclick="formularioRegistro()"> Registrate ahora </a> </span> </h2>
+
+				<div class="Contenedor-Individual"> 
+					<span class="Span-Error-Login text-danger" id="Id-Span-Invalido"> Usuario o contraseña incorrecto </span>
+				</div>
+
+				<button type="submit" onclick="validacionLogin()"> Iniciar Sesion </button>
+				<h2> No te has registrado? <span class="Span-Error-Login-Show"> <a href="#" onclick="formularioRegistro()"> Registrate ahora </a> </span> </h2>
 			</form>
 		</section>
 	`;
@@ -93,6 +132,15 @@ function formularioIniciaSesion(){
 
 function mostrarLanding(){
 	document.getElementById('Contenido-Principal-Landing').innerHTML = '';
+	let listaCategorias = '';
+	categorias.forEach(categoria => {
+		listaCategorias += `
+			<div class="Card-Categoria" onclick="formularioRegistro()">
+				<img src="${categoria.imagen}" alt="Imagen ${categoria.nombre}">
+				<h2 class="Texto-Detalles-Orden"> ${categoria.nombre} </h2>
+			</div>`;
+	});
+
 	document.getElementById('Contenido-Principal-Landing').innerHTML += `
 		<section class="Contenedor-Ordena-Ahora" id="Id-Contenedor-Ordena-Ahora">
 			<article class="Contenedor-Ordena-Ahora__Contenidos Contenedor-Ordena-Ahora__Contenido1">
@@ -102,8 +150,15 @@ function mostrarLanding(){
 				<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header" onclick="formularioRegistro()"> Registrate </h2> </button>
 			</article>
 			<article class="Contenedor-Ordena-Ahora__Contenidos Contenedor-Ordena-Ahora__Contenido2">
-				<img src="assets/img/persona-telefono.png" alt="">
+				<img src="assets/img/repartidor2.gif" alt="Repartidor">
 			</article>
+		</section>
+
+		<section class="Contenedor-Categorias" id="Id-Contenedor-Categorias">
+			<h1> Nuestras Categorias </h1>
+			<div class="Container-Card-Categorias">
+				${listaCategorias}
+			</div>
 		</section>
 
 		<section class="Contenedor-Como-Trabajamos" id="Id-Contenedor-Como-Trabajamos">
