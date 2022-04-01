@@ -1,53 +1,40 @@
 let clientes = [
 	{
 		id: "cl1", 
-		nombre: "Jeff",
-		apellido: "Bezos",
-		residencia: "Col. Palmira",
+		username: "Jeff Bezos",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod1"
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"	
 	},
 	{
 		id: "cl2", 
-		nombre: "Cristiano",
-		apellido: "Ronaldo",
-		residencia: "Col. Kennedy",
+		username: "Cristiano Ronaldo",
 		ciudad: "Tegucigalpa",
 		email: "mario@gmail.com",
 		telefono: 99889933,
 		password: "asd4562",
 		carrito: [
-			"prod1",
-			"prod2"
-		],
-		productosComprados: [
-			"prod1"
+			"ord2",
+			"ord5"
 		],
 		imagen: "assets/img/1.webp" 	
 	},
 	{
-		id: "cl1", 
-		nombre: "Lionel",
-		apellido: "Messi",
-		residencia: "Col. Palmira",
+		id: "cl3", 
+		username: "Lionel Messi",
 		ciudad: "Tegucigalpa",
 		email: "jperez@gmail.com",
 		telefono: 99889988,
 		password: "asd456",
 		carrito: [
-			"prod1",
-		],
-		productosComprados: [
-			"prod2"
+			"ord2",
+			"ord3",
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"	
 	}
@@ -56,25 +43,37 @@ let clientes = [
 let productos = [
 	{
 		id: "prod1",
-		nombreProducto: "Pastel de fresa",
-		idEmpresaPerteneciente: "emp2",
-		categoria: "Postres",
+		nombre: "Pastel de fresa",
+		empresa: "emp2",
+		categoria: "cat5",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 15, 
 		descuento: 10,
 		valoracion: 5,
 		imagenPortada: "assets/img/banner.jpg",
-		imagenPerfil: "assets/img/1.webp"
+		imagenPerfil: "assets/img/1.webp",
 	},
 	{
 		id: "prod2",
-		nombreProducto: "Pollo frito",
-		idEmpresaPerteneciente: "emp1",
-		categoria: "Comida",
+		nombre: "Pollo frito",
+		empresa: "emp1",
+		categoria: "cat1",
 		descripcion: "lorem ipsum dolor sit amem",
 		precio: 150, 
 		descuento: 10,
 		valoracion: 3,
+		imagenPortada: "assets/img/banner.jpg",
+		imagenPerfil: "assets/img/1.webp",
+	},
+	{
+		id: "prod3",
+		nombre: "Pastel de queso",
+		empresa: "emp2",
+		categoria: "cat5",
+		descripcion: "lorem ipsum dolor sit amem",
+		precio: 130, 
+		descuento: 15,
+		valoracion: 4,
 		imagenPortada: "assets/img/banner.jpg",
 		imagenPerfil: "assets/img/1.webp",
 	}
@@ -93,7 +92,7 @@ let empresas = [
 		], 
 		valoracion: 4,
 		productosEmpresa: [
-			"prod1"
+			"prod2"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -109,7 +108,7 @@ let empresas = [
 		], 
 		valoracion: 5,
 		productosEmpresa: [
-			"prod1", "prod2"
+			"prod1", "prod3"
 		],
 		imagenPortada: "assets/img/kfc.webp",
 		imagenPerfil: "assets/img/1.webp"
@@ -119,9 +118,7 @@ let empresas = [
 let administradores = [
 	{
 		id: "adm1", 
-		nombre: "Steve",
-		apellido: "Jobs",
-		residencia: "Prados universitarios",
+		username: "Steve Jobs",
 		ciudad: "Tegucigalpa",
 		email: "jobs@apple.co",
 		telefono: 99889900,
@@ -133,105 +130,97 @@ let administradores = [
 let repartidores = [
 	{
 		id: "rep1",
-		nombre: "Nikola",
-		apellido: "Tesla",
+		username: "Nikola Tesla",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "disponible",
+		disponibilidad: "Disponible",
 		ordenesEntregadas: [
-			"prod1",
-			"prod2"
+			"ord2",
+			"ord4",
+			"ord4"
 		],
 		imagen: "assets/img/1.webp"
 	},
 	{
 		id: "rep2",
-		nombre: "Usain",
-		apellido: "Bolt",
+		username: "Usain Bolt",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "no disponible",
+		disponibilidad: "No disponible",
 		ordenesEntregadas: [
-			"prod2"
+			"ord3",
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"
 	},
 	{
 		id: "rep3",
-		nombre: "Ada",
-		apellido: "Lovalace",
+		username: "Ada Lovalace",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "en proceso",
+		disponibilidad: "En proceso",
 		ordenesEntregadas: [
-			"prod1"
+			"ord4",
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"
 	},
 	{
 		id: "rep4",
-		nombre: "Carlo Yair",
-		apellido: "Costly",
+		username: "Carlo Yair Costly",
 		telefono: 99009900,
 		email: "oscar@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Carrizal",
 		password: "123456",
 		valoracion: 4,
 		status: "Rechazado",
-		disponibilidad: "disponible",
+		disponibilidad: "Disponible",
 		ordenesEntregadas: [
-			"prod1",
-			"prod2"
+			"ord3",
+			"ord1"
 		],
 		imagen: "assets/img/1.webp"
 	},
 	{
 		id: "rep5",
-		nombre: "Isaac",
-		apellido: "Newton",
+		username: "Isaac Newton",
 		telefono: 99009332,
 		email: "jaime@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. 3 de mayo",
 		password: "1234562",
 		valoracion: 2,
 		status: "Aceptado",
-		disponibilidad: "no disponible",
+		disponibilidad: "No disponible",
 		ordenesEntregadas: [
-			"prod2"
+			"ord2"
 		],
 		imagen: "assets/img/1.webp"
 	},
 	{
 		id: "rep6",
-		nombre: "Pierre Emeric",
-		apellido: "Aubameyang",
+		username: "Pierre Emeric Aubameyang",
 		telefono: 88332211,
 		email: "jairo@gmail.com",
 		ciudad: "Tegucigalpa",
-		residencia: "Col. Quezada",
 		password: "dfssa123456",
 		valoracion: 3,
 		status: "Pendiente",
-		disponibilidad: "en proceso",
+		disponibilidad: "En proceso",
 		ordenesEntregadas: [
-			"prod1"
+			"ord2",
+			"ord4"
 		],
 		imagen: "assets/img/1.webp"
 	}	
@@ -240,61 +229,103 @@ let repartidores = [
 let ordenes = [
 	{
 		id: "ord1",
-		pedido: "Pastel de fresas",
+		pedido: "prod1",
 		descripcion: "lorem ipsum",
 		disponibilidad: "Entregada",
 		status: "Asignada",
 		statusRepartidor: "Tomada", 
-		cliente: "Lionel Messi",
+		cliente: "cl1",
 		repartidor: "rep4",
-		cantidad: 5,
-		precio: 20,
+		cantidad: 2,
+		precio: 120,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord2",
-		pedido: "Pastel de queso",
+		pedido: "prod3",
 		descripcion: "lorem ipsum",
 		disponibilidad: "No entregada",
 		status: "No asignada",
 		statusRepartidor: "No tomada",
-		cliente: "Cristiano Ronaldo",
+		cliente: "cl2",
 		repartidor: "rep2",
 		cantidad: 5,
-		precio: 20,
+		precio: 35,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord3",
-		pedido: "Pizza de 100 pesitos",
+		pedido: "prod2",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En el origen",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Lionel Messi",
+		cliente: "cl3",
 		repartidor: "rep1",
-		cantidad: 5,
-		precio: 20,
+		cantidad: 1,
+		precio: 100,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	},
 	{
 		id: "ord4",
-		pedido: "Torta cubana",
+		pedido: "prod3",
 		descripcion: "lorem ipsum dolor sit",
 		disponibilidad: "En camino",
 		status: "Asignada",
 		statusRepartidor: "Tomada",
-		cliente: "Jeff Bezos",
+		cliente: "cl3",
 		repartidor: "rep5",
+		cantidad: 6,
+		precio: 60,
+		direccion: "Col. Quezada",
+		imagen: 'assets/img/1.webp' 
+	},
+	{
+		id: "ord5",
+		pedido: "prod2",
+		descripcion: "lorem ipsum",
+		disponibilidad: "No entregada",
+		status: "No asignada",
+		statusRepartidor: "Tomada",
+		cliente: "cl2",
+		repartidor: "rep3",
 		cantidad: 5,
-		precio: 20,
+		precio: 30,
 		direccion: "Col. Quezada",
 		imagen: 'assets/img/1.webp' 
 	}  
 ];
+
+const categorias = [
+	{
+		id: "cat1",
+		nombre: "Comidas",
+		imagen: "assets/img/comida.png"
+	},
+	{
+		id: "cat2",
+		nombre: "Frutas y Verduras",
+		imagen: "assets/img/frutas.png"
+	},
+	{
+		id: "cat3",
+		nombre: "Supermercado",
+		imagen: "assets/img/supermercado.png"
+	},
+	{
+		id: "cat4",
+		nombre: "Tiendas y Regalos",
+		imagen: "assets/img/regalos.png"
+	},
+	{
+		id: "cat5",
+		nombre: "Postres",
+		imagen: "assets/img/postre.png"
+	},
+]
 
 const status = [
 	{
@@ -310,6 +341,21 @@ const status = [
 	{
 		// Repartidor
 		stats: 'Pendiente',
+		statsColor: 'orange'
+	},
+	{
+		// Repartidor
+		stats: 'Disponible',
+		statsColor: '#35CF00'
+	},
+	{
+		// Repartidor
+		stats: 'No disponible',
+		statsColor: 'red'
+	},
+	{
+		// Repartidor
+		stats: 'En proceso',
 		statsColor: 'orange'
 	},
 	{
@@ -373,7 +419,7 @@ function rellenarFormularioUsuario(){
 					<label for=""> Nombre </label>
 					<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${administrador.nombre}">
+				<input readonly type="text" name="" id="Input-Editar-Nombre" placeholder="${administrador.username}">
 						
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Email </label>
@@ -419,13 +465,13 @@ function mostrarRepartidores(){
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1" >
-							<img src="assets/img/1.webp" id="Imagen-Usuario">
+							<img src="assets/img/1.webp" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido}</h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
 						</div>
@@ -444,13 +490,13 @@ function mostrarRepartidores(){
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1" >
-							<img src="assets/img/1.webp" id="Imagen-Usuario">
+							<img src="assets/img/1.webp" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.nombre} ${repartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido-2 Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length}</h2>
 						</div>
@@ -471,11 +517,11 @@ function mostrarEmpresas(){
 	empresas.forEach(empresa => {
 		let estrellas = '';
 		for(let i = 0; i < (empresa.valoracion); i++){
-			estrellas += `<i class="fa-solid fa-star"></i>`;
+			estrellas += `<i class="fa-solid fa-star text-success"></i>`;
 		}
 
 		for(let j = 0; j < (5 - empresa.valoracion); j++){
-			estrellas += `<i class="fa-regular fa-star"></i>`;
+			estrellas += `<i class="fa-regular fa-star text-danger"></i>`;
 		}
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
@@ -501,21 +547,23 @@ function mostrarOrdenes(){
 		const statusOrden = status.find(item => orden.status === item.stats);
 		const statusPedido = status.find(item => orden.disponibilidad === item.stats);
 		const nombreRepartidor = repartidores.find(item => orden.repartidor === item.id);
+		const clienteSeleccionado = clientes.find(cliente => orden.cliente === cliente.id);
+		const productoSeleccionado = productos.find(producto => producto.id === orden.pedido);
 
 		if (orden.status === 'Asignada') {
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${orden.imagen}" id="Imagen-Usuario">
+							<img src="${orden.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -536,15 +584,15 @@ function mostrarOrdenes(){
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${orden.imagen}" id="Imagen-Usuario">
+							<img src="${orden.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${orden.status} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${orden.pedido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${orden.descripcion} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${orden.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${orden.cliente} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.nombre} ${nombreRepartidor.apellido} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
 							<div class="Card-Contenedor-Cantidad">
 								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${orden.cantidad} </h2>
 								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
@@ -567,6 +615,7 @@ function mostrarOrdenes(){
 function formularioEditarEmpresa(idEmpresa){
 	const empresaFiltrada = empresas.find(empresa => empresa.id == idEmpresa);
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
 		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Empresa">
 			<img src="${empresaFiltrada.imagenPortada}" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Empresa">
@@ -579,31 +628,31 @@ function formularioEditarEmpresa(idEmpresa){
 					<label for=""> Nombre </label>
 					<a href="#" onclick="editarNombreEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre-Empresa" placeholder="Nombre Empresa">
+				<input readonly type="text" name="" id="Input-Editar-Nombre-Empresa" placeholder="${empresaFiltrada.nombre}">
 						
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Descripcion </label>
 					<a href="#" onclick="editarDescripcionEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="email" name="" id="Input-Editar-Descripcion-Empresa"  placeholder="Descripcion Empresa">
+				<input readonly type="email" name="" id="Input-Editar-Descripcion-Empresa"  placeholder="${empresaFiltrada.descripcion}">
 
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Email </label>
 					<a href="#" onclick="editarEmailEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="email" name="" id="Input-Editar-Email-Empresa"  placeholder="Email">
+				<input readonly type="email" name="" id="Input-Editar-Email-Empresa"  placeholder="${empresaFiltrada.email}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Telefono </label>
 					<a href="#" onclick="editarTelefonoEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" id="Input-Editar-Telefono-Empresa" name="">
+				<input readonly type="text" id="Input-Editar-Telefono-Empresa" name="" placeholder="${empresaFiltrada.telefono}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Redes Sociales </label>
 					<a href="#" onclick="editarRedesEmpresa()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<textarea readonly id="Input-Editar-Redes-Empresa" class="border border-0" name=""> </textarea>
+				<textarea readonly id="Input-Editar-Redes-Empresa" class="border border-0"> ${empresaFiltrada.redesSociales} </textarea>
 							
 				<div class="Formulario-Contenedor-Texto">
 					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Empresa" onclick="guardarNuevosCambiosEmpresa()"> Save </button> 	
@@ -617,11 +666,11 @@ function editarEmpresa(){
 	empresas.forEach(empresa => {
 		let estrellas = '';
 		for(let i = 0; i < (empresa.valoracion); i++){
-			estrellas += `<i class="fa-solid fa-star"></i>`;
+			estrellas += `<i class="fa-solid fa-star text-success"></i>`;
 		}
 
 		for(let j = 0; j < (5 - empresa.valoracion); j++){
-			estrellas += `<i class="fa-regular fa-star"></i>`;
+			estrellas += `<i class="fa-regular fa-star text-danger"></i>`;
 		}
 
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
@@ -631,12 +680,19 @@ function editarEmpresa(){
 				<h2 class="Card-Texto Card-Texto-Nombre text-success"> ${empresa.nombre} </h2>
 				<h2 class="Card-Texto Card-Texto-Residencia"> ${empresa.descripcion} </h2>
 				<h2 class="Card-Texto Card-Texto-Telefono"> ${estrellas} </h2>
+				<div class="Contenedor-Btn-Trash">
+					<i class="fa-solid fa-trash text-danger fa-2x" onclick="haceAlgo()"></i>
+				</div>
 			</div>
 			<div class="card-body-2 Card-Contenido-Imagen-Empresa p-0 mt-2 mb-1 mr-2 ml-2">
 				<img src="${empresa.imagenPerfil}" id="Imagen-Miniatura-Empresa">		
 			</div>
 		</div>`;
 	})
+}
+
+function haceAlgo(){
+	console.log("Imprimir texto");
 }
 
 function formularioAgregarEmpresa(){
@@ -709,11 +765,6 @@ function formularioAgregarProducto(){
 					<label for=""> Descripcion Producto </label>
 				</div>
 				<input type="text" name="" id="Input-Editar-Descripcion-Producto"  placeholder="Descripcion Producto">
-
-				<div class="Formulario-Contenedor-Texto">
-					<label for=""> Email </label>
-				</div>
-				<input type="email" name="" id="Input-Editar-Email-Empresa"  placeholder="Email">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Precio </label>
@@ -732,12 +783,16 @@ function formularioAgregarProducto(){
 		</div>`;
 }
 
-function formularioEditarProducto(){
+function formularioEditarProducto(idProducto){
 	// Recorrer el JSON y validar si es agregar o editar producto
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	const productoFiltrado = productos.find(producto => producto.id == idProducto);
+	const empresaPertenece = empresas.find(empresaFiltrada => empresaFiltrada.id === productoFiltrado.empresa);
+	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoFiltrado.categoria)
+
 	document.getElementById('Contenido-Principal-Cards').innerHTML = `
 		<div class="Contenedor-Formulario-Editar-Agregar" id="Contenedor-Principal-Formulario-Editar-Producto">
-			<img src="" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Producto">
+			<img src="${productoFiltrado.imagenPerfil}" class="Imagen-Portada-Editar-Agregar" id="Imagen-Portada-Formulario-Editar-Producto">
 			<a href="#" class="text-decoration-none"> <h2 class="Editar"> Cambiar foto de portada </h2> </a>
 						
 			<div class="Contenedor-Inputs-Editar-Agregar">
@@ -745,37 +800,37 @@ function formularioEditarProducto(){
 					<label for="Input-Editar-Nombre-Empresa-Producto"> Nombre Empresa </label>
 					<a href="#" onclick="editarNombreEmpresaProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre-Empresa-Producto" placeholder="Nombre Empresa">
+				<input readonly type="text" name="" id="Input-Editar-Nombre-Empresa-Producto" placeholder="${empresaPertenece.nombre}">
 				
 				<div class="Formulario-Contenedor-Texto">
 					<label for="Input-Editar-Nombre-Producto"> Nombre Producto </label>
 					<a href="#" onclick="editarNombreProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre-Producto" placeholder="Nombre Producto">		
+				<input readonly type="text" name="" id="Input-Editar-Nombre-Producto" placeholder="${productoFiltrado.nombre}">		
 
 				<div class="Formulario-Contenedor-Texto">
 					<label for="Input-Editar-Categoria-Producto"> Categoria Producto </label>
 					<a href="#" onclick="editarCategoriaProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Categoria-Producto" placeholder="Categoria Producto">
+				<input readonly type="text" name="" id="Input-Editar-Categoria-Producto" placeholder="${categoriaSeleccionada.nombre}">
 
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Descripcion Producto </label>
 					<a href="#" onclick="editarDescripcionProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Descripcion-Producto"  placeholder="Descripcion Producto">
+				<input readonly type="text" name="" id="Input-Editar-Descripcion-Producto"  placeholder="${productoFiltrado.descripcion}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Precio </label>
 					<a href="#" onclick="editarPrecioProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="number" id="Input-Editar-Precio-Producto" name="">
+				<input readonly type="number" id="Input-Editar-Precio-Producto" name="" placeholder="${productoFiltrado.precio}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for="Input-Editar-Descuento-Producto"> Descuento </label>
 					<a href="#" onclick="editarDescuentoProducto()" class="text-decoration-none"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="number" name="" id="Input-Editar-Descuento-Producto" placeholder="Descuento">
+				<input readonly type="number" name="" id="Input-Editar-Descuento-Producto" placeholder="${productoFiltrado.descuento}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Producto" onclick="guardarNuevosCambiosProductos()"> Save </button> 	
@@ -784,21 +839,118 @@ function formularioEditarProducto(){
 		</div>`;
 }
 
+function mostrarProductos(){
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	productos.forEach(producto => {
+		let estrellas = '';
+		for(let i = 0; i < (producto.valoracion); i++){
+			estrellas += `<i class="fa-solid fa-star text-success"></i>`;
+		}
+
+		for(let j = 0; j < (5 - producto.valoracion); j++){
+			estrellas += `<i class="fa-regular fa-star text-danger"></i>`;
+		}
+
+		const empresaPertenece = empresas.find(empresa => empresa.id === producto.empresa);
+
+		document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Cards">
+				<div class="Card">
+					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+						<img src="${producto.imagenPerfil}" class="Imagen-Usuario">
+						<h2 class="Card-Texto Card-Texto-Estado"> ${producto.categoria} </h2>
+					</div>
+					<div class="Card-Contenido-2">
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${producto.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${empresaPertenece.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> ${producto.descripcion} </h2>
+						<div class="Card-Contenedor-Info-Extra">
+							<div class="Card-Contenedor-Estrellas">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${estrellas} </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Calificacion </h2>
+							</div>
+							<div class="Card-Contenedor-Descuento">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${producto.descuento}% </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Descuento </h2>
+							</div>
+						</div>
+					</div>
+					<div class="Card-Contenido-3">
+						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${producto.precio}L </h2>
+					</div>
+				</div>
+			</div>
+		`;
+	})
+}
+
+function editarProductos(){
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	productos.forEach(producto => {
+		let estrellas = '';
+		for(let i = 0; i < (producto.valoracion); i++){
+			estrellas += `<i class="fa-solid fa-star text-success"></i>`;
+		}
+
+		for(let j = 0; j < (5 - producto.valoracion); j++){
+			estrellas += `<i class="fa-regular fa-star text-danger"></i>`;
+		}
+
+		const empresaPertenece = empresas.find(empresa => empresa.id === producto.empresa);
+
+		document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Cards Contenedor-Cards-Productos">
+				<div class="Card" onclick="formularioEditarProducto('${producto.id}')">
+					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+						<img src="${producto.imagenPerfil}" class="Imagen-Usuario">
+						<h2 class="Card-Texto Card-Texto-Estado"> ${producto.categoria} </h2>
+					</div>
+					<div class="Card-Contenido-2">
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${producto.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${empresaPertenece.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> ${producto.descripcion} </h2>
+						<div class="Card-Contenedor-Info-Extra">
+							<div class="Card-Contenedor-Estrellas">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${estrellas} </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Calificacion </h2>
+							</div>
+							<div class="Card-Contenedor-Descuento">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${producto.descuento}% </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Descuento </h2>
+							</div>
+						</div>
+					</div>
+					<div class="Card-Contenido-3">
+						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${producto.precio}L </h2>
+						<div class="Contenedor-Btn-Trash">
+							<i class="fa-solid fa-trash text-danger fa-2x" onclick="haceAlgo()"></i>
+						</div>
+					</div>
+				</div>	
+			</div>
+		`;
+	})
+}
+
 function asignarRepartidor(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	repartidores.forEach(repartidor => {
-		if (repartidor.disponibilidad === "disponible") {		
+		const statusRepartidor = status.find(item => repartidor.disponibilidad === item.stats);
+		
+		if (repartidor.disponibilidad === "Disponible") {		
 			document.getElementById('Contenido-Principal-Cards').innerHTML = `
 				<div class="Contenedor-Cards">
 					<div class="Card">
 						<div class="Card-Contenido-1" >
-							<img src="${repartidor.imagen}" id="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span id="Status-Repartidor"> ● </span> ${repartidor.disponibilidad} </h2>
+							<img src="${repartidor.imagen}" class="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span id="Status-Repartidor" style="color: ${statusRepartidor.statsColor};"> ● </span> ${repartidor.disponibilidad} </h2>
 						</div>
 						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${repartidor.username} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Email"> ${repartidor.email} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.residencia} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Residencia"> ${repartidor.ciudad} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Telefono"> ${repartidor.telefono} </h2>
 							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Total"> Total Ordenes Entregadas: ${(repartidor.ordenesEntregadas).length} </h2>
 						</div>
@@ -902,3 +1054,5 @@ function guardarNuevosCambiosProductos(){
 	document.getElementById("Input-Editar-Precio-Producto").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Descuento-Producto").setAttribute("readonly", true);
 }
+
+mostrarRepartidores();
