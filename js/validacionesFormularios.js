@@ -221,6 +221,7 @@ const btnSubmitValidaciones = () => {
 };
 
 const validarFormulario = (e) => {
+	const usuarios = [...repartidores, ...clientes, ...administradores];
 	switch (e.target.name) {
 		case "username":
 			if (expresiones.username.test(e.target.value)) {
@@ -240,11 +241,22 @@ const validarFormulario = (e) => {
 		break;
 		case "email":
 			if (expresiones.email.test(e.target.value)) {
-				document.getElementById('Input-Individual-Email').classList.remove('Validar-Incorrecto');
-				document.getElementById('Input-Individual-Email').classList.add('Validar-Correcto');
-				document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'none';
-				document.getElementById('Icono-Validar-Correcto-Email').style.display = 'inline';
-				detalles['email'] = true;
+				const emailIngresado = document.getElementById('Input-Individual-Email').value;
+				const emailFiltrado = usuarios.some(emailUsuario => emailUsuario.email === emailIngresado);
+
+				if(emailFiltrado === true){
+					document.getElementById('Input-Individual-Email').classList.remove('Validar-Correcto');
+					document.getElementById('Input-Individual-Email').classList.add('Validar-Incorrecto');
+					document.getElementById('Icono-Validar-Correcto-Email').style.display = 'none';
+					document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'inline';
+					detalles['email'] = false;
+				}else{
+					document.getElementById('Input-Individual-Email').classList.remove('Validar-Incorrecto');
+					document.getElementById('Input-Individual-Email').classList.add('Validar-Correcto');
+					document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'none';
+					document.getElementById('Icono-Validar-Correcto-Email').style.display = 'inline';
+					detalles['email'] = true;
+				}
 			}else{
 				document.getElementById('Input-Individual-Email').classList.remove('Validar-Correcto');
 				document.getElementById('Input-Individual-Email').classList.add('Validar-Incorrecto');
@@ -305,6 +317,7 @@ const btnSubmitValidacionesRepartidores = () => {
 };
 
 const validarFormularioRepartidores = (e) => {
+	const usuarios = [...repartidores, ...clientes, ...administradores];
 	switch (e.target.name) {
 		case "username":
 			if (expresiones.username.test(e.target.value)) {
@@ -324,11 +337,22 @@ const validarFormularioRepartidores = (e) => {
 		break;
 		case "email":
 			if (expresiones.email.test(e.target.value)) {
-				document.getElementById('Input-Individual-Email').classList.remove('Validar-Incorrecto');
-				document.getElementById('Input-Individual-Email').classList.add('Validar-Correcto');
-				document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'none';
-				document.getElementById('Icono-Validar-Correcto-Email').style.display = 'inline';
-				detalles['email'] = true;
+				const emailIngresado = document.getElementById('Input-Individual-Email').value;
+				const emailFiltrado = usuarios.some(emailUsuario => emailUsuario.email === emailIngresado);
+
+				if(emailFiltrado === true){
+					document.getElementById('Input-Individual-Email').classList.remove('Validar-Correcto');
+					document.getElementById('Input-Individual-Email').classList.add('Validar-Incorrecto');
+					document.getElementById('Icono-Validar-Correcto-Email').style.display = 'none';
+					document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'inline';
+					detalles['email'] = false;
+				}else{
+					document.getElementById('Input-Individual-Email').classList.remove('Validar-Incorrecto');
+					document.getElementById('Input-Individual-Email').classList.add('Validar-Correcto');
+					document.getElementById('Icono-Validar-Incorrecto-Email').style.display = 'none';
+					document.getElementById('Icono-Validar-Correcto-Email').style.display = 'inline';
+					detalles['email'] = true;
+				}
 			}else{
 				document.getElementById('Input-Individual-Email').classList.remove('Validar-Correcto');
 				document.getElementById('Input-Individual-Email').classList.add('Validar-Incorrecto');
