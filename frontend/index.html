@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/fea8611b3b.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="assets/img/LogoElica.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+    <title> Elica </title>
+</head>
+<body>
+	<header class="nav navbar navbar-expand-lg navbar-light">
+		<div class="Logo">
+			<img src="assets/img/LogoElica.png" alt="Logo empresa Elica">
+			<h1> ELICA </h1>
+		</div>	
+
+		<div class="Contenedor-Botones-Header">
+			<button class="Botones-Header Btn-Login"> <h2 class="Texto-Header" onclick="formularioIniciaSesion()"> Login </h2> </button>
+			<button class="Botones-Header Btn-Sign-Up"> <h2 class="Texto-Header" onclick="formularioRegistro()"> Sign Up </h2> </button>
+		</div>
+	</header>
+	<main>
+		<nav class="Lista-Opciones" id="Menu-Opciones-Principal">
+			<ul class="Lista-Opciones__Lista-Items m-0">
+				<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarLanding()"> Inicio </a> </li>
+				<li class="Lista-Opciones__Items"> <a href="#Id-Contenedor-Como-Trabajamos" class="Lista-Opciones__Link"> Como Trabajamos </a> </li>
+				<li class="Lista-Opciones__Items"> <a href="#Id-Contenedor-Categorias" class="Lista-Opciones__Link"> Nuestras Categorias </a> </li>
+				<li class="Lista-Opciones__Items"> <a href="#Id-Contenedor-Trabaja-Con-Nosotros" class="Lista-Opciones__Link"> Trabaja Con nosotros </a> </li>
+			</ul>
+		</nav>
+		<div class="Contenido-Principal" id="Contenido-Principal-Landing">
+			
+		</div>
+	</main>
+	<footer>
+		<div class="Container-Contenido-Footer">
+			<section class="Footer-Menu">
+				<h1 class="Footer-Contacto__Titulo"> Enlaces de interes </h1>
+				<h2 class="Footer-Menu__Titulo"> <a href="#" onclick="mostrarLanding()"> Inicio </a> </h2>
+				<h2 class="Footer-Menu__Titulo"> <a href="#Id-Contenedor-Como-Trabajamos"> Como trabajamos </a> </h2>
+				<h2 class="Footer-Menu__Titulo"> <a href="#Id-Contenedor-Categorias"> Nuestras Categorias </a> </h2> 
+				<h2 class="Footer-Menu__Titulo"> <a href="#Id-Contenedor-Trabaja-Con-Nosotros"> Trabaja con nosotros </a> </h2>
+			</section>
+			<section class="Footer-Contacto">
+				<h1 class="Footer-Contacto__Titulo"> Contactenos </h1>
+				<h2 class="Footer-Contacto__Subtitulo"> <a href="#"> Email </a> </h2>
+				<h2 class="Footer-Contacto__Subtitulo"> <a href="#"> Facebook </a> </h2>
+				<h2 class="Footer-Contacto__Subtitulo"> <a href="#"> Twitter </a> </h2>
+				<h2 class="Footer-Contacto__Subtitulo"> <a href="#"> Instagram </a> </h2>
+			</section>
+		</div>
+		<div class="Container-Copyright">
+			<p> ©Todos los derechos reservados </p>
+		</div>
+	</footer>
+
+	<!-- Scripts -->
+	<script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/controladorIndex.js"></script>
+    <script src="js/validacionesFormularios.js"></script>
+</body>
+</html>

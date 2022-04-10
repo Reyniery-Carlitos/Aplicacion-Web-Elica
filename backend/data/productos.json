@@ -1,0 +1,35 @@
+[
+	{
+		"id": "prod1",
+		"nombre": "Pastel de fresa",
+		"empresa": "emp2",
+		"categoria": "cat5",
+		"descripcion": "lorem ipsum dolor sit amem",
+		"precio": 15, 
+		"valoracion": 5,
+		"imagenPortada": "assets/img/banner.jpg",
+		"imagenPerfil": "assets/img/1.webp"
+	},
+	{
+		"id": "prod2",
+		"nombre": "Pollo frito",
+		"empresa": "emp1",
+		"categoria": "cat1",
+		"descripcion": "lorem ipsum dolor sit amem",
+		"precio": 150, 
+		"valoracion": 3,
+		"imagenPortada": "assets/img/banner.jpg",
+		"imagenPerfil": "assets/img/1.webp"
+	},
+	{
+		"id": "prod3",
+		"nombre": "Pastel de queso",
+		"empresa": "emp2",
+		"categoria": "cat5",
+		"descripcion": "lorem ipsum dolor sit amem",
+		"precio": 130, 
+		"valoracion": 4,
+		"imagenPortada": "assets/img/banner.jpg",
+		"imagenPerfil": "assets/img/1.webp"
+	}
+]

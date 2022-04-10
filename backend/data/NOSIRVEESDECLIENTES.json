@@ -1,0 +1,41 @@
+[
+	{
+		"id": "cl1", 
+		"username": "Jeff Bezos",
+		"ciudad": "Tegucigalpa",
+		"email": "jperez@gmail.com",
+		"telefono": 99889988,
+		"password": "asd456",
+		"carrito": [
+			"ord1"
+		],
+		"imagen": "assets/img/1.webp"	
+	},
+	{
+		"id": "cl2", 
+		"username": "Cristiano Ronaldo",
+		"ciudad": "Tegucigalpa",
+		"email": "mario@gmail.com",
+		"telefono": 99889933,
+		"password": "asd4562",
+		"carrito": [
+			"ord2",
+			"ord5"
+		],
+		"imagen": "assets/img/1.webp" 	
+	},
+	{
+		"id": "cl3", 
+		"username": "Lionel Messi",
+		"ciudad": "Tegucigalpa",
+		"email": "jperez@gmail.com",
+		"telefono": 99889988,
+		"password": "asd456",
+		"carrito": [
+			"ord2",
+			"ord3",
+			"ord2"
+		],
+		"imagen": "assets/img/1.webp"	
+	}
+]

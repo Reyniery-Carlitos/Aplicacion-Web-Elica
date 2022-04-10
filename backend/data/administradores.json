@@ -1,0 +1,11 @@
+[
+	{
+		"id": "adm1", 
+		"username": "Steve Jobs",
+		"ciudad": "Tegucigalpa",
+		"email": "jobs@apple.co",
+		"telefono": 99889900,
+		"password": "asd456s",
+		"imagen": "assets/img/1.webp"
+	}
+]

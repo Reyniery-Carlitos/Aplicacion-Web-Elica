@@ -1,0 +1,28 @@
+[
+	{
+		"id": "emp1",
+		"nombre": "Kentuchy",
+		"descripcion": "Lorem Ipsum dolor sit",
+		"email": "kentuchy@kfc.com",
+		"telefono": 99889922,
+		"valoracion": 4,
+		"productosEmpresa": [
+			"prod2"
+		],
+		"imagenPortada": "assets/img/kfc.webp",
+		"imagenPerfil": "assets/img/1.webp"
+	},
+	{
+		"id": "emp2",
+		"nombre": "Churchs Chicken",
+		"descripcion": "Lorem Ipsum dolor sit",
+		"email": "Churchs@churches.com",
+		"telefono": 99889556,
+		"valoracion": 5,
+		"productosEmpresa": [
+			"prod1", "prod3"
+		],
+		"imagenPortada": "assets/img/kfc.webp",
+		"imagenPerfil": "assets/img/1.webp"
+	}
+]

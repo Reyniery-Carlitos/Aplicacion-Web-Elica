@@ -1,0 +1,27 @@
+[
+	{
+		"id": "cat1",
+		"nombre": "Comidas",
+		"imagen": "assets/img/comida.png"
+	},
+	{
+		"id": "cat2",
+		"nombre": "Frutas y Verduras",
+		"imagen": "assets/img/frutas.png"
+	},
+	{
+		"id": "cat3",
+		"nombre": "Supermercado",
+		"imagen": "assets/img/supermercado.png"
+	},
+	{
+		"id": "cat4",
+		"nombre": "Tiendas y Regalos",
+		"imagen": "assets/img/regalos.png"
+	},
+	{
+		"id": "cat5",
+		"nombre": "Postres",
+		"imagen": "assets/img/postre.png"
+	}
+]
