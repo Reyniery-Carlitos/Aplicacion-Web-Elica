@@ -1,14 +1,18 @@
 let clienteActual = 'cl3';
 urlClientes = "../backend/api/clientes.php";
+urlRepartidores = "../backend/api/repartidores.php";
 urlCategorias = "../backend/api/categorias.php";
 urlProductos = "../backend/api/productos.php";
 urlEmpresas = "../backend/api/empresas.php";
 urlOrdenes = "../backend/api/ordenes.php";
+urlStatusOrden = "../backend/api/statusOrden.php";
 var clientes = [];
 var categorias = [];
 var productos = [];
 var empresas = [];
 var ordenes = [];
+var statusOrdenes = [];
+var repartidores = [];
 
 function generarPerfil(){
 	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
@@ -42,7 +46,13 @@ function rellenarFormularioUsuario(){
 				<label for=""> Telefono </label>
 				<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="text" id="Input-Editar-Telefono" name="Telefono" value="${infoClienteActual.telefono}">
+			<input readonly type="tel" id="Input-Editar-Telefono" name="Telefono" pattern="[0-9]{4}-[0-9]{4}"  value="${infoClienteActual.telefono}">
+
+			<div class="Formulario-Contenedor-Texto">
+				<label for=""> Ciudad </label>
+				<a href="#" onclick="editarCiudad()"> <h2 class="Editar"> Editar </h2> </a>
+			</div>
+			<input readonly type="text" id="Input-Editar-Ciudad" name="Ciudad" value="${infoClienteActual.ciudad}">
 						
 			<div class="Formulario-Contenedor-Texto">
 				<label for=""> Password </label>
@@ -56,6 +66,36 @@ function rellenarFormularioUsuario(){
 		</div>
 	`;
 }
+
+const obtenerEstadosOrdenes = () => {
+	axios({
+		method: 'GET',
+		url: urlStatusOrden,
+		responseType: 'json'
+	}).then(respuesta =>{
+		statusOrdenes = respuesta.data;
+		console.log(respuesta.data);
+	}).catch(error => {
+		console.error(error);
+	});
+}
+
+obtenerEstadosOrdenes();
+
+function obtenerRepartidores(){
+	axios({
+		method: 'GET',
+		url: urlRepartidores,
+		responseType: 'json'
+	}).then(respuesta => {
+		repartidores = respuesta.data;
+		console.log(repartidores);
+	}).catch(error => {
+		console.error(error);
+	})
+}
+
+obtenerRepartidores();
 
 function obtenerInfoCliente(){
 	axios({
@@ -176,26 +216,26 @@ const crearOrden = (idProducto) => {
 		"pedido": idProducto,
 		"descripcion": productoSeleccionado.descripcion,
 		"disponibilidad": "No entregada",
-		"status": "No asignada",
-		"statusRepartidor": "No tomada",
 		"cliente": clienteActual,
 		"repartidor": "No asignado",
 		"cantidad": parseInt(document.getElementById('cantidad-pedir').value),
 		"direccion": "Col. Ulloa",
 		"imagen": "assets/img/1.webp" 
 	}
-	console.log(orden);
 
-	// axios({
-	// 	method: 'POST',
-	// 	url: urlOrdenes,
-	// 	responseType: 'json',
-	// 	data: orden
-	// }).then(respuesta => {
-
-	// })/catch(error => {
-	// 	console.error(error);
-	// })
+	axios({
+		method: 'POST',
+		url: urlOrdenes,
+		responseType: 'json',
+		data: orden
+	}).then(respuesta => {
+		alert('Pedido existoso');
+		location.reload();
+		obtenerOrdenes();
+	}).catch(error => {
+		console.error(error);
+	})
+	
 }
 
 function pedirOrden(idProducto){
@@ -217,13 +257,18 @@ function pedirOrden(idProducto){
 			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.descripcion} </h2>
 			<div class="Contenido-Detalles-Orden">
 				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
-				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio}L </h2>
+				<h2 class="Texto-Detalles-Orden font-weight-bold"> ${productoSeleccionado.precio}L </h2>
 			</div>
 			<div class="Contenido-Detalles-Orden">
 				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
 				<input type="number" class="font-weight-bold" style="border: none; width: 15%;" id="cantidad-pedir" value="1">
 			</div>
-					
+
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
+				<h2 class="Texto-Detalles-Orden font-weight-bold"> 50L </h2>
+			</div>
+
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Repartidor </h2>
 			<h2 class="Texto-Detalles-Orden"> Sin asignar </h2>
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
@@ -326,7 +371,7 @@ function mostrarProductosFiltrados(idEmpresa){
 						</div>
 					</div>
 					<div class="Cards-Botones">
-						<button class="btn btn-success rounded-0 Boton-Cards" id="Btn-Asignar-Repartidor"> <h2 class="Card-Texto Card-Texto-Boton font-weight-bold"> PEDIR </h2> </button>
+						<button class="btn btn-success rounded-0 Boton-Cards" id="Btn-Asignar-Repartidor" onclick="pedirOrden('${productoFiltradoEmpresa.id}')"> <h2 class="Card-Texto Card-Texto-Boton font-weight-bold"> PEDIR </h2> </button>
 					</div>
 				</div>
 			`;
@@ -344,33 +389,65 @@ function carrito(){
 			const statusPedido = statusOrdenes.find(item => listaOrdenes.disponibilidad === item.stats);
 			const nombreRepartidor = repartidores.find(item => listaOrdenes.repartidor === item.id);
 			const productoSeleccionado = productos.find(producto => producto.id === listaOrdenes.pedido);
-			document.getElementById('Contenido-Principal-Cards').innerHTML += `
-			<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
-				<div class="Card">
-					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-						<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
-						<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
-					</div>
-					<div class="Card-Contenido-2">
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
-						<div class="Card-Contenedor-Cantidad">
-							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
-							<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
+			
+			if(nombreRepartidor){
+				document.getElementById('Contenido-Principal-Cards').innerHTML += `
+				<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
+					<div class="Card">
+						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+							<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
+							<div class="Card-Contenedor-Cantidad">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
+							</div>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
 						</div>
 					</div>
-					<div class="Card-Contenido-3">
-						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
-						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+					<div class="Cards-Botones">
+							
 					</div>
-				</div>
-				<div class="Cards-Botones">
-						
-				</div>
-			</div>`;
+				</div>`;
+			}else{
+				document.getElementById('Contenido-Principal-Cards').innerHTML += `
+				<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
+					<div class="Card">
+						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+							<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
+							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
+						</div>
+						<div class="Card-Contenido-2">
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: Sin asignar </h2>
+							<div class="Card-Contenedor-Cantidad">
+								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
+								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
+							</div>
+						</div>
+						<div class="Card-Contenido-3">
+							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+						</div>
+					</div>
+					<div class="Cards-Botones">
+							
+					</div>
+				</div>`;
+			}
+			
 		// })
 	})
 }
@@ -383,39 +460,84 @@ function verDetallesPedido(idOrden){
 	const repartidorSeleccionado = repartidores.find(repartidor => repartidor.id === ordenSeleccionada.repartidor);
 	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoSeleccionado.categoria);
 
-	document.getElementById('Contenido-Principal-Cards').innerHTML += `
-		<div class="Contenedor-Detalles-Orden">
-			<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Nombre Producto </h2>
-			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.nombre} </h2>
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
-			<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
-			<h2 class="Texto-Detalles-Orden"> ${categoriaSeleccionada.nombre} </h2>
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
-			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
-			<div class="Contenido-Detalles-Orden">
-				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
-				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
-			</div>
-			<div class="Contenido-Detalles-Orden">
-				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
-				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.cantidad} </h2>
-			</div>
-			<div class="Contenido-Detalles-Orden">
-				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
-				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.total}$ </h2>
-			</div>
-					
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Repartidor </h2>
-			<h2 class="Texto-Detalles-Orden"> ${repartidorSeleccionado.username} </h2>
-			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
-			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
-			<div class="Contenedor-Detalles-Orden-Btn">
-				<button class="btn-danger Btn-Save" id="" onclick="carrito()"> Cerrar </button> 	
-			</div>
-		</div>		
-	`;
+	if(repartidorSeleccionado){
+
+		document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Detalles-Orden">
+				<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Nombre Producto </h2>
+				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
+				<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
+				<h2 class="Texto-Detalles-Orden"> ${categoriaSeleccionada.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
+					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.cantidad} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.total}L </h2>
+				</div>
+						
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Repartidor </h2>
+				<h2 class="Texto-Detalles-Orden"> ${repartidorSeleccionado.username} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
+				<div class="Contenedor-Detalles-Orden-Btn">
+					<button class="btn-danger Btn-Save" id="" onclick="carrito()"> Cerrar </button> 	
+				</div>
+			</div>		
+		`;
+	}else{
+		document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Detalles-Orden">
+				<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Nombre Producto </h2>
+				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
+				<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
+				<h2 class="Texto-Detalles-Orden"> ${categoriaSeleccionada.nombre} </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
+					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.cantidad} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio} </h2>
+				</div>
+				<div class="Contenido-Detalles-Orden">
+					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.total}L </h2>
+				</div>
+						
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Repartidor </h2>
+				<h2 class="Texto-Detalles-Orden"> Sin asignar </h2>
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
+				<div class="Contenedor-Detalles-Orden-Btn">
+					<button class="btn-danger Btn-Save" id="" onclick="carrito()"> Cerrar </button> 	
+				</div>
+			</div>		
+		`;
+	}
 }
 
 function verProductosCategoria(idCategoria){
@@ -458,7 +580,7 @@ function verProductosCategoria(idCategoria){
 					</div>
 				</div>
 				<div class="Cards-Botones">
-					<button class="btn btn-success rounded-0 Boton-Cards" id="Btn-Asignar-Repartidor"> <h2 class="Card-Texto Card-Texto-Boton font-weight-bold"> PEDIR </h2> </button>
+					<button class="btn btn-success rounded-0 Boton-Cards" id="Btn-Asignar-Repartidor" onclick="pedirOrden('${productoActual.id}')"> <h2 class="Card-Texto Card-Texto-Boton font-weight-bold"> PEDIR </h2> </button>
 				</div>
 			</div>
 		`;
@@ -498,6 +620,10 @@ function editarPassword(){
 	document.getElementById("Input-Editar-Password").removeAttribute("readonly");
 }
 
+function editarCiudad(){
+	document.getElementById("Input-Editar-Ciudad").removeAttribute("readonly");
+}
+
 // const guardarNuevosCambios = document.getElementById('Btn-Guardar-Cambios-Perfil');
 // guardarNuevosCambios.addEventListener('click', () => {
 // 	document.getElementById("Input-Editar-Nombre").setAttribute("readonly", true);
@@ -511,13 +637,14 @@ function modificarInfoCliente(){
 	let email = document.getElementById('Input-Editar-Email').value;
 	let password = document.getElementById('Input-Editar-Password').value;
 	let telefono = document.getElementById('Input-Editar-Telefono').value;
+	let ciudad = document.getElementById('Input-Editar-Ciudad').value;
 
 	let clienteModificado = {
 		"username": username,
 		"email": email,
 		"password": password,
 		"telefono": telefono,
-		"ciudad": "",
+		"ciudad": ciudad,
 		"imagen": "assets/img/1.webp"	
 	}
 
@@ -539,6 +666,7 @@ function guardarNuevosCambios(){
 	document.getElementById("Input-Editar-Email").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Telefono").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Password").setAttribute("readonly", true);
+	document.getElementById("Input-Editar-Ciudad").setAttribute("readonly", true);
 	modificarInfoCliente(clienteActual);
 }
 

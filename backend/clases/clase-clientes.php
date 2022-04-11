@@ -7,7 +7,7 @@
 		private $ciudad;
 		private $imagen;
 		private $id;
-		private $carrito;
+		private $carritoCliente = '';
 
 		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = ""){
 			$this->username = $username;
@@ -69,7 +69,13 @@
 		public function actualizarCliente($id){
 			$archivo = file_get_contents("../data/clientes.json");
 			$clientes = json_decode($archivo, true);
-			
+
+			foreach ($clientes as $key => $value) {
+				if($value['id'] == $id){
+					 $carritoCliente = $clientes[$key]["carrito"];
+				}
+			}
+
 			$cliente = array(
 				"id"=> $id,
 				"username"=> $this->username,
@@ -77,7 +83,7 @@
 				"password"=> $this->password,
 				"telefono"=> $this->telefono,
 				"ciudad"=> $this->ciudad,
-				"carrito"=> ["ord2","ord3","ord2"],
+				"carrito"=> $carritoCliente,
 				"imagen"=> $this->imagen
 			);
 
@@ -90,6 +96,21 @@
 			$archivo = fopen("../data/clientes.json", "w");
 			fwrite($archivo, json_encode($clientes));
 			fclose($archivo); 
+		}
+
+		static function agregarOrdenCliente($idCliente, $idOrden){
+			$archivo = file_get_contents("../data/clientes.json");
+			$clientes = json_decode($archivo, true);
+
+			foreach ($clientes as $key => $value) {
+				if($value['id'] == $idCliente){
+					 array_push($clientes[$key]["carrito"], $idOrden);
+				}
+			}
+
+			$archivo = fopen("../data/clientes.json", "w");
+			fwrite($archivo, json_encode($clientes));
+			fclose($archivo);
 		}
 	}
 

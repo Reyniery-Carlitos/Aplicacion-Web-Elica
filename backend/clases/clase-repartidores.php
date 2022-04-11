@@ -1,5 +1,5 @@
 <?php
-	class Repartidor extends Usuario{
+	class Repartidor{
 		private $username;
 		private $email;
 		private $password;
@@ -10,6 +10,7 @@
 		private $valoracion;
 		private $status;
 		private $disponibilidad;
+		private $ordenesEntregadas = '';
 
 		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = "", $valoracion = 0, $status = "Pendiente", $disponibilidad = "No disponible"){
 			$this->username = $username;
@@ -77,6 +78,12 @@
 		public function actualizarRepartidor($id){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
+
+			foreach ($repartidores as $key => $value) {
+				if($value['id'] == $id){
+					 $ordenesEntregadas = $repartidores[$key]["ordenesEntregadas"];
+				}
+			}
 			
 			$repartidor = array(
 				"id"=> $id,
@@ -88,7 +95,7 @@
 				"valoracion"=> $this->valoracion,
 				"status"=> $this->status,
 				"disponibilidad"=> $this->disponibilidad,
-				"ordenesEntregadas"=>[],
+				"ordenesEntregadas"=> $ordenesEntregadas,
 				"imagen"=> $this->imagen
 			);
 
@@ -101,6 +108,31 @@
 			$archivo = fopen("../data/repartidores.json", "w");
 			fwrite($archivo, json_encode($repartidores));
 			fclose($archivo); 
+		}
+
+		static function agregarOrdenRepartidor($idRepartidor, $idOrden){
+			$archivo = file_get_contents("../data/repartidores.json");
+			$repartidores = json_decode($archivo, true);
+
+			foreach ($repartidores as $key => $value) {
+				if($value['id'] == $idRepartidor){
+					$existe = "no";
+					foreach ($repartidores[$key]['ordenesEntregadas'] as $key2 => $value2) {
+						if ($value2 == $idOrden){
+							$existe = "si";
+							break;
+						}
+					}
+					if($existe == "no"){
+						array_push($repartidores[$key]["ordenesEntregadas"], $idOrden);
+					}
+					break;
+				}
+			}
+
+			$archivo = fopen("../data/repartidores.json", "w");
+			fwrite($archivo, json_encode($repartidores));
+			fclose($archivo);
 		}
 	}
 ?>

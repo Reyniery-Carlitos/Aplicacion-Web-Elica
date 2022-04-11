@@ -1,22 +1,18 @@
 [
 	{
-		// Ordenes
 		"stats": "Entregada",
 		"statsColor": "#35CF00"
 	},
 	{
-		// Ordenes
 		"stats": "No entregada",
 		"statsColor": "red" 
 	},
 	{
-		// Ordenes
 		"stats": "En el origen",
 		"statsColor": "skyblue"
 	},
 	{
-		// Ordenes
 		"stats": "En camino",
 		"statsColor": "orange"
 	}
-];	
+]	

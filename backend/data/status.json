@@ -1,52 +1,42 @@
 [
 	{
-		// Repartidor
 		"stats": "Aceptado",
 		"statsColor": "#35CF00"
 	},
 	{
-		// Repartidor
 		"stats": "Rechazado",
 		"statsColor": "red"
 	},
 	{
-		// Repartidor
 		"stats": "Pendiente",
 		"statsColor": "orange"
 	},
 	{
-		// Repartidor
 		"stats": "Disponible",
 		"statsColor": "#35CF00"
 	},
 	{
-		// Repartidor
 		"stats": "No disponible",
 		"statsColor": "red"
 	},
 	{
-		// Repartidor
 		"stats": "En proceso",
 		"statsColor": "orange"
 	},
 	{
-		// Ordenes -> Administrador
 		"stats": "Asignada",
 		"statsColor": "#35CF00" 
 	}, 
 	{
-		// Ordenes -> Administrador
 		"stats": "No asignada",
 		"statsColor": "red"
 	},
 	{
-		// Ordenes -> Administrador
 		"stats": "Tomada",
 		"statsColor": "#35CF00" 
 	},
 	{
-		// Ordenes -> Administrador
 		"stats": "No tomada",
 		"statsColor": "red" 
 	}
-];
+]

@@ -8,6 +8,11 @@
 			$this->statsColor = $statsColor;
 		}
 
+		static function obtenerAllStatus(){
+			$archivo = file_get_contents("../data/statusOrden.json");
+			echo $archivo;
+		}
+
 		static function obtenerStatus($nombreStats){
 			$archivo = file_get_contents("../data/statusOrden.json");
 			$estados = json_decode($archivo, true);

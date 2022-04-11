@@ -127,7 +127,7 @@ let administradores = [
 	}
 ];
 
-let repartidores = [
+let repartidores2 = [
 	{
 		id: "rep1",
 		username: "Nikola Tesla",
@@ -327,7 +327,7 @@ const categorias2 = [
 	},
 ]
 
-const status = [
+const status2 = [
 	{
 		// Repartidor
 		stats: 'Aceptado',
@@ -380,7 +380,7 @@ const status = [
 	}
 ];
 
-const statusOrdenes = [
+const statusOrdenes2 = [
 	{
 		// Ordenes
 		stats: 'Entregada',
