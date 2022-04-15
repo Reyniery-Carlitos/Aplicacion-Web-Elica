@@ -1,20 +1,24 @@
 <?php
+	include_once('clase-empresas.php');
+	include_once('clase-categorias.php');
+
 	class Producto{
 		private $id;
 		private $nombre;
 		private $categoria;
 		private $descripcion;
 		private $precio;
-		// private $valoracion;
+		private $valoracion;
 		private $imagenPortada;
 		private $imagenPerfil;
 
-		function __construct($nombre, $categoria, $descripcion, $precio, $imagenPortada, $imagenPerfil){
+		function __construct($nombre, $empresa, $categoria, $descripcion, $precio, $valoracion, $imagenPerfil){
 			$this->nombre = $nombre;
+			$this->empresa = $empresa;
 			$this->categoria = $categoria;
 			$this->descripcion = $descripcion;
 			$this->precio = $precio;
-			$this->imagenPortada = $imagenPortada;
+			$this->valoracion = $valoracion;
 			$this->imagenPerfil = $imagenPerfil;
 		}
 
@@ -38,13 +42,15 @@
 			$productos[] = array(
 				"id"=> $id,
 				"nombre"=> $this->nombre,
+				"empresa"=> $this->empresa,
 				"categoria"=> $this->categoria,
 				"descripcion"=> $this->descripcion,
 				"precio"=> $this->precio,
 				"valoracion"=> $this->valoracion,
-				"imagenPortada"=> $this->imagenPortada,
 				"imagenPerfil"=> $this->imagenPerfil
 			);
+
+			Empresa::agregarProductoEmpresa($this->empresa, $id);
 
 			$archivo = fopen("../data/productos.json", "w");
 			fwrite($archivo, json_encode($productos));
@@ -66,6 +72,33 @@
 			}
 		}
 
+		// Funcion para actualizar una producto
+		function actualizarProducto($id){
+			$archivo = file_get_contents("../data/productos.json");
+			$productos = json_decode($archivo, true);
+
+			$producto = array(
+				"id"=> $id,
+				"nombre"=> $this->nombre,
+				"empresa"=> $this->empresa,
+				"categoria"=> $this->categoria,
+				"descripcion"=> $this->descripcion,
+				"precio"=> $this->precio,
+				"valoracion"=> $this->valoracion,
+				"imagenPerfil"=> $this->imagenPerfil
+			);
+			
+			foreach ($productos as $key => $value) {
+				if($value['id'] == $id){
+					$productos[$key] = $producto;	
+				}
+			}
+
+			$archivo = fopen("../data/productos.json", "w");
+			fwrite($archivo, json_encode($productos));
+			fclose($archivo);
+		}
+
 		static function obtenerPrecio($id){
 			$archivo = file_get_contents("../data/productos.json");
 			$productos = json_decode($archivo, true);
@@ -76,6 +109,36 @@
 			}
 		}
 
+		static function eliminarProducto($idProducto){
+			$archivo = file_get_contents("../data/productos.json");
+			$productos = json_decode($archivo, true);
+
+			foreach ($productos as $key => $value) {
+				if($value['id'] == $idProducto){
+					array_splice($productos, $key, 1);
+					echo "Producto: " . $key;
+				}	
+			}
+
+			$archivo = fopen("../data/productos.json", "w");
+			fwrite($archivo, json_encode($productos));
+			fclose($archivo); 
+		}
+
+		static function eliminarProductos($idEmpresa){
+			$archivo = file_get_contents("../data/productos.json");
+			$productos = json_decode($archivo, true);
+			foreach ($productos as $key => $value) {
+				if($value['empresa'] == $idEmpresa){
+					array_splice($productos, $key, 1);
+					echo "Producto: " . $key;
+				}	
+			}
+
+			$archivo = fopen("../data/productos.json", "w");
+			fwrite($archivo, json_encode($productos));
+			fclose($archivo); 
+		}
 	}
 
 ?>

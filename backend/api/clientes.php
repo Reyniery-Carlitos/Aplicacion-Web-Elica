@@ -1,5 +1,5 @@
 <?php
-	header("content-type: aplication/json");
+	header("content-type: application/json");
 	include_once("../clases/clase-clientes.php");
 
 	switch ($_SERVER['REQUEST_METHOD']) {
@@ -21,7 +21,7 @@
 			$_PUT = json_decode(file_get_contents('php://input'), true);
 			$cliente = new Cliente($_PUT['username'], $_PUT['email'], $_PUT['password'], $_PUT['telefono'], $_PUT['ciudad'], $_PUT['imagen']);
 			$cliente->actualizarCliente($_GET['id']);
-			echo "Actualizar el repartidor: " . $_GET['id'];
+			echo "Actualizar el cliente: " . $_GET['id'];
 		break;
 	}
 

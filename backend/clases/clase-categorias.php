@@ -6,7 +6,7 @@
 
 		function __construct($nombre, $imagen){
 			$this->nombre = $nombre;
-			$this->imagen = imagen;
+			$this->imagen = $imagen;
 		}
 
 		function agregarCategoria(){
@@ -51,6 +51,26 @@
 				}
 			}
 		}
-	}
 
+		public function actualizarCategoria($id){
+			$archivo = file_get_contents("../data/categorias.json");
+			$categorias = json_decode($archivo, true);
+
+			$categoria = array(
+				"id"=> $id,
+				"nombre"=> $this->nombre,
+				"imagen"=> $this->imagen
+			);
+
+			foreach ($categorias as $key => $value) {
+				if($value['id'] == $id){
+					$categorias[$key] = $categoria;		
+				}
+			}
+
+			$archivo = fopen("../data/categorias.json", "w");
+			fwrite($archivo, json_encode($categorias));
+			fclose($archivo); 
+		}
+	}
 ?>

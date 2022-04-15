@@ -6,6 +6,8 @@ urlProductos = "../backend/api/productos.php";
 urlEmpresas = "../backend/api/empresas.php";
 urlOrdenes = "../backend/api/ordenes.php";
 urlStatusOrden = "../backend/api/statusOrden.php";
+urlImagenes = "../frontend/imagenes.php";
+
 var clientes = [];
 var categorias = [];
 var productos = [];
@@ -14,20 +16,36 @@ var ordenes = [];
 var statusOrdenes = [];
 var repartidores = [];
 
+const obtenerEstadosOrdenes = () => {
+	axios({
+		method: 'GET',
+		url: urlStatusOrden,
+		responseType: 'json'
+	}).then(respuesta =>{
+		statusOrdenes = respuesta.data;
+	}).catch(error => {
+		console.error(error);
+	});
+}
+
+obtenerEstadosOrdenes();
+
 function generarPerfil(){
 	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
 	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
 }
 
 function rellenarFormularioUsuario(){
-	console.log(clientes);
 	const infoClienteActual = clientes.find(cliente => cliente.id === clienteActual); 
 	document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
 	document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
 		<div class="Contenedor-Imagen-Formulario">
-			<img src="assets/img/1.webp" id="Imagen-Formulario">
+			<img src="${infoClienteActual.imagen}" id="Imagen-Formulario">
 		</div>
-		<a href="#"> <h2 class="Editar"> Cambiar Foto </h2> </a>
+		<form action="${urlImagenes}" method="POST" enctype="multipart/form-data" id="Formulario-Imagen-Perfil-Usuario">  
+			<a href=""> <label for="Custom-File-Input"> Cambiar / Agregar imagen </label> </a>
+			<input type="file" name="file" id="Custom-File-Input" hidden>
+		</form>	
 					
 		<div class="mb-3">
 		  	<div class="Formulario-Contenedor-Texto">
@@ -67,21 +85,6 @@ function rellenarFormularioUsuario(){
 	`;
 }
 
-const obtenerEstadosOrdenes = () => {
-	axios({
-		method: 'GET',
-		url: urlStatusOrden,
-		responseType: 'json'
-	}).then(respuesta =>{
-		statusOrdenes = respuesta.data;
-		console.log(respuesta.data);
-	}).catch(error => {
-		console.error(error);
-	});
-}
-
-obtenerEstadosOrdenes();
-
 function obtenerRepartidores(){
 	axios({
 		method: 'GET',
@@ -89,7 +92,6 @@ function obtenerRepartidores(){
 		responseType: 'json'
 	}).then(respuesta => {
 		repartidores = respuesta.data;
-		console.log(repartidores);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -120,7 +122,6 @@ function obtenerCategorias(){
 	}).then(respuesta => {
 		categorias = respuesta.data;
 		mostrarCategorias();
-		console.log(categorias);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -135,7 +136,6 @@ const obtenerProductos = () => {
 		responseType: 'json'
 	}).then(respuesta => {
 		productos = respuesta.data;
-		console.log(productos);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -150,7 +150,6 @@ const obtenerEmpresas = () => {
 		responseType: 'json'
 	}).then(respuesta => {
 		empresas = respuesta.data;
-		console.log(empresas);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -164,7 +163,6 @@ const obtenerOrdenes = () => {
 		url: urlOrdenes,
 		responseType: 'json'
 	}).then(respuesta => {
-		console.log(respuesta);
 		ordenes = respuesta.data;
 	}).catch(error => {
 		console.error(error);
@@ -542,8 +540,9 @@ function verDetallesPedido(idOrden){
 
 function verProductosCategoria(idCategoria){
 	const productosSeleccionados = productos.filter(producto => producto.categoria === idCategoria);
+
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	productosSeleccionados.forEach(productoActual => {
-		document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 		let estrellas = '';
 		for(let i = 0; i < (productoActual.valoracion); i++){
 			estrellas += `<i class="fa-solid fa-star text-success"></i>`;
@@ -624,15 +623,31 @@ function editarCiudad(){
 	document.getElementById("Input-Editar-Ciudad").removeAttribute("readonly");
 }
 
-// const guardarNuevosCambios = document.getElementById('Btn-Guardar-Cambios-Perfil');
-// guardarNuevosCambios.addEventListener('click', () => {
-// 	document.getElementById("Input-Editar-Nombre").setAttribute("readonly", true);
-// 	document.getElementById("Input-Editar-Email").setAttribute("readonly", true);
-// 	document.getElementById("Input-Editar-Telefono").setAttribute("readonly", true);
-// 	document.getElementById("Input-Editar-Password").setAttribute("readonly", true);
-// });
+const modificarInfoClienteImagen = (clienteActual) => {
+	let clienteSeleccionado = clientes.find(cliente => cliente.id === clienteActual);
+	let elegido = document.getElementById('Custom-File-Input');
+	let form = document.getElementById('Formulario-Imagen-Perfil-Usuario');
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+	});
+	let data = new FormData(form);
 
-function modificarInfoCliente(){
+	if(!elegido.value){
+		modificarInfoCliente(clienteActual, clienteSeleccionado.imagen);
+	}else{
+		axios({
+			method: 'POST',
+			url: urlImagenes,
+			data: data
+		}).then(respuesta => {
+			modificarInfoCliente(clienteActual, respuesta.data);
+		}).catch(error => {
+			console.error(error);
+		});
+	}
+};
+
+function modificarInfoCliente(clienteActual, imagenPerfil){
 	let username = document.getElementById('Input-Editar-Nombre').value;
 	let email = document.getElementById('Input-Editar-Email').value;
 	let password = document.getElementById('Input-Editar-Password').value;
@@ -645,7 +660,7 @@ function modificarInfoCliente(){
 		"password": password,
 		"telefono": telefono,
 		"ciudad": ciudad,
-		"imagen": "assets/img/1.webp"	
+		"imagen": imagenPerfil	
 	}
 
 	axios({
@@ -667,7 +682,7 @@ function guardarNuevosCambios(){
 	document.getElementById("Input-Editar-Telefono").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Password").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Ciudad").setAttribute("readonly", true);
-	modificarInfoCliente(clienteActual);
+	modificarInfoClienteImagen(clienteActual);
 }
 
 // mostrarProductos();

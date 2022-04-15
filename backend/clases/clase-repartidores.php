@@ -12,7 +12,7 @@
 		private $disponibilidad;
 		private $ordenesEntregadas = '';
 
-		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = "", $valoracion = 0, $status = "Pendiente", $disponibilidad = "No disponible"){
+		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = "", $valoracion = 0, $status = "Pendiente"){
 			$this->username = $username;
 			$this->email = $email;
 			$this->password = $password;
@@ -21,9 +21,9 @@
 			$this->imagen = $imagen;
 			$this->valoracion = $valoracion;
 			$this->status = $status;
-			$this->disponibilidad = $disponibilidad;
 		}
 
+		// Agregar repartidores
 		function agregarRepartidor(){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
@@ -50,7 +50,7 @@
 				"ciudad"=> $this->ciudad,
 				"valoracion"=> $this->valoracion,
 				"status"=> $this->status,
-				"disponibilidad"=> $this->disponibilidad,
+				"disponibilidad"=> $disponibilidad,
 				"ordenesEntregadas"=>[],
 				"imagen"=> $this->imagen
 			);
@@ -60,11 +60,13 @@
 			fclose($archivo);
 		}
 
+		// Obtener todos los repartidores
 		static function obtenerRepartidores(){
 			$archivo = file_get_contents("../data/repartidores.json");
 			echo $archivo;
 		}
 
+		// Obtener un solo repartidor
 		static function obtenerRepartidor($id){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
@@ -75,13 +77,22 @@
 			}
 		}
 
+		// Actualizar un repartidor
 		public function actualizarRepartidor($id){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
+			$disponibilidad = "No disponible";
 
 			foreach ($repartidores as $key => $value) {
 				if($value['id'] == $id){
 					 $ordenesEntregadas = $repartidores[$key]["ordenesEntregadas"];
+					if($this->status == 'Rechazado'){
+						$disponibilidad = 'No disponible';
+						echo $repartidores[$key]['disponibilidad'];
+					}else if($this->status = 'Aceptado'){
+						$disponibilidad = 'Disponible';
+						echo $repartidores[$key]['disponibilidad'];
+					}
 				}
 			}
 			
@@ -94,7 +105,7 @@
 				"ciudad"=> $this->ciudad,
 				"valoracion"=> $this->valoracion,
 				"status"=> $this->status,
-				"disponibilidad"=> $this->disponibilidad,
+				"disponibilidad"=> $disponibilidad,
 				"ordenesEntregadas"=> $ordenesEntregadas,
 				"imagen"=> $this->imagen
 			);
@@ -110,12 +121,21 @@
 			fclose($archivo); 
 		}
 
-		static function agregarOrdenRepartidor($idRepartidor, $idOrden){
+		static function agregarOrdenRepartidor($idRepartidor, $idOrden, $disponibilidadOrden){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
 
 			foreach ($repartidores as $key => $value) {
 				if($value['id'] == $idRepartidor){
+					if($disponibilidadOrden == 'Entregada'){
+						$repartidores[$key]['disponibilidad'] = "Disponible";
+					}else if($disponibilidadOrden != 'Entregada' && $disponibilidadOrden != 'No Entregada'){
+						$repartidores[$key]['disponibilidad'] = "En proceso";
+					}else{
+						$repartidores[$key]['disponibilidad'] = "No disponible";
+						echo $repartidores[$key]['disponibilidad'];
+					}
+
 					$existe = "no";
 					foreach ($repartidores[$key]['ordenesEntregadas'] as $key2 => $value2) {
 						if ($value2 == $idOrden){

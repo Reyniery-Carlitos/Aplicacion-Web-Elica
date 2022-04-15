@@ -50,6 +50,23 @@
 							</li>
 						</ul>	
 					</li>
+
+					<li class="Lista-Opciones__Items"> 
+						<a href="#" class="Lista-Opciones__Link"> Categorias </a>
+
+						<ul class="Lista-Opciones__Lista-SubItems">
+							<li class="Lista-Opciones__SubItems"> 
+								<a href="#" class="Lista-Opciones__Link" onclick="mostrarCategorias()"> Ver Categorias </a> 
+							</li>
+							<li class="Lista-Opciones__SubItems"> 
+								<a href="#" class="Lista-Opciones__Link" onclick="formularioAgregarCategoria()"> Agregar Categoria </a> 
+							</li>
+							<li class="Lista-Opciones__SubItems"> 
+								<a href="#" class="Lista-Opciones__Link" onclick="editarCategorias()"> Editar Categoria </a> 
+							</li>
+						</ul>	
+					</li>
+
 					<li class="Lista-Opciones__Items"> 
 						<a href="#" class="Lista-Opciones__Link"> Productos </a>
 
@@ -82,7 +99,8 @@
 	<script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/DB.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js">  </script>
+    <!-- <script src="js/DB.js"></script> -->
     <script src="js/controladorWebAdministrativa.js"></script>
 </body>
 </html>

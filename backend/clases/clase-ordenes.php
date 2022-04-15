@@ -114,6 +114,7 @@
 				$statusRepartidor = 'No tomada';
 				$status = "No asignada";
 			}else{
+				// Repartidor::cambiarEstado($this->repartidor, $this->disponibilidad);
 				$statusRepartidor = 'Tomada';
 				$status = "Asignada";
 			}
@@ -145,7 +146,7 @@
 				}
 			}
 			
-			Repartidor::agregarOrdenRepartidor($this->repartidor, $id);
+			Repartidor::agregarOrdenRepartidor($this->repartidor, $id, $this->disponibilidad);
 
 			$archivo = fopen("../data/ordenes.json", "w");
 			fwrite($archivo, json_encode($ordenes));

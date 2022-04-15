@@ -1,18 +1,22 @@
 <?php
+	include_once('clase-productos.php');
 	class Empresa{
 		private $id;
 		private $nombre;
 		private $descripcion;
 		private $email;
 		private $telefono;
+		private $valoracion;
+		private $productosEmpresa = '';
 		private $imagenPortada;
 		private $imagenPerfil;
 
-		function __construct($nombre, $descripcion, $email, $telefono, $imagenPortada, $imagenPerfil){
+		function __construct($nombre, $descripcion, $email, $telefono, $valoracion = 5, $imagenPortada, $imagenPerfil){
 			$this->nombre = $nombre;
 			$this->descripcion = $descripcion;
 			$this->email = $email;
 			$this->telefono = $telefono;
+			$this->valoracion = $valoracion;
 			$this->imagenPortada = $imagenPortada;
 			$this->imagenPerfil = $imagenPerfil;
 		}
@@ -38,8 +42,10 @@
 				"id"=> $id,
 				"nombre"=> $this->nombre,
 				"descripcion"=> $this->descripcion,
+				"email"=> $this->email,
 				"telefono"=> $this->telefono,
-				"precio"=> $this->precio,
+				"valoracion"=> $this->valoracion,
+				"productosEmpresa"=> [],
 				"imagenPortada"=> $this->imagenPortada,
 				"imagenPerfil"=> $this->imagenPerfil
 			);
@@ -62,6 +68,73 @@
 					echo json_encode($empresas[$key]);
 				}
 			}
+		}
+
+		// Funcion para actualizar una empresa
+		function actualizarEmpresa($id){
+			$archivo = file_get_contents("../data/empresas.json");
+			$empresas = json_decode($archivo, true);
+
+			foreach ($empresas as $key => $value) {
+				if($value['id'] == $id){
+					 $productosEmpresa = $empresas[$key]["productosEmpresa"];
+				}
+			}
+
+			$empresa = array(
+				"id"=> $id,
+				"nombre"=> $this->nombre,
+				"descripcion"=> $this->descripcion,
+				"email"=> $this->email,
+				"telefono"=> $this->telefono,
+				"valoracion"=> $this->valoracion,
+				"productosEmpresa"=> $productosEmpresa,
+				"imagenPortada"=> $this->imagenPortada,
+				"imagenPerfil"=> $this->imagenPerfil
+			);
+			
+			foreach ($empresas as $key => $value) {
+				if($value['id'] == $id){
+					$empresas[$key] = $empresa;	
+				}
+			}
+
+			$archivo = fopen("../data/empresas.json", "w");
+			fwrite($archivo, json_encode($empresas));
+			fclose($archivo);
+		}
+
+		static function agregarProductoEmpresa($idEmpresa, $idProducto){
+			$archivo = file_get_contents("../data/empresas.json");
+			$empresas = json_decode($archivo, true);
+
+			foreach ($empresas as $key => $value) {
+				if($value['id'] == $idEmpresa){
+					 array_push($empresas[$key]["productosEmpresa"], $idProducto);
+				}
+			}
+
+			$archivo = fopen("../data/empresas.json", "w");
+			fwrite($archivo, json_encode($empresas));
+			fclose($archivo);
+		}
+
+		static function eliminarEmpresa($idEmpresa){
+			$archivo = file_get_contents("../data/empresas.json");
+			$empresas = json_decode($archivo, true);
+			
+			Producto::eliminarProductos($idEmpresa);
+
+			foreach ($empresas as $key => $value) {
+				if($value['id'] == $idEmpresa){
+					array_splice($empresas, $key, 1);
+					echo "Empresa: " . $key;
+				}	
+			}
+
+			$archivo = fopen("../data/empresas.json", "w");
+			fwrite($archivo, json_encode($empresas));
+			fclose($archivo); 
 		}
 	}
 ?>

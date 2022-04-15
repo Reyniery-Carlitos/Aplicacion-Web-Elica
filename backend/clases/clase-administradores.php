@@ -9,7 +9,7 @@
 		private $id;
 		private $carrito;
 
-		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = ""){
+		function __construct($username, $email, $password, $telefono = 0, $ciudad = "", $imagen = ""){
 			$this->username = $username;
 			$this->email = $email;
 			$this->password = $password;
@@ -19,7 +19,7 @@
 		}
 
 		function agregarAdministrador(){
-			$archivo = file_get_contents("../data/clientes.json");
+			$archivo = file_get_contents("../data/administradores.json");
 			$administradores = json_decode($archivo, true);
 			$id = '';
 			do {
@@ -45,8 +45,8 @@
 				"imagen"=> $this->imagen
 			);
 
-			$archivo = fopen("../data/clientes.json", "w");
-			fwrite($archivo, json_encode($clientes));
+			$archivo = fopen("../data/administradores.json", "w");
+			fwrite($archivo, json_encode($administradores));
 			fclose($archivo);
 		}
 
@@ -63,6 +63,31 @@
 					echo json_encode($administradores[$key]);		
 				}
 			}
+		}
+
+		public function actualizarAdministrador($id){
+			$archivo = file_get_contents("../data/administradores.json");
+			$administradores = json_decode($archivo, true);
+
+			$administrador = array(
+				"id"=> $id,
+				"username"=> $this->username,
+				"email"=> $this->email,
+				"password"=> $this->password,
+				"telefono"=> $this->telefono,
+				"ciudad"=> $this->ciudad,
+				"imagen"=> $this->imagen
+			);
+
+			foreach ($administradores as $key => $value) {
+				if($value['id'] == $id){
+					$administradores[$key] = $administrador;		
+				}
+			}
+
+			$archivo = fopen("../data/administradores.json", "w");
+			fwrite($archivo, json_encode($administradores));
+			fclose($archivo); 
 		}
 	}
 

@@ -229,6 +229,14 @@ input{
 	text-decoration: none;
 }
 
+.Contenedor-Formulario form a label{
+	font-weight: bolder;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
 /* --------------------------- Estilos del contenido principal --------------------------- */
 .Contenido-Principal{
 	display: flex;

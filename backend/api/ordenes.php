@@ -1,5 +1,5 @@
 <?php
-	header('content-type: aplication/json');
+	header('content-type: application/json');
 	include_once("../clases/clase-ordenes.php");
 
 	switch($_SERVER['REQUEST_METHOD']){

@@ -237,6 +237,14 @@ input{
 	text-decoration: none;
 }
 
+.Contenedor-Formulario form a label{
+	font-weight: bolder;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
 /* --------------------------- Estilos del contenido principal --------------------------- */
 .Contenido-Principal{
 	display: flex;
@@ -567,9 +575,67 @@ input{
 	width: 100%;
 }
 
-.Contenedor-Inputs-Editar-Agregar textarea{
-	width: 100%;
+.Contenedor-Formulario-Editar-Agregar a label{
+	cursor: pointer;
 }
+
+.Contenedor-Formulario-Editar-Agregar span{
+	color:  gray;
+}
+
+.Contenedor-Formulario-Editar-Agregar form{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.Contenedor-Formulario-Editar-Agregar form a label{
+	font-weight: bolder;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	width: 100%;
+	text-decoration: none;
+}
+
+
+/* ---------------------------- Estilos cards Categorias --------------------------- */
+.Container-Card-Categorias{
+	display: flex;
+	flex-direction: row;
+	flex-basis: 90%;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-top: 5px;
+	cursor: pointer;
+}
+
+.Card-Categoria{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 5px;
+	width: 20%;
+	background-color: white;
+	border-radius: 65%;
+}
+
+.Card-Categoria img{
+	width: 60%;
+}
+
+.Card-Categoria h2{
+	font-size: 1.1rem;
+	font-weight: bolder;
+	color: black;
+	align-self: center;
+}
+
 
 @media (max-width: 1000px){
 	.main{
@@ -671,6 +737,18 @@ input{
 		background-color: white;
 		margin-top: 10px;
 	}
+
+	.Card-Categoria{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 5px;
+		width: 30%;
+		background-color: white;
+		border-radius: 65%;
+	}
 }
 
 
@@ -685,5 +763,47 @@ input{
 		padding: 5px;
 		background-color: white;
 		box-shadow: 0px 0px 10px #ccc;
+	}
+}
+
+@media (max-width: 700px){
+	.Container-Card-Categorias{
+		flex-basis: 100%;
+		margin-top: 5px;
+	}
+
+	.Card-Categoria{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 5px;
+		width: 40%;
+		background-color: white;
+		border-radius: 65%;
+	}
+}
+
+@media (max-width: 500px){
+	.Container-Card-Categorias{
+		flex-basis: 100%;
+		margin-top: 5px;
+	}
+
+	.Card-Categoria{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		margin: 5px;
+		width: 60%;
+		background-color: white;
+		border-radius: 65%;
+	}
+
+	.Card-Categoria h2{
+		font-size: 1rem;
 	}
 }

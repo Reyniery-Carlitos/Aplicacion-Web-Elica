@@ -1,5 +1,5 @@
 // SUPONGAMOS QUE EL REPARTIDOR QUE USA LA APP ES EL REPARTIDOR CON ID rep4
-let repartidorActual = "rep1";
+var repartidorActual = "rep1";
 
 urlClientes = "../backend/api/clientes.php";
 urlCategorias = "../backend/api/categorias.php";
@@ -9,6 +9,8 @@ urlOrdenes = "../backend/api/ordenes.php";
 urlStatusOrden = "../backend/api/statusOrden.php";
 urlStatus = "../backend/api/status.php";
 urlRepartidores = "../backend/api/repartidores.php";
+urlImagenes = "../frontend/imagenes.php";
+
 var clientes = [];
 var categorias = [];
 var productos = [];
@@ -25,7 +27,6 @@ const obtenerEstadosOrdenes = () => {
 		responseType: 'json'
 	}).then(respuesta =>{
 		statusOrdenes = respuesta.data;
-		console.log(respuesta.data);
 	}).catch(error => {
 		console.error(error);
 	});
@@ -40,13 +41,69 @@ const obtenerDemasEstados = () => {
 		responseType: 'json'
 	}).then(respuesta =>{
 		estadosRepartidor = respuesta.data;
-		console.log(estadosRepartidor);
 	}).catch(error => {
 		console.error(error);
 	});
 }
 
 obtenerDemasEstados();
+
+function generarPerfil(){
+	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
+	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
+}
+
+function rellenarFormularioUsuario(){
+	document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
+	const infoRepartidor = repartidores.find(item => repartidorActual === item.id);
+	if(infoRepartidor){
+		document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
+			<div class="Contenedor-Imagen-Formulario">
+				<img src="${infoRepartidor.imagen}" id="Imagen-Formulario">
+			</div>
+			<form action="${urlImagenes}" method="POST" enctype="multipart/form-data" id="Formulario-Imagen-Perfil-Usuario">  
+				<a href=""> <label for="Custom-File-Input"> Cambiar / Agregar imagen </label> </a>
+				<input type="file" name="file" id="Custom-File-Input" hidden>
+			</form>
+						
+			<div class="mb-3">
+			  	<div class="Formulario-Contenedor-Texto">
+					<label for=""> Nombre </label>
+					<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="text" name="" id="Input-Editar-Nombre" value="${infoRepartidor.username}">
+							
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Email </label>
+					<a href="#" onclick="editarEmail()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="email" name="" id="Input-Editar-Email"  value="${infoRepartidor.email}">
+							
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Telefono </label>
+					<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="tel" id="Input-Editar-Telefono" name="" pattern="[0-9]{4}-[0-9]{4}" value="${infoRepartidor.telefono}">
+
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Ciudad </label>
+					<a href="#" onclick="editarCiudad()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="text" id="Input-Editar-Ciudad" name="" value="${infoRepartidor.ciudad}">
+							
+				<div class="Formulario-Contenedor-Texto">
+					<label for=""> Password </label>
+					<a href="#" onclick="editarPassword()"> <h2 class="Editar"> Editar </h2> </a>
+				</div>
+				<input readonly type="Password" id="Input-Editar-Password" name="" value="${infoRepartidor.password}">
+							
+				<div class="Formulario-Contenedor-Texto">
+					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="guardarNuevosCambios('${infoRepartidor.id}')"> Save </button> 	
+				</div>
+			</div>
+		`;
+	}	
+}
 
 function obtenerRepartidores(){
 	axios({
@@ -55,7 +112,7 @@ function obtenerRepartidores(){
 		responseType: 'json'
 	}).then(respuesta => {
 		repartidores = respuesta.data;
-		console.log(repartidores);
+		rellenarFormularioUsuario();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -70,7 +127,6 @@ function obtenerInfoCliente(){
 		responseType: 'json'
 	}).then(respuesta => {
 		clientes = respuesta.data;
-		rellenarFormularioUsuario();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -85,8 +141,6 @@ function obtenerCategorias(){
 		responseType: 'json'
 	}).then(respuesta => {
 		categorias = respuesta.data;
-		// mostrarCategorias();
-		// console.log(categorias);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -101,7 +155,6 @@ const obtenerProductos = () => {
 		responseType: 'json'
 	}).then(respuesta => {
 		productos = respuesta.data;
-		console.log(productos);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -116,7 +169,6 @@ const obtenerEmpresas = () => {
 		responseType: 'json'
 	}).then(respuesta => {
 		empresas = respuesta.data;
-		console.log(empresas);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -130,7 +182,6 @@ const obtenerOrdenes = () => {
 		url: urlOrdenes,
 		responseType: 'json'
 	}).then(respuesta => {
-		console.log(respuesta);
 		ordenes = respuesta.data;
 		mostrarOrdenes();
 	}).catch(error => {
@@ -139,62 +190,6 @@ const obtenerOrdenes = () => {
 }
 
 obtenerOrdenes();
-
-function generarPerfil(){
-	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
-	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
-}
-
-function rellenarFormularioUsuario(){
-	document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
-	const infoRepartidor = repartidores.find(item => repartidorActual === item.id);
-		if(infoRepartidor){
-			document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
-				<div class="Contenedor-Imagen-Formulario">
-					<img src="assets/img/1.webp" id="Imagen-Formulario">
-				</div>
-				<a href="#"> <h2 class="Editar"> Cambiar Foto </h2> </a>
-						
-				<div class="mb-3">
-			  		<div class="Formulario-Contenedor-Texto">
-						<label for=""> Nombre </label>
-						<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
-					</div>
-					<input readonly type="text" name="" id="Input-Editar-Nombre" value="${infoRepartidor.username}">
-							
-					<div class="Formulario-Contenedor-Texto">
-						<label for=""> Email </label>
-						<a href="#" onclick="editarEmail()"> <h2 class="Editar"> Editar </h2> </a>
-					</div>
-					<input readonly type="email" name="" id="Input-Editar-Email"  value="${infoRepartidor.email}">
-							
-					<div class="Formulario-Contenedor-Texto">
-						<label for=""> Telefono </label>
-						<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
-					</div>
-					<input readonly type="tel" id="Input-Editar-Telefono" name="" pattern="[0-9]{4}-[0-9]{4}" value="${infoRepartidor.telefono}">
-
-					<div class="Formulario-Contenedor-Texto">
-						<label for=""> Ciudad </label>
-						<a href="#" onclick="editarCiudad()"> <h2 class="Editar"> Editar </h2> </a>
-					</div>
-					<input readonly type="text" id="Input-Editar-Ciudad" name="" value="${infoRepartidor.ciudad}">
-							
-					<div class="Formulario-Contenedor-Texto">
-						<label for=""> Password </label>
-						<a href="#" onclick="editarPassword()"> <h2 class="Editar"> Editar </h2> </a>
-					</div>
-					<input readonly type="Password" id="Input-Editar-Password" name="" value="${infoRepartidor.password}">
-							
-					<div class="Formulario-Contenedor-Texto">
-						<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="guardarNuevosCambios()"> Save </button> 	
-					</div>
-				</div>
-			`;
-		}	
-}
-
-rellenarFormularioUsuario();
 
 function activarMenu(){
 	// document.getElementById("Contenedor-Principal-Formulario").classList.remove('Contenedor-Formulario-Show');
@@ -237,8 +232,6 @@ function verDetallesPedido(idOrden){
 	const empresaSeleccionada = empresas.find(empresa => productoSeleccionado.empresa === empresa.id);
 	const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenSeleccionada.cliente);
 	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoSeleccionado.categoria);
-
-	console.log(productoSeleccionado);
 
 	document.getElementById('Contenido-Principal-Cards').innerHTML += `
 		<div class="Contenedor-Detalles-Orden">
@@ -296,7 +289,6 @@ function mostrarOrdenes(){
 		const clienteSeleccionado = clientes.find(cliente => orden.cliente === cliente.id);
 		const productoSeleccionado = productos.find(producto => producto.id === orden.pedido);
 
-		console.log(statusOrden);
 		// console.log(nombreRepartidor.username);
 
 		if (nombreRepartidor === undefined){
@@ -625,12 +617,36 @@ function ordenesTomadasSinAsignar(){
 					</div>
 				`;
 			}
-
 		}
 	})
 }
 
-function modificarInfoRepartidor(){
+const modificarInfoRepartidorImagen = (repartidorActual) => {
+	let repartidorSeleccionado = repartidores.find(repartidor => repartidor.id === repartidorActual);
+	let elegido = document.getElementById('Custom-File-Input');
+	let form = document.getElementById('Formulario-Imagen-Perfil-Usuario');
+	form.addEventListener('submit', (e) => {
+		e.preventDefault();
+	});
+	
+	let data = new FormData(form);
+	
+	if(!elegido.value){
+		modificarInfoRepartidor(repartidorActual, repartidorSeleccionado.imagen);
+	}else{
+		axios({
+			method: 'POST',
+			url: urlImagenes,
+			data: data
+		}).then(respuesta => {
+			modificarInfoRepartidor(repartidorActual, respuesta.data);
+		}).catch(error => {
+			console.error(error);
+		});
+	}
+};
+
+function modificarInfoRepartidor(repartidorActual, imagenPerfil){
 	let username = document.getElementById('Input-Editar-Nombre').value;
 	let email = document.getElementById('Input-Editar-Email').value;
 	let password = document.getElementById('Input-Editar-Password').value;
@@ -639,14 +655,13 @@ function modificarInfoRepartidor(){
 
 	let repartidorModificado = {
 	    "username": username,
-	    "telefono": telefono,
 	    "email": email,
-	    "ciudad": ciudad,
 	    "password": password,
+	    "telefono": telefono,
+	    "ciudad": ciudad,
+	    "imagen": imagenPerfil,
 	    "valoracion": 4,
 	    "status": "Rechazado",
-	    "disponibilidad": "Disponible",
-	    "imagen": "assets/img/1.webp"
 	}
 
 	axios({
@@ -655,7 +670,7 @@ function modificarInfoRepartidor(){
 		responseType: 'json',
 		data: repartidorModificado
 	}).then(respuesta => {
-		console.log(respuesta);
+		location.reload();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -682,13 +697,13 @@ function editarCiudad(){
 }
 
 // const guardarNuevosCambios = document.getElementById('Btn-Guardar-Cambios-Perfil');
-const guardarNuevosCambios =  () => {
+const guardarNuevosCambios =  (repartidorActual) => {
 	document.getElementById("Input-Editar-Nombre").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Email").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Telefono").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Password").setAttribute("readonly", true);
 	document.getElementById("Input-Editar-Ciudad").setAttribute("readonly", true);
-	modificarInfoRepartidor();
+	modificarInfoRepartidorImagen(repartidorActual);
 };
 
 // Funcionalidad del boton editar de los form en editar empresa
