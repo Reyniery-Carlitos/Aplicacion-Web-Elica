@@ -1,4 +1,5 @@
 <?php
+	include_once('clase-administradores.php');
 	class Repartidor{
 		private $username;
 		private $email;
@@ -12,10 +13,10 @@
 		private $disponibilidad;
 		private $ordenesEntregadas = '';
 
-		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = "", $valoracion = 0, $status = "Pendiente"){
+		function __construct($username, $email, $password, $telefono, $ciudad, $imagen, $valoracion, $status){
 			$this->username = $username;
 			$this->email = $email;
-			$this->password = $password;
+			$this->password = sha1($password);
 			$this->telefono = $telefono;
 			$this->ciudad = $ciudad;
 			$this->imagen = $imagen;
@@ -27,6 +28,7 @@
 		function agregarRepartidor(){
 			$archivo = file_get_contents("../data/repartidores.json");
 			$repartidores = json_decode($archivo, true);
+			$disponibilidad = "No disponible";
 			$id = 'rep';
 			do {
 				$id = 'rep' . strval(rand(1, 1000));;
@@ -153,6 +155,35 @@
 			$archivo = fopen("../data/repartidores.json", "w");
 			fwrite($archivo, json_encode($repartidores));
 			fclose($archivo);
+		}
+
+		static function buscarEmailRepartidor($email){
+			$archivo = file_get_contents("../data/repartidores.json");
+			$repartidores = json_decode($archivo, true);
+			$existe = 0;
+			foreach ($repartidores as $key => $value) {
+				if($value['email'] == $email){
+					$existe = 1;
+					echo $existe;
+					break;
+				}
+			}
+
+			if($existe == 0){
+				Administrador::buscarEmailAdministrador($email);
+			}
+		}
+
+		static function verificarRepartidor($email, $password){
+			$archivo = file_get_contents("../data/repartidores.json");
+			$repartidores = json_decode($archivo, true);
+
+			foreach ($repartidores as $key => $value) {
+				if($value['email'] == $email && $value['password'] == sha1($password)){
+					return $repartidores[$key];
+					break;	
+				}
+			}
 		}
 	}
 ?>

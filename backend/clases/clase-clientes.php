@@ -12,7 +12,7 @@
 		function __construct($username, $email, $password, $telefono = 0, $ciudad="", $imagen = ""){
 			$this->username = $username;
 			$this->email = $email;
-			$this->password = $password;
+			$this->password = sha1($password);
 			$this->telefono = $telefono;
 			$this->ciudad = $ciudad;
 			$this->imagen = $imagen;
@@ -42,7 +42,7 @@
 				"password"=> $this->password,
 				"telefono"=> $this->telefono,
 				"ciudad"=> $this->ciudad,
-				"carrito"=> ["ord2", "ord3", "ord2"],
+				"carrito"=> [],
 				"imagen"=> $this->imagen
 			);
 
@@ -112,7 +112,32 @@
 			fwrite($archivo, json_encode($clientes));
 			fclose($archivo);
 		}
+
+		static function buscarEmailCliente($email){
+			$archivo = file_get_contents("../data/clientes.json");
+			$clientes = json_decode($archivo, true);
+			$existe = 0;
+			foreach ($clientes as $key => $value) {
+				if($value['email'] == $email){
+					$existe = 1;
+					echo $existe;
+					break;
+				}
+			}
+			echo $existe;
+		}
+
+		static function verificarCliente($email, $password){
+			$archivo = file_get_contents("../data/clientes.json");
+			$clientes = json_decode($archivo, true);
+
+			foreach ($clientes as $key => $value) {
+				if($value['email'] == $email && $value['password'] == sha1($password)){
+					// echo json_encode($clientes[$key]);
+					return $clientes[$key];
+					break;
+				}
+			}
+		}
 	}
-
-
 ?>

@@ -1,4 +1,5 @@
 <?php
+	include_once('clase-clientes.php');
 	class Administrador{
 		private $username;
 		private $email;
@@ -12,7 +13,7 @@
 		function __construct($username, $email, $password, $telefono = 0, $ciudad = "", $imagen = ""){
 			$this->username = $username;
 			$this->email = $email;
-			$this->password = $password;
+			$this->password = sha1($password);
 			$this->telefono = $telefono;
 			$this->ciudad = $ciudad;
 			$this->imagen = $imagen;
@@ -89,6 +90,34 @@
 			fwrite($archivo, json_encode($administradores));
 			fclose($archivo); 
 		}
-	}
 
+		static function buscarEmailAdministrador($email){
+			$archivo = file_get_contents("../data/administradores.json");
+			$administradores = json_decode($archivo, true);
+			$existe = 0;
+			foreach ($administradores as $key => $value) {
+				if($value['email'] == $email){
+					$existe = 1;
+					echo $existe;
+					break;
+				}
+			}
+			
+			if($existe == 0){
+				Cliente::buscarEmailCliente($email);
+			}
+		}
+
+		static function verificarAdministrador($email, $password){
+			$archivo = file_get_contents("../data/administradores.json");
+			$administradores = json_decode($archivo, true);
+
+			foreach ($administradores as $key => $value) {
+				if($value['email'] == $email && $value['password'] == sha1($password)){
+					return $administradores[$key];
+					break;
+				}
+			}
+		}
+	}
 ?>

@@ -1,14 +1,25 @@
-let clienteActual = 'cl3';
-urlClientes = "../backend/api/clientes.php";
-urlRepartidores = "../backend/api/repartidores.php";
-urlCategorias = "../backend/api/categorias.php";
-urlProductos = "../backend/api/productos.php";
-urlEmpresas = "../backend/api/empresas.php";
-urlOrdenes = "../backend/api/ordenes.php";
-urlStatusOrden = "../backend/api/statusOrden.php";
-urlImagenes = "../frontend/imagenes.php";
+var clienteActual = '';
+var misCookies = document.cookie;
+var listaCookies = misCookies.split(';');
+for (i in listaCookies){
+	if(listaCookies[i].match('id=')){
+		clienteActual = listaCookies[i].slice(4);
+		console.log(clienteActual);
+		break;
+	}
+}
+
+const urlClientes = "../backend/api/clientes.php";
+const urlRepartidores = "../backend/api/repartidores.php";
+const urlCategorias = "../backend/api/categorias.php";
+const urlProductos = "../backend/api/productos.php";
+const urlEmpresas = "../backend/api/empresas.php";
+const urlOrdenes = "../backend/api/ordenes.php";
+const urlStatusOrden = "../backend/api/statusOrden.php";
+const urlImagenes = "../frontend/imagenes.php";
 
 var clientes = [];
+var cliente = [];
 var categorias = [];
 var productos = [];
 var empresas = [];
@@ -30,53 +41,50 @@ const obtenerEstadosOrdenes = () => {
 
 obtenerEstadosOrdenes();
 
-function generarPerfil(){
-	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
-	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
-}
-
 function rellenarFormularioUsuario(){
-	const infoClienteActual = clientes.find(cliente => cliente.id === clienteActual); 
+	// const infoClienteActual = clientes.find(cliente => cliente.id === clienteActual); 
+	// console.log('Valor de infoClienteActual: ' + infoClienteActual);
 	document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
 	document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
 		<div class="Contenedor-Imagen-Formulario">
-			<img src="${infoClienteActual.imagen}" id="Imagen-Formulario">
+			<img src="${cliente.imagen}" id="Imagen-Formulario">
 		</div>
 		<form action="${urlImagenes}" method="POST" enctype="multipart/form-data" id="Formulario-Imagen-Perfil-Usuario">  
 			<a href=""> <label for="Custom-File-Input"> Cambiar / Agregar imagen </label> </a>
 			<input type="file" name="file" id="Custom-File-Input" hidden>
 		</form>	
+		<a href="logout.php"> Cerrar Sesion </a>
 					
 		<div class="mb-3">
 		  	<div class="Formulario-Contenedor-Texto">
 				<label for=""> Nombre </label>
 				<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="text" name="Username" id="Input-Editar-Nombre" value="${infoClienteActual.username}"">
+			<input readonly type="text" name="Username" id="Input-Editar-Nombre" value="${cliente.username}"">
 						
 			<div class="Formulario-Contenedor-Texto">
 				<label for=""> Email </label>
 				<a href="#" onclick="editarEmail()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="email" name="Email" id="Input-Editar-Email" value="${infoClienteActual.email}">
+			<input readonly type="email" name="Email" id="Input-Editar-Email" value="${cliente.email}">
 						
 			<div class="Formulario-Contenedor-Texto">
 				<label for=""> Telefono </label>
 				<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="tel" id="Input-Editar-Telefono" name="Telefono" pattern="[0-9]{4}-[0-9]{4}"  value="${infoClienteActual.telefono}">
+			<input readonly type="tel" id="Input-Editar-Telefono" name="Telefono" pattern="[0-9]{4}-[0-9]{4}"  value="${cliente.telefono}">
 
 			<div class="Formulario-Contenedor-Texto">
 				<label for=""> Ciudad </label>
 				<a href="#" onclick="editarCiudad()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="text" id="Input-Editar-Ciudad" name="Ciudad" value="${infoClienteActual.ciudad}">
+			<input readonly type="text" id="Input-Editar-Ciudad" name="Ciudad" value="${cliente.ciudad}">
 						
 			<div class="Formulario-Contenedor-Texto">
 				<label for=""> Password </label>
 				<a href="#" onclick="editarPassword()"> <h2 class="Editar"> Editar </h2> </a>
 			</div>
-			<input readonly type="Password" id="Input-Editar-Password" name="Password" value="${infoClienteActual.password}">
+			<input readonly type="Password" id="Input-Editar-Password" name="Password" value="${cliente.password}">
 						
 			<div class="Formulario-Contenedor-Texto">
 				<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="guardarNuevosCambios()"> Save </button> 	
@@ -84,6 +92,40 @@ function rellenarFormularioUsuario(){
 		</div>
 	`;
 }
+
+function generarPerfil(){
+	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
+	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
+	rellenarFormularioUsuario();
+}
+
+function obtenerInfoCliente(){
+	axios({
+		method: 'GET',
+		url: urlClientes + `?id=${clienteActual}`,
+		responseType: 'json'
+	}).then(respuesta => {
+		cliente = respuesta.data;
+	}).catch(error => {
+		console.error(error);
+	})
+}
+
+obtenerInfoCliente();
+
+function obtenerInfoClientes(){
+	axios({
+		method: 'GET',
+		url: urlClientes,
+		responseType: 'json'
+	}).then(respuesta => {
+		clientes = respuesta.data;
+	}).catch(error => {
+		console.error(error);
+	})
+}
+
+obtenerInfoClientes();
 
 function obtenerRepartidores(){
 	axios({
@@ -98,21 +140,6 @@ function obtenerRepartidores(){
 }
 
 obtenerRepartidores();
-
-function obtenerInfoCliente(){
-	axios({
-		method: 'GET',
-		url: urlClientes,
-		responseType: 'json'
-	}).then(respuesta => {
-		clientes = respuesta.data;
-		rellenarFormularioUsuario();
-	}).catch(error => {
-		console.error(error);
-	})
-}
-
-obtenerInfoCliente();
 
 function obtenerCategorias(){
 	axios({
@@ -233,7 +260,6 @@ const crearOrden = (idProducto) => {
 	}).catch(error => {
 		console.error(error);
 	})
-	
 }
 
 function pedirOrden(idProducto){
@@ -262,6 +288,17 @@ function pedirOrden(idProducto){
 				<input type="number" class="font-weight-bold" style="border: none; width: 15%;" id="cantidad-pedir" value="1">
 			</div>
 
+	        <div class="Contenido-Detalles-Orden">
+	            <input required style="border: none;"  placeholder="Numero de Tarjeta" type="tel" name="number" id="Numero-Tarjeta" maxlength="19">
+	        </div>
+	        <div class="Contenido-Detalles-Orden">
+	            <input required style="border: none;"  placeholder="Nombre" type="text" name="name" maxlength="18" class="jp-card-valid" id="Nombre-Tarjeta">
+	        </div>
+			<div class="Contenido-Detalles-Orden">
+		        <input required style="border: none;" placeholder="05/2025" type="tel" id="Expira" name="expiry" maxlength="9">
+		 		<input required style="border: none;" placeholder="CVC" type="number" name="cvc" id="Cvc" maxlength="4">
+	        </div>
+
 			<div class="Contenido-Detalles-Orden">
 				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
 				<h2 class="Texto-Detalles-Orden font-weight-bold"> 50L </h2>
@@ -277,6 +314,8 @@ function pedirOrden(idProducto){
 		</div>		
 	`;
 }
+
+
 
 function mostrarProductos(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
@@ -669,6 +708,7 @@ function modificarInfoCliente(clienteActual, imagenPerfil){
 		responseType: 'json',
 		data: clienteModificado
 	}).then(respuesta => {
+		location.reload();
 		obtenerInfoCliente();
 	}).catch(error => {
 		console.error(error);
@@ -684,5 +724,4 @@ function guardarNuevosCambios(){
 	document.getElementById("Input-Editar-Ciudad").setAttribute("readonly", true);
 	modificarInfoClienteImagen(clienteActual);
 }
-
 // mostrarProductos();

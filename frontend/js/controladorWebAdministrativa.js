@@ -1,16 +1,25 @@
 // SUPONGAMOS QUE EL REPARTIDOR QUE USA LA APP ES EL REPARTIDOR CON ID rep4
-var administradorActual = "adm1";
+var administradorActual = '';
+var misCookies = document.cookie;
+var listaCookies = misCookies.split(';');
+for (i in listaCookies){
+	if(listaCookies[i].match('id=')){
+		administradorActual = listaCookies[i].slice(4);
+		console.log(administradorActual);
+		break;
+	}
+}
 
-urlClientes = "../backend/api/clientes.php";
-urlCategorias = "../backend/api/categorias.php";
-urlProductos = "../backend/api/productos.php";
-urlEmpresas = "../backend/api/empresas.php";
-urlOrdenes = "../backend/api/ordenes.php";
-urlStatusOrden = "../backend/api/statusOrden.php";
-urlStatus = "../backend/api/status.php";
-urlRepartidores = "../backend/api/repartidores.php";
-urlAdministradores = "../backend/api/administradores.php";
-urlImagenes = "../frontend/imagenes.php";
+const urlClientes = "../backend/api/clientes.php";
+const urlCategorias = "../backend/api/categorias.php";
+const urlProductos = "../backend/api/productos.php";
+const urlEmpresas = "../backend/api/empresas.php";
+const urlOrdenes = "../backend/api/ordenes.php";
+const urlStatusOrden = "../backend/api/statusOrden.php";
+const urlStatus = "../backend/api/status.php";
+const urlRepartidores = "../backend/api/repartidores.php";
+const urlAdministradores = "../backend/api/administradores.php";
+const urlImagenes = "../frontend/imagenes.php";
 
 var clientes = [];
 var categorias = [];
@@ -21,6 +30,7 @@ var statusOrdenes = [];
 var estadosRepartidor = [];
 var repartidores = [];
 var administradores = [];
+var administrador = [];
 
 const obtenerEstadosOrdenes = () => {
 	axios({
@@ -50,13 +60,7 @@ const obtenerDemasEstados = () => {
 
 obtenerDemasEstados();
 
-function generarPerfil(){
-	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
-	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
-}
-
 function rellenarFormularioUsuario(){
-	administradores.forEach(administrador => {
 		document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
 		document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
 			<div class="Contenedor-Imagen-Formulario">
@@ -66,6 +70,7 @@ function rellenarFormularioUsuario(){
 				<a href=""> <label for="Custom-File-Input"> Cambiar / Agregar imagen </label> </a>
 				<input type="file" name="file" id="Custom-File-Input" hidden>
 			</form>	
+			<a href="logout.php"> Cerrar Sesion </a>
 					
 			<div class="mb-3">
 		  		<div class="Formulario-Contenedor-Texto">
@@ -103,7 +108,12 @@ function rellenarFormularioUsuario(){
 				</div>
 			</div>
 		`;
-	});
+}
+
+function generarPerfil(){
+	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
+	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
+	rellenarFormularioUsuario();
 }
 
 function obtenerRepartidores(){
@@ -120,6 +130,20 @@ function obtenerRepartidores(){
 
 obtenerRepartidores();
 
+function obtenerAdministrador(){
+	axios({
+		method: 'GET',
+		url: urlAdministradores + `?id=${administradorActual}`,
+		responseType: 'json'
+	}).then(respuesta => {
+		administrador = respuesta.data;
+	}).catch(error => {
+		console.error(error);
+	})
+}
+
+obtenerAdministrador();
+
 function obtenerAdministradores(){
 	axios({
 		method: 'GET',
@@ -127,7 +151,6 @@ function obtenerAdministradores(){
 		responseType: 'json'
 	}).then(respuesta => {
 		administradores = respuesta.data;
-		rellenarFormularioUsuario();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -142,7 +165,6 @@ function obtenerInfoCliente(){
 		responseType: 'json'
 	}).then(respuesta => {
 		clientes = respuesta.data;
-		rellenarFormularioUsuario();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -157,8 +179,6 @@ function obtenerCategorias(){
 		responseType: 'json'
 	}).then(respuesta => {
 		categorias = respuesta.data;
-		// mostrarCategorias();
-		// console.log(categorias);
 	}).catch(error => {
 		console.error(error);
 	})
@@ -212,7 +232,7 @@ obtenerOrdenes();
 function activarMenu(){
 	// document.getElementById("Contenedor-Principal-Formulario").classList.remove('Contenedor-Formulario-Show');
 	document.getElementById("Menu-Opciones-Principal").classList.toggle('Lista-Opciones-Show');
-	rellenarFormularioUsuario();
+	// rellenarFormularioUsuario();
 }
 
 const rechazarRepartidor = (idRepartidor) => {
@@ -1382,7 +1402,7 @@ function editarPassword(){
 	document.getElementById("Input-Editar-Password").removeAttribute("readonly");
 }
 
-function editarPassword(){
+function editarCiudad(){
 	document.getElementById("Input-Editar-Ciudad").removeAttribute("readonly");
 }
 

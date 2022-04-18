@@ -1,15 +1,23 @@
-// SUPONGAMOS QUE EL REPARTIDOR QUE USA LA APP ES EL REPARTIDOR CON ID rep4
-var repartidorActual = "rep1";
+var repartidorActual = '';
+var misCookies = document.cookie;
+var listaCookies = misCookies.split(';');
+for (i in listaCookies){
+	if(listaCookies[i].match('id=')){
+		repartidorActual = listaCookies[i].slice(4);
+		console.log(repartidorActual);
+		break;
+	}
+}
 
-urlClientes = "../backend/api/clientes.php";
-urlCategorias = "../backend/api/categorias.php";
-urlProductos = "../backend/api/productos.php";
-urlEmpresas = "../backend/api/empresas.php";
-urlOrdenes = "../backend/api/ordenes.php";
-urlStatusOrden = "../backend/api/statusOrden.php";
-urlStatus = "../backend/api/status.php";
-urlRepartidores = "../backend/api/repartidores.php";
-urlImagenes = "../frontend/imagenes.php";
+var urlClientes = "../backend/api/clientes.php";
+var urlCategorias = "../backend/api/categorias.php";
+var urlProductos = "../backend/api/productos.php";
+var urlEmpresas = "../backend/api/empresas.php";
+var urlOrdenes = "../backend/api/ordenes.php";
+var urlStatusOrden = "../backend/api/statusOrden.php";
+var urlStatus = "../backend/api/status.php";
+var urlRepartidores = "../backend/api/repartidores.php";
+var urlImagenes = "../frontend/imagenes.php";
 
 var clientes = [];
 var categorias = [];
@@ -19,6 +27,7 @@ var ordenes = [];
 var statusOrdenes = [];
 var estadosRepartidor = [];
 var repartidores = [];
+var repartidor = [];
 
 const obtenerEstadosOrdenes = () => {
 	axios({
@@ -48,62 +57,79 @@ const obtenerDemasEstados = () => {
 
 obtenerDemasEstados();
 
-function generarPerfil(){
-	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
-	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
-}
-
 function rellenarFormularioUsuario(){
 	document.getElementById('Contenedor-Principal-Formulario').innerHTML = '';
-	const infoRepartidor = repartidores.find(item => repartidorActual === item.id);
-	if(infoRepartidor){
+	// const infoRepartidor = repartidores.find(item => repartidorActual === item.id);
+	// if(infoRepartidor){
 		document.getElementById('Contenedor-Principal-Formulario').innerHTML += `
 			<div class="Contenedor-Imagen-Formulario">
-				<img src="${infoRepartidor.imagen}" id="Imagen-Formulario">
+				<img src="${repartidor.imagen}" id="Imagen-Formulario">
 			</div>
 			<form action="${urlImagenes}" method="POST" enctype="multipart/form-data" id="Formulario-Imagen-Perfil-Usuario">  
 				<a href=""> <label for="Custom-File-Input"> Cambiar / Agregar imagen </label> </a>
 				<input type="file" name="file" id="Custom-File-Input" hidden>
 			</form>
+			<a href="logout.php"> Cerrar Sesion </a>
 						
 			<div class="mb-3">
 			  	<div class="Formulario-Contenedor-Texto">
 					<label for=""> Nombre </label>
 					<a href="#" onclick="editarNombre()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" name="" id="Input-Editar-Nombre" value="${infoRepartidor.username}">
+				<input readonly type="text" name="" id="Input-Editar-Nombre" value="${repartidor.username}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Email </label>
 					<a href="#" onclick="editarEmail()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="email" name="" id="Input-Editar-Email"  value="${infoRepartidor.email}">
+				<input readonly type="email" name="" id="Input-Editar-Email"  value="${repartidor.email}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Telefono </label>
 					<a href="#" onclick="editarTelefono()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="tel" id="Input-Editar-Telefono" name="" pattern="[0-9]{4}-[0-9]{4}" value="${infoRepartidor.telefono}">
+				<input readonly type="tel" id="Input-Editar-Telefono" name="" pattern="[0-9]{4}-[0-9]{4}" value="${repartidor.telefono}">
 
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Ciudad </label>
 					<a href="#" onclick="editarCiudad()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="text" id="Input-Editar-Ciudad" name="" value="${infoRepartidor.ciudad}">
+				<input readonly type="text" id="Input-Editar-Ciudad" name="" value="${repartidor.ciudad}">
 							
 				<div class="Formulario-Contenedor-Texto">
 					<label for=""> Password </label>
 					<a href="#" onclick="editarPassword()"> <h2 class="Editar"> Editar </h2> </a>
 				</div>
-				<input readonly type="Password" id="Input-Editar-Password" name="" value="${infoRepartidor.password}">
+				<input readonly type="Password" id="Input-Editar-Password" name="" value="${repartidor.password}">
 							
 				<div class="Formulario-Contenedor-Texto">
-					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="guardarNuevosCambios('${infoRepartidor.id}')"> Save </button> 	
+					<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="guardarNuevosCambios('${repartidor.id}')"> Save </button> 	
 				</div>
 			</div>
 		`;
-	}	
+	// }	
 }
+
+function generarPerfil(){
+	// document.getElementById("Menu-Opciones-Principal").classList.remove('Lista-Opciones-Show');	
+	document.getElementById("Contenedor-Principal-Formulario").classList.toggle('Contenedor-Formulario-Show');
+	rellenarFormularioUsuario();
+}
+
+function obtenerRepartidor(){
+	axios({
+		method: 'GET',
+		url: urlRepartidores + `?id=${repartidorActual}`,
+		responseType: 'json'
+	}).then(respuesta => {
+		repartidor = respuesta.data;
+		rellenarFormularioUsuario();
+	}).catch(error => {
+		console.error(error);
+	})
+}
+
+obtenerRepartidor();
 
 function obtenerRepartidores(){
 	axios({
@@ -112,7 +138,6 @@ function obtenerRepartidores(){
 		responseType: 'json'
 	}).then(respuesta => {
 		repartidores = respuesta.data;
-		rellenarFormularioUsuario();
 	}).catch(error => {
 		console.error(error);
 	})
@@ -386,7 +411,6 @@ function cambiarEstado(idOrden){
 	let valor = document.getElementById(`disponibilidad-repartidor-${idOrden}`).value;
 	let ordenSeleccionada = ordenes.find(orden => orden.id === idOrden);
 	// console.log(valor);
-	console.log(idOrden);
 	ordenSeleccionada.disponibilidad = valor;
 	// console.log(ordenSeleccionada);
 
@@ -426,7 +450,6 @@ function mostrarMisOrdenes(){
 		const clienteSeleccionado = clientes.find(cliente => cliente.id === misOrdenesRealizadas.cliente);
 		const productoSeleccionado = productos.find(producto => producto.id === misOrdenesRealizadas.pedido); 
 		let listaEstados = '';
-		console.log(ordenesRepartidor.ordenesEntregadas);
 
 		ordenes.forEach(ordenTomada => {
 			if(ordenTomada.id === orden){

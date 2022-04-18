@@ -1,30 +1,19 @@
-const categorias = [
-	{
-		id: "cat1",
-		nombre: "Comidas",
-		imagen: "assets/img/comida.png"
-	},
-	{
-		id: "cat2",
-		nombre: "Frutas y Verduras",
-		imagen: "assets/img/frutas.png"
-	},
-	{
-		id: "cat3",
-		nombre: "Supermercado",
-		imagen: "assets/img/supermercado.png"
-	},
-	{
-		id: "cat4",
-		nombre: "Tiendas y Regalos",
-		imagen: "assets/img/regalos.png"
-	},
-	{
-		id: "cat5",
-		nombre: "Postres",
-		imagen: "assets/img/postre.png"
-	},
-];
+var urlCategorias = "../backend/api/categorias.php";
+var categorias = [];
+
+const obtenerCategorias = () => {
+	axios({
+		method: 'GET',
+		url: urlCategorias,
+		responseType: 'json'
+	}).then(respuesta => {
+		categorias = respuesta.data;
+		mostrarLanding();
+	}).catch(error => {
+		console.error(error);
+	});
+};
+obtenerCategorias();
 
 function formularioRegistro(){
 	document.getElementById("Contenido-Principal-Landing").innerHTML = '';
@@ -92,7 +81,7 @@ function formularioRegistroRepartidores(){
 					<i class="fa-solid fa-xmark fa-2x text-danger Icono-Validar" id="Icono-Validar-Incorrecto-Password"></i>
 					<i class="fa-solid fa-check fa-2x text-success Icono-Validar" id="Icono-Validar-Correcto-Password"></i>
 				</div>
-				<button type="submit" onclick="btnSubmitValidaciones()"> Registrarme </button>
+				<button type="submit" onclick="btnSubmitValidacionesRepartidores()"> Registrarme </button>
 				<h2> Ya tienes una cuenta? <span class="Span-Error-Login-Show"> <a href="#" onclick="btnSubmitValidacionesRepartidores()"> Inicia Sesion </a> </span> </h2>
 			</form>
 		</section>
@@ -121,6 +110,14 @@ function formularioIniciaSesion(){
 
 				<div class="Contenedor-Individual"> 
 					<span class="Span-Error-Login text-danger" id="Id-Span-Invalido"> Usuario o contraseña incorrecto </span>
+				</div>
+
+				<div class="Contenedor-Individual mb-2"> 
+					<select class="border-0" id="Tipo-Usuario">
+						<option value="Cliente" selected> Cliente </option>
+						<option value="Repartidor"> Repartidor </option>
+						<option value="Administrador"> Administrador </option>
+					</select>
 				</div>
 
 				<button type="submit" onclick="validacionLogin()"> Iniciar Sesion </button>
@@ -182,4 +179,4 @@ function mostrarLanding(){
 	`;
 }
 
-mostrarLanding();
+// mostrarLanding();

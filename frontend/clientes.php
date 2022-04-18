@@ -1,3 +1,21 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if(!isset($_COOKIE['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if($_SESSION['token'] !== $_COOKIE['token']){
+		header("Location: 401.html");
+		exit();	
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -59,6 +77,8 @@
 	<script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js">  </script>
+    <!-- <script src="js/DB.js"></script> -->
     <script src="js/controladorWebClientes.js"></script>
 </body>
 </html>	

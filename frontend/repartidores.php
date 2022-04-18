@@ -1,3 +1,22 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if(!isset($_COOKIE['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if($_SESSION['token'] !== $_COOKIE['token']){
+		header("Location: 401.html");
+		exit();	
+	}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -34,41 +53,19 @@
 		<div class="main">
 			<nav class="Lista-Opciones" id="Menu-Opciones-Principal">
 				<ul class="Lista-Opciones__Lista-Items m-0">
-					<!-- <li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarRepartidores()"> Repartidores </a> </li>
-					<li class="Lista-Opciones__Items"> <a href="#" class="Lista-Opciones__Link" onclick="mostrarOrdenes()">Ordenes </a> </li> -->
 					<li class="Lista-Opciones__Items"> 
-						<a href="#" class="Lista-Opciones__Link"> Ordenes </a> 
-						<ul class="Lista-Opciones__Lista-SubItems">
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="mostrarOrdenes()"> Todas las ordenes </a> 
-							</li>
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="mostrarMisOrdenes()"> Mis ordenes entregadas </a> 
-							</li>
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="ordenesDisponibles()"> Ordenes disponibles </a> 
-							</li>
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="ordenesTomadasSinAsignar()"> Ordenes tomadas sin entregar </a> 
-							</li>
-						</ul>	
+						<a href="#" class="Lista-Opciones__Link" onclick="mostrarOrdenes()"> Todas las ordenes </a> 
 					</li>
-					<!-- <li class="Lista-Opciones__Items"> 
-						<a href="#" class="Lista-Opciones__Link"> Productos </a>
-
-						<ul class="Lista-Opciones__Lista-SubItems">
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="mostrarEmpresas()"> Ver Productos </a> 
-							</li>
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="formularioAgregarProducto()"> Agregar Producto </a> 
-							</li>
-							<li class="Lista-Opciones__SubItems"> 
-								<a href="#" class="Lista-Opciones__Link" onclick="formularioEditarProducto()"> Editar Producto </a> 
-							</li>
-						</ul>	
-					</li> -->
-				</ul>
+					<li class="Lista-Opciones__Items"> 
+						<a href="#" class="Lista-Opciones__Link" onclick="mostrarMisOrdenes()"> Mis ordenes tomadas </a> 
+					</li>
+					<li class="Lista-Opciones__Items"> 
+						<a href="#" class="Lista-Opciones__Link" onclick="ordenesDisponibles()"> Ordenes disponibles </a> 
+					</li>
+					<li class="Lista-Opciones__Items"> 
+						<a href="#" class="Lista-Opciones__Link" onclick="ordenesTomadasSinAsignar()"> Ordenes tomadas sin entregar </a> 
+					</li>
+				</ul>	
 			</nav>
 		
 			<div class="Contenedor-Formulario" id="Contenedor-Principal-Formulario">
@@ -85,6 +82,8 @@
 	<script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js">  </script>
+    <script src="js/DB.js"></script>
     <script src="js/controladorRepartidores.js"></script>
 </body>
 </html>

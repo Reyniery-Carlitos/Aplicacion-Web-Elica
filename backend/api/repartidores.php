@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	header("content-type: application/json");
 	include_once("../clases/clase-repartidores.php");
 

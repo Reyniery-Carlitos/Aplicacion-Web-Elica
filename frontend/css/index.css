@@ -352,6 +352,13 @@ footer{
 	flex-wrap: wrap;
 }
 
+#Formulario .Contenedor-Individual select{
+	border: none;
+	height: 30px;
+	font-weight: bolder;
+	background-color: white;
+}
+
 .Formulario-Registro form input{
 	outline: none;
 	border: none;

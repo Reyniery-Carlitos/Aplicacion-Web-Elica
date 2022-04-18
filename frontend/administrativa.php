@@ -1,3 +1,21 @@
+<?php
+	session_start();
+
+	if(!isset($_SESSION['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if(!isset($_COOKIE['token'])){
+		header("Location: 401.html");
+		exit();
+	}
+
+	if($_SESSION['token'] !== $_COOKIE['token']){
+		header("Location: 401.html");
+		exit();	
+	}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
