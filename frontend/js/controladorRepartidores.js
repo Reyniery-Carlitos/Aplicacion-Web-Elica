@@ -296,11 +296,67 @@ function verDetallesPedido(idOrden){
 					
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cliente </h2>
 			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.username} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Telefono Cliente </h2>
+			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.telefono} </h2>
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
 			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
 			<div class="Contenedor-Detalles-Orden-Btn">
 				<button class="btn-success Btn-Save" id="Btn-Guardar-Cambios-Perfil" onclick="tomarOrden('${ordenSeleccionada.id}')"> Tomar Orden </button> 	
 			</div>
+		</div>		
+	`;
+}
+
+function verDetallesPedido2(idOrden){
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	const ordenSeleccionada = ordenes.find(orden => idOrden === orden.id);
+	const productoSeleccionado = productos.find(producto => ordenSeleccionada.pedido === producto.id);
+	const empresaSeleccionada = empresas.find(empresa => productoSeleccionado.empresa === empresa.id);
+	const clienteSeleccionado = clientes.find(cliente => cliente.id === ordenSeleccionada.cliente);
+	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoSeleccionado.categoria);
+
+	document.getElementById('Contenido-Principal-Cards').innerHTML += `
+		<div class="Contenedor-Detalles-Orden">
+			<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Nombre Producto </h2>
+			<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.nombre} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Empresa </h2>
+			<h2 class="Texto-Detalles-Orden"> ${empresaSeleccionada.nombre} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Categoria </h2>
+			<h2 class="Texto-Detalles-Orden"> ${categoriaSeleccionada.nombre} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Descripcion </h2>
+			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
+				<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio}L </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.cantidad} </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio envio </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio}L </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.total}L </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Comision Elica </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.comisionElica}L </h2>
+			</div>
+			<div class="Contenido-Detalles-Orden">
+				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Ganancias repartidor </h2>
+				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.comisionRepartidor}L </h2>
+			</div>
+					
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cliente </h2>
+			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.username} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Telefono Cliente </h2>
+			<h2 class="Texto-Detalles-Orden"> ${clienteSeleccionado.telefono} </h2>
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
+			<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
 		</div>		
 	`;
 }
@@ -462,7 +518,7 @@ function mostrarMisOrdenes(){
 			});
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
 				<div class="Contenedor-Cards">
-					<div class="Card">
+					<div class="Card" onclick="verDetallesPedido2('${misOrdenesRealizadas.id}')">
 						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
 							<img src="${misOrdenesRealizadas.imagen}" class="Imagen-Usuario">
 							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusOrden.statsColor}"> ● </span> ${misOrdenesRealizadas.statusRepartidor} </h2>

@@ -13,7 +13,7 @@
 		function __construct($username, $email, $password, $telefono = 0, $ciudad = "", $imagen = ""){
 			$this->username = $username;
 			$this->email = $email;
-			$this->password = sha1($password);
+			$this->password = $password;
 			$this->telefono = $telefono;
 			$this->ciudad = $ciudad;
 			$this->imagen = $imagen;
@@ -40,7 +40,7 @@
 				"id"=> $id,
 				"username"=> $this->username,
 				"email"=> $this->email,
-				"password"=> $this->password,
+				"password"=> sha1($this->password),
 				"telefono"=> $this->telefono,
 				"ciudad"=> $this->ciudad,
 				"imagen"=> $this->imagen
@@ -70,11 +70,21 @@
 			$archivo = file_get_contents("../data/administradores.json");
 			$administradores = json_decode($archivo, true);
 
+			foreach ($administradores as $key => $value) {
+				if ($value['id'] == $id) {
+					if($value['password'] == $this->password){
+						$password = $value['password'];
+					}else{
+						$password = sha1($this->password);
+					}
+				}
+			}
+
 			$administrador = array(
 				"id"=> $id,
 				"username"=> $this->username,
 				"email"=> $this->email,
-				"password"=> $this->password,
+				"password"=> $password,
 				"telefono"=> $this->telefono,
 				"ciudad"=> $this->ciudad,
 				"imagen"=> $this->imagen

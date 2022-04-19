@@ -498,7 +498,6 @@ function verDetallesPedido(idOrden){
 	const categoriaSeleccionada = categorias.find(categoria => categoria.id === productoSeleccionado.categoria);
 
 	if(repartidorSeleccionado){
-
 		document.getElementById('Contenido-Principal-Cards').innerHTML += `
 			<div class="Contenedor-Detalles-Orden">
 				<img src="${ordenSeleccionada.imagen}" class="Imagen-Detalles-Orden" alt="Imagen Banner">
@@ -512,7 +511,7 @@ function verDetallesPedido(idOrden){
 				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
-					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
+					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio}L </h2>
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
@@ -520,7 +519,7 @@ function verDetallesPedido(idOrden){
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
-					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio} </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio}L </h2>
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
@@ -550,7 +549,7 @@ function verDetallesPedido(idOrden){
 				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.descripcion} </h2>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio </h2>
-					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio} </h2>
+					<h2 class="Texto-Detalles-Orden"> ${productoSeleccionado.precio}L </h2>
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Cantidad </h2>
@@ -558,7 +557,7 @@ function verDetallesPedido(idOrden){
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Precio Envio </h2>
-					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio} </h2>
+					<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.precioEnvio}L </h2>
 				</div>
 				<div class="Contenido-Detalles-Orden">
 					<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Total </h2>
