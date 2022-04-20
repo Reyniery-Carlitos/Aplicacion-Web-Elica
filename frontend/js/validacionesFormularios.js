@@ -60,7 +60,6 @@ const btnSubmitValidaciones = () => {
 const crearNuevoCliente = () => {
 	let nombre = document.getElementById('Input-Individual-Username').value;
 	let email = document.getElementById('Input-Individual-Email').value;
-	// let telefono = document.getElementById('Input-Individual-Telefono').value;
 	let password = document.getElementById('Input-Individual-Password').value;
 
 	const detalles2 = Object.values(detalles);
@@ -82,7 +81,7 @@ const crearNuevoCliente = () => {
 			responseType: 'json',
 			data: datosCliente
 		}).then(respuesta => {
-			console.log(respuesta.data);
+			alert('Cliente registrado correctamente');
 		}).catch(error => {
 			console.error(error);
 		})
@@ -220,7 +219,7 @@ const crearNuevoRepartidor = () => {
 			responseType: 'json',
 			data: datosRepartidor
 		}).then(respuesta => {
-			console.log(respuesta.data);
+			alert("Repartidor registrado correctamente");
 		}).catch(error => {
 			console.error(error);
 		})
@@ -312,8 +311,6 @@ const validacionLogin = () => {
 		e.preventDefault();
 	})
 
-	// const usuarios = [...clientes, ...administradores, ...repartidores];
-
 	const emailLogin = document.getElementById('Input-Individual-Email').value;
 	const passwordLogin = document.getElementById('Input-Individual-Password').value;
 	const tipoSesion = document.getElementById('Tipo-Usuario').value;
@@ -324,8 +321,6 @@ const validacionLogin = () => {
 		"password": passwordLogin,
 	}
 
-	console.log(dataUsuario.email);
-	console.log(dataUsuario.password);
 	if (tipoSesion === 'Cliente'){
 		axios({
 			method: 'POST',

@@ -250,7 +250,10 @@ const tomarOrden = (idOrden) => {
 	});
 }
 
+
+var idOrdenElegida = '';
 function verDetallesPedido(idOrden){
+	idOrdenElegida = idOrden;
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	const ordenSeleccionada = ordenes.find(orden => idOrden === orden.id);
 	const productoSeleccionado = productos.find(producto => ordenSeleccionada.pedido === producto.id);

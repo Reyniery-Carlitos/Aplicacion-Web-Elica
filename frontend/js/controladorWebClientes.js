@@ -41,6 +41,8 @@ const obtenerEstadosOrdenes = () => {
 
 obtenerEstadosOrdenes();
 
+
+
 function rellenarFormularioUsuario(){
 	// const infoClienteActual = clientes.find(cliente => cliente.id === clienteActual); 
 	// console.log('Valor de infoClienteActual: ' + infoClienteActual);
@@ -234,8 +236,12 @@ function mostrarEmpresas(){
 	})
 }
 
-const crearOrden = (idProducto) => {
+const crearOrden = (idProducto, latitud, longitud) => {
+	console.log("ID: " + idProducto);
+	console.log("Latitud: " + latitud);
+	console.log("Longitud: "  + longitud);
 	const productoSeleccionado = productos.find(producto => idProducto === producto.id);
+	const direccion = document.getElementById('Direccion-Envio').value;
 
 	let orden = {
 		"pedido": idProducto,
@@ -244,7 +250,9 @@ const crearOrden = (idProducto) => {
 		"cliente": clienteActual,
 		"repartidor": "No asignado",
 		"cantidad": parseInt(document.getElementById('cantidad-pedir').value),
-		"direccion": "Col. Ulloa",
+		"direccion": direccion,
+		"latitud": latitud,
+		"longitud": longitud,
 		"imagen": "assets/img/1.webp" 
 	}
 
@@ -262,7 +270,10 @@ const crearOrden = (idProducto) => {
 	})
 }
 
+var idProductoElegido = '';
+
 function pedirOrden(idProducto){
+	idProductoElegido = idProducto;
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
 	const productoSeleccionado = productos.find(producto => idProducto === producto.id);
 	const empresaSeleccionada = empresas.find(empresa => productoSeleccionado.empresa === empresa.id);
@@ -306,16 +317,29 @@ function pedirOrden(idProducto){
 
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Repartidor </h2>
 			<h2 class="Texto-Detalles-Orden"> Sin asignar </h2>
+			
 			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
-			<h2 class="Texto-Detalles-Orden"> Falta </h2>
+			<input type="text" id="Direccion-Envio" class="mb-3" placeholder="Direccion de envio" value="${document.getElementById('addr').value}">
+
+			<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
+			
+			<a href="#" onclick="agregarDireccion()"> Agregar Direccion </a>
 			<div class="Contenedor-Detalles-Orden-Btn">
-				<button class="btn-danger Btn-Save" id="" onclick="crearOrden('${idProducto}')"> Pedir </button> 	
+				<button class="btn-danger Btn-Save" id="" onclick="crearOrden('${idProducto}', '${lat}', '${lon}')"> Pedir </button> 	
 			</div>
 		</div>		
 	`;
 }
 
+function agregarDireccion(){
+	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
+	document.getElementById('id-container-mapa').removeAttribute('hidden');
+}
 
+function salirMapa(){
+	document.getElementById('id-container-mapa').setAttribute('hidden', true);
+	pedirOrden(idProductoElegido);
+}
 
 function mostrarProductos(){
 	document.getElementById('Contenido-Principal-Cards').innerHTML = '';
@@ -422,70 +446,67 @@ function carrito(){
 	const clienteSeleccionado = clientes.find(cliente => cliente.id === clienteActual);
 	(clienteSeleccionado.carrito).forEach(ordenCarrito => {
 		const listaOrdenes = ordenes.find(ordenSeleccionada => ordenCarrito === ordenSeleccionada.id);
-		// listaOrdenes.forEach(orden => {
-			const statusPedido = statusOrdenes.find(item => listaOrdenes.disponibilidad === item.stats);
-			const nombreRepartidor = repartidores.find(item => listaOrdenes.repartidor === item.id);
-			const productoSeleccionado = productos.find(producto => producto.id === listaOrdenes.pedido);
+		const statusPedido = statusOrdenes.find(item => listaOrdenes.disponibilidad === item.stats);
+		const nombreRepartidor = repartidores.find(item => listaOrdenes.repartidor === item.id);
+		const productoSeleccionado = productos.find(producto => producto.id === listaOrdenes.pedido);
 			
-			if(nombreRepartidor){
-				document.getElementById('Contenido-Principal-Cards').innerHTML += `
-				<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
-					<div class="Card">
-						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
-						</div>
-						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
-							<div class="Card-Contenedor-Cantidad">
-								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
-								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
-							</div>
-						</div>
-						<div class="Card-Contenido-3">
-							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+		if(nombreRepartidor){
+			document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
+				<div class="Card">
+					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+						<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
+						<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
+					</div>
+					<div class="Card-Contenido-2">
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: ${nombreRepartidor.username} </h2>
+						<div class="Card-Contenedor-Cantidad">
+							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
+							<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
 						</div>
 					</div>
-					<div class="Cards-Botones">
+					<div class="Card-Contenido-3">
+						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+					</div>
+				</div>
+				<div class="Cards-Botones">
 							
+				</div>
+			</div>`;
+		}else{
+			document.getElementById('Contenido-Principal-Cards').innerHTML += `
+			<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
+				<div class="Card">
+					<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
+						<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
+						<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
 					</div>
-				</div>`;
-			}else{
-				document.getElementById('Contenido-Principal-Cards').innerHTML += `
-				<div class="Contenedor-Cards Contenedor-Cards-Carritos" onclick="verDetallesPedido('${listaOrdenes.id}')">
-					<div class="Card">
-						<div class="Card-Contenido-1 Card-Imagen-Asignar-Productos" >
-							<img src="${listaOrdenes.imagen}" class="Imagen-Usuario">
-							<h2 class="Card-Texto Card-Texto-Estado"> <span style="color: ${statusPedido.statsColor}"> ● </span> ${listaOrdenes.disponibilidad} </h2>
-						</div>
-						<div class="Card-Contenido-2">
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: Sin asignar </h2>
-							<div class="Card-Contenedor-Cantidad">
-								<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
-								<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
-							</div>
-						</div>
-						<div class="Card-Contenido-3">
-							<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
-							<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+					<div class="Card-Contenido-2">
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Nombre"> ${productoSeleccionado.nombre} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Descripcion"> ${listaOrdenes.descripcion} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Direccion"> ${listaOrdenes.direccion} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Pedido-Por"> Pedido por: ${clienteSeleccionado.username} </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido Card-Texto-Repartido-Por"> Repartido por: Sin asignar </h2>
+						<div class="Card-Contenedor-Cantidad">
+							<h2 class="Card-Texto Contenedor-Cantidad-Numero"> ${listaOrdenes.cantidad} </h2>
+							<h2 class="Card-Texto Contenedor-Cantidad-Texto"> Cantidad </h2>
 						</div>
 					</div>
-					<div class="Cards-Botones">
+					<div class="Card-Contenido-3">
+						<h2 class="Card-Texto Card-Texto-Titulo-Contenido-3"> Precio </h2>
+						<h2 class="Card-Texto Card-Texto-Contenido-3"> ${listaOrdenes.precio}L </h2>
+					</div>
+				</div>
+				<div class="Cards-Botones">
 							
-					</div>
-				</div>`;
-			}
-			
-		// })
+				</div>
+			</div>`;
+		}
 	})
 }
 
@@ -530,6 +551,7 @@ function verDetallesPedido(idOrden){
 				<h2 class="Texto-Detalles-Orden"> ${repartidorSeleccionado.username} </h2>
 				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
 				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
+
 				<div class="Contenedor-Detalles-Orden-Btn">
 					<button class="btn-danger Btn-Save" id="" onclick="carrito()"> Cerrar </button> 	
 				</div>
@@ -568,6 +590,7 @@ function verDetallesPedido(idOrden){
 				<h2 class="Texto-Detalles-Orden"> Sin asignar </h2>
 				<h2 class="Texto-Detalles-Orden Texto-Detalles-Orden-Titulo"> Direccion de envio </h2>
 				<h2 class="Texto-Detalles-Orden"> ${ordenSeleccionada.direccion} </h2>
+				
 				<div class="Contenedor-Detalles-Orden-Btn">
 					<button class="btn-danger Btn-Save" id="" onclick="carrito()"> Cerrar </button> 	
 				</div>

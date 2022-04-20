@@ -27,9 +27,14 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/all.css"><!--FontAwesome-->
     <link rel="stylesheet" href="css/clientes.css">
+    <link rel="stylesheet" href="css/mapa.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
     <title> Clientes </title>
 </head>
 <body>
@@ -69,7 +74,42 @@
 
 			<div class="Contenido-Principal" id="Contenido-Principal-Cards">
 				
-			</div>	
+			</div>
+
+			<div class="container-mapa" id="id-container-mapa" hidden>
+				<b>Coordenadas</b>
+			    <form>
+			        <div class="row">
+			          	<div class="col">
+			            	<input type="text" name="lat" class="form-control" id="lat" size=12 value="">
+			          	</div>
+			          	<div class="col">
+			            	<input type="text" name="lon" class="form-control" id="lon" size=12 value="">
+			          	</div>
+			        </div>
+			    </form>
+			    <br />
+			    <b>Buscar direccion</b>
+			    <div id="search">
+			        <div class="row">
+			          	<div class="col">
+			            	<input type="text" name="addr" value="" id="addr" class="form-control" size="58" />
+			          	</div>
+				        <div class="col">
+				        	<button type="button" onclick="addr_search();" class="btn btn-primary">Buscar</button>
+					    </div>
+					</div>
+					<div id="results"></div>
+				</div>
+
+				<br />
+	      		<div class="container2">
+	    	  		<div id="map" style="width: auto; height: 400px"></div>
+	      		</div> 
+	      		<div class="Contenedor-Detalles-Orden-Btn">
+					<button class="btn-danger Btn-Save" id="" onclick="salirMapa()"> Seleccionar </button> 	
+				</div>	
+			</div>
 		</div>
 	</main>
 
@@ -80,5 +120,6 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js">  </script>
     <!-- <script src="js/DB.js"></script> -->
     <script src="js/controladorWebClientes.js"></script>
+    <script src="js/mapaClientes.js"></script>
 </body>
 </html>	

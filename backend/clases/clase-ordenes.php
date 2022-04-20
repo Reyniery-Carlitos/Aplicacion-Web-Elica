@@ -15,13 +15,15 @@
 		private $cantidad;
 		private $precio;
 		private $direccion;
+		private $latitud;
+		private $longitud;
 		private $imagen;
 		private $total = 0;
 		private $comisionElica = 0;
 		private $comisionRepartidor = 0;
 		private $precioEnvio = 50;
 
-		function __construct($pedido, $descripcion, $disponibilidad, $cliente, $repartidor, $cantidad, $direccion, $imagen){
+		function __construct($pedido, $descripcion, $disponibilidad, $cliente, $repartidor, $cantidad, $direccion, $latitud, $longitud, $imagen){
 			$this->pedido = $pedido;
 			$this->descripcion = $descripcion;
 			$this->disponibilidad = $disponibilidad;
@@ -29,6 +31,8 @@
 			$this->repartidor = $repartidor;
 			$this->cantidad = $cantidad;
 			$this->direccion = $direccion;
+			$this->latitud = $latitud;
+			$this->longitud = $longitud;
 			$this->imagen = $imagen;
 		}
 
@@ -81,6 +85,8 @@
 				"comisionElica"=> ($this->precioEnvio * 0.20),
 				"comisionRepartidor" => ($this->precioEnvio * 0.80),
 				"direccion"=> $this->direccion,
+				"latitud"=> $this->latitud,
+				"longitud"=> $this->longitud,
 				"imagen"=> $this->imagen
 			);
 
@@ -137,6 +143,8 @@
 				"comisionElica"=> ($this->precioEnvio * 0.20),
 				"comisionRepartidor" => ($this->precioEnvio * 0.80),
 				"direccion"=> $this->direccion,
+				"latitud"=> $this->latitud,
+				"longitud"=> $this->longitud,
 				"imagen"=> $this->imagen
 			);
 

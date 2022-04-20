@@ -613,6 +613,14 @@ input{
 	width: 100%;
 }
 
+.main .container-mapa{
+  	flex-wrap: wrap;
+  	width: 95%;
+  	max-width: 980px;
+  	padding: 1% 2%;
+  	margin: 0 auto
+}
+
 @media (max-width: 1000px){
 	.main{
 		display: flex;

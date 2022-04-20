@@ -31,6 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+
     <title> Repartidores </title>
 </head>
 <body>
@@ -74,7 +75,7 @@
 
 			<div class="Contenido-Principal" id="Contenido-Principal-Cards">
 				
-			</div>	
+			</div>		
 		</div>
 	</main>
 
@@ -83,7 +84,6 @@
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js">  </script>
-    <script src="js/DB.js"></script>
     <script src="js/controladorRepartidores.js"></script>
 </body>
 </html>
