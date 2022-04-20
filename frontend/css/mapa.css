@@ -1,0 +1,28 @@
+.container-mapa {
+  flex-wrap: wrap;
+  width: 95%;
+  max-width: 980px;
+  padding: 1% 2%;
+  margin: 0 auto
+}
+
+.main .container-mapa #lat,
+#lon {
+  text-align: right
+}
+
+/*.main .container-mapa .container2 #map {
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}*/
+
+.main .container-mapa .address{
+  cursor: pointer
+}
+
+.address:hover {
+  color: #AA0000;
+  text-decoration: underline
+}
