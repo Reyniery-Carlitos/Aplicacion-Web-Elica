@@ -53,7 +53,20 @@
 
 		static function obtenerClientes(){
 			$archivo = file_get_contents("../data/clientes.json");
-			echo $archivo;
+			$clientes2 = json_decode($archivo, true);
+			$clientes = [];
+			foreach ($clientes2 as $key => $value) {
+				$clientes[] = array(
+					"id"=> $value['id'],
+					"username"=> $value['username'],
+					"email"=> $value['email'],
+					"telefono"=> $value['telefono'],
+					"ciudad"=> $value['ciudad'],
+					"carrito"=> $value['carrito'],
+					"imagen"=> $value['imagen']
+				);
+			}
+			echo json_encode($clientes);
 		}
 
 		static function obtenerCliente($id){

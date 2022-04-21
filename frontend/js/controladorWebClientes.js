@@ -41,8 +41,6 @@ const obtenerEstadosOrdenes = () => {
 
 obtenerEstadosOrdenes();
 
-
-
 function rellenarFormularioUsuario(){
 	// const infoClienteActual = clientes.find(cliente => cliente.id === clienteActual); 
 	// console.log('Valor de infoClienteActual: ' + infoClienteActual);

@@ -65,7 +65,24 @@
 		// Obtener todos los repartidores
 		static function obtenerRepartidores(){
 			$archivo = file_get_contents("../data/repartidores.json");
-			echo $archivo;
+			$repartidores2 = json_decode($archivo, true);
+			$repartidores = [];
+			foreach ($repartidores2 as $key => $value) {
+				$repartidores[] = array(
+					"id"=> $value['id'],
+					"username"=> $value['username'],
+					"email"=> $value['email'],
+					"telefono"=> $value['telefono'],
+					"ciudad"=> $value['ciudad'],
+					"valoracion"=> $value['valoracion'],
+					"status"=> $value['status'],
+					"disponibilidad"=> $value['disponibilidad'],
+					"ordenesEntregadas"=> $value['ordenesEntregadas'],
+					"imagen"=> $value['imagen']
+				);
+			}
+
+			echo json_encode($repartidores);
 		}
 
 		// Obtener un solo repartidor

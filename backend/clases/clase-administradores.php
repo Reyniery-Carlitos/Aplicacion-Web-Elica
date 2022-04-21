@@ -53,7 +53,19 @@
 
 		static function obtenerAdministradores(){
 			$archivo = file_get_contents("../data/administradores.json");
-			echo $archivo;
+			$administradores2 = json_decode($archivo, true);
+			$administradores = [];
+			foreach ($administradores2 as $key => $value) {
+				$administradores[] = array(
+					"id"=> $value['id'],
+					"username"=> $value['username'],
+					"email"=> $value['email'],
+					"telefono"=> $value['telefono'],
+					"ciudad"=> $value['ciudad'],
+					"imagen"=> $value['imagen']
+				);
+			}
+			echo json_encode($administradores);
 		}
 
 		static function obtenerAdministrador($id){

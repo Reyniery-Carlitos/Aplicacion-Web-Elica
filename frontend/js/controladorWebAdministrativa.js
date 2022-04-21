@@ -1289,11 +1289,8 @@ const asignarOrdenRepartidor = (idOrden, idRepartidor) => {
 		responseType: 'json',
 		data: orden
 	}).then(respuesta => {
-		console.log("Orden: " + idOrden + " asignada a: " + idRepartidor);
-		console.log(respuesta);
 		alert('Orden asignada con exito');
-
-		// location.reload();
+		location.reload();
 	}).catch(error => {
 		console.error(error);
 	});

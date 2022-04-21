@@ -519,6 +519,7 @@ function mostrarMisOrdenes(){
 					listaEstados += `<option value="${estado.stats}"> ${estado.stats} </option>`;
 				}
 			});
+				
 			document.getElementById('Contenido-Principal-Cards').innerHTML += `
 				<div class="Contenedor-Cards">
 					<div class="Card" onclick="verDetallesPedido2('${misOrdenesRealizadas.id}')">
