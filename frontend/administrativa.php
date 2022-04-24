@@ -1,6 +1,7 @@
 <?php
 	session_start();
 
+	// Validaciones
 	if(!isset($_SESSION['token'])){
 		header("Location: 401.html");
 		exit();
