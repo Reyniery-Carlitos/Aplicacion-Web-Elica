@@ -59,7 +59,6 @@
 				$administradores[] = array(
 					"id"=> $value['id'],
 					"username"=> $value['username'],
-					"email"=> $value['email'],
 					"telefono"=> $value['telefono'],
 					"ciudad"=> $value['ciudad'],
 					"imagen"=> $value['imagen']

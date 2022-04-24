@@ -102,7 +102,7 @@
 			echo $archivo;
 		}
 
-		function obtenerOrden($id){
+		static function obtenerOrden($id){
 			$archivo = file_get_contents("../data/ordenes.json");
 			$ordenes = json_decode($archivo, true);
 			foreach ($ordenes as $key => $value) {

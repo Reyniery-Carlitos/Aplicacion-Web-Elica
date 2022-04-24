@@ -3,20 +3,20 @@
 	header("content-type: application/json");
 	include_once("../clases/clase-clientes.php");
 
-	// if(!isset($_SESSION['token'])){
-	// 	echo "Error: Acceso no autorizado";
-	// 	exit();
-	// }
+	if(!isset($_SESSION['token'])){
+		echo "Error: Acceso no autorizado";
+		exit();
+	}
 
-	// if(!isset($_COOKIE['token'])){
-	// 	echo "Error: Acceso no autorizado";
-	// 	exit();
-	// }
+	if(!isset($_COOKIE['token'])){
+		echo "Error: Acceso no autorizado";
+		exit();
+	}
 
-	// if($_SESSION['token'] !== $_COOKIE['token']){
-	// 	echo "Error: Acceso no autorizado";
-	// 	exit();	
-	// }
+	if($_SESSION['token'] !== $_COOKIE['token']){
+		echo "Error: Acceso no autorizado";
+		exit();	
+	}
 
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'POST':

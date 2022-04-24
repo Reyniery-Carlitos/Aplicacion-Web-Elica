@@ -37,12 +37,12 @@
 			fclose($archivo);
 		}
 
-		function obtenerCategorias(){
+		static function obtenerCategorias(){
 			$archivo = file_get_contents("../data/categorias.json");
 			echo $archivo;
 		}
 
-		function obtenerCategoria($id){
+		static function obtenerCategoria($id){
 			$archivo = file_get_contents("../data/categorias.json");
 			$categorias = json_decode($archivo, true);
 			foreach($categorias as $key => $value){

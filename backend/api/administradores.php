@@ -19,10 +19,6 @@
 	}
 
 	switch ($_SERVER['REQUEST_METHOD']) {
-		// $username, $email, $password, $telefono = 0, $ciudad = "", $imagen = ""
-		// case 'POST':
-		// 	$administrador = new Administrador($_POST['username']);
-		// break;
 		case 'GET':
 			if(isset($_GET['id'])){
 				Administrador::obtenerAdministrador($_GET['id']);
