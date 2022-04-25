@@ -3,6 +3,10 @@
 	header("content-type: application/json");
 	include_once("../clases/clase-repartidores.php");
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> eb947e3d1b3086294446de22f623ad8ce1091777
 	switch ($_SERVER['REQUEST_METHOD']) {
 		case 'POST':
 			$_POST = json_decode(file_get_contents('php://input'), true);
